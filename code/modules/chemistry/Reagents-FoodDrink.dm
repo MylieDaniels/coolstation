@@ -3428,8 +3428,7 @@ datum
 					M.make_dizzy(33 * mult)
 
 					M.take_brain_damage(9 * mult)
-										M.emote("scream")
-
+					M.emote("scream")
 
 					var/image/imagekey = pick(od_halluc)
 					M.AddComponent(/datum/component/hallucination/fake_attack, 10, list(imagekey), od_halluc[imagekey], 25, 5)

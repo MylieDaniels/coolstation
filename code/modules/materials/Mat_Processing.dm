@@ -427,7 +427,9 @@
 
 	proc/updateResultName()
 		if(first_part && second_part)
-			resultName = getInterpolatedName(first_part.material.name, second_part.material.name, 0.5)
+			var/datum/material_recipe/RE = matchesMaterialRecipe(list(first_part.material.mat_id,second_part.material.mat_id))
+			if(RE && RE.name)
+				resultName = RE.name
 		else
 			resultName = "???"
 

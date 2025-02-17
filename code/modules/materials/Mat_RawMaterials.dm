@@ -29,6 +29,7 @@
 		..()
 */
 	proc/setup_material()
+		src.setMaterial(getMaterial(src.default_material), appearance = 0, setname = 0)
 		.=0
 
 	update_stack_appearance()
@@ -189,26 +190,20 @@
 				src.change_stack_amount(-1)
 				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
 
-/obj/item/material_piece/fart
+/obj/item/material_piece/frozenfart
 	icon_state = "fart"
 	name = "frozen fart"
 	desc = "Remarkable! The cold temperatures in the freezer have frozen the fart in mid-air."
+	default_material = "frozenfart"
 	amount = 5
 	value = -10
 	alt_value = 50
-	setup_material()
-		src.setMaterial(getMaterial("frozenfart"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/steel
 	desc = "A processed bar of Steel, a common metal."
 	default_material = "steel"
 	icon_state = "bar"
 	value = 100 //legacy iron carbon earth material
-
-	setup_material()
-		src.setMaterial(getMaterial("steel"), appearance = 1, setname = 1)
-		..()
 
 /obj/item/material_piece/hamburgris
 	name = "clump"
@@ -218,19 +213,11 @@
 	value = -500 //horrifying
 	alt_value = 5000
 
-	setup_material()
-		src.setMaterial(getMaterial("hamburgris"), appearance = 0, setname = 0)
-		..()
-
 /obj/item/material_piece/glass
 	desc = "A cut block of glass, a common crystalline substance."
 	default_material = "glass"
 	icon_state = "block"
 	value = 100 //legacy silica earth material
-
-	setup_material()
-		src.setMaterial(getMaterial("glass"), appearance = 1, setname = 1)
-		..()
 
 /obj/item/material_piece/copper
 	desc = "A processed bar of copper, a conductive metal."
@@ -238,47 +225,37 @@
 	icon_state = "bar"
 	value = 100 //legacy earth material
 
-	setup_material()
-		src.setMaterial(getMaterial("copper"), appearance = 1, setname = 1)
-		..()
-
 /obj/item/material_piece/iridiumalloy
 	icon_state = "iridium"
 	name = "iridium alloy plate"
 	desc = "A chunk of some sort of iridium alloy plating."
+	default_material = "iridiumalloy"
 	amount = 5
 	value = 1000 //seems cool
-	setup_material()
-		src.setMaterial(getMaterial("iridiumalloy"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/spacelag
 	icon_state = "spacelag"
 	name = "spacelag bar"
 	desc = "Yep. There it is. You've done it. I hope you're happy now."
+	default_material = "spacelag"
 	amount = 1
 	value = -500 //cause a stutter when selling if possible, just because it's funny
-	setup_material()
-		src.setMaterial(getMaterial("spacelag"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/slag
 	icon_state = "slag"
 	name = "slag"
 	desc = "By-product of smelting"
+	default_material = "slag"
 	value = -10 //heavy trash
-	setup_material()
-		src.setMaterial(getMaterial("slag"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/rubber/latex
 	name = "latex sheet"
 	desc = "A sheet of latex."
 	icon_state = "latex"
+	default_material = "latex"
 	value = 20 //maybe
 
 	setup_material()
-		src.setMaterial(getMaterial("latex"), appearance = 0, setname = 0)
 		src.create_reagents(10)
 		reagents.add_reagent("rubber", 10)
 		return ..()
@@ -287,10 +264,9 @@
 	name = "wooden log"
 	desc = "Years of genetic engineering mean timber always comes in mostly perfectly shaped cylindrical logs."
 	icon_state = "log"
+	default_material = "wood"
 	value = 100 //somewhat rare in space
-	setup_material()
-		src.setMaterial(getMaterial("wood"), appearance = 0, setname = 0)
-		..()
+
 	attackby(obj/item/W as obj, mob/user as mob)
 		if ((istool(W, TOOL_CUTTING | TOOL_SAWING)))
 			user.visible_message("[user] cuts a plank from the [src].", "You cut a plank from the [src].")
@@ -307,10 +283,9 @@
 	name = "bamboo stalk"
 	desc = "Keep away from Space Pandas."
 	icon_state = "bamboo"
+	default_material = "bamboo"
 	value = 20 //cheap material
-	setup_material()
-		src.setMaterial(getMaterial("bamboo"), appearance = 0, setname = 0)
-		..()
+
 	attackby(obj/item/W as obj, mob/user as mob)
 		if ((istool(W, TOOL_CUTTING | TOOL_SAWING)))
 			user.visible_message("[user] carefully extracts a shoot from [src].", "You carefully cut a shoot from [src].")
@@ -326,143 +301,110 @@
 	name = "space spider silk"
 	desc = "space silk produced by space dwelling space spiders. space."
 	icon_state = "spidersilk"
+	default_material = "bamboo"
 	value = 200 //luxury
-	setup_material()
-		src.setMaterial(getMaterial("spidersilk"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/leather
 	name = "leather"
 	desc = "leather made from the skin of some sort of space critter."
 	icon_state = "leather"
+	default_material = "leather"
 	value = 150 //cool
-	setup_material()
-		src.setMaterial(getMaterial("leather"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/synthleather
 	name = "synthleather"
 	desc = "A type of artificial leather."
 	icon_state = "synthleather"
+	default_material = "synthleather"
 	value = 100 //less cool
-	setup_material()
-		src.setMaterial(getMaterial("synthleather"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/cottonfabric
 	name = "cotton fabric"
 	desc = "A type of natural fabric."
 	icon_state = "fabric"
+	default_material = "cotton"
 	value = 20 //processed
-	setup_material()
-		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/brullbarhide
 	name = "brullbar hide"
 	desc = "The hide of a brüllbär"
 	icon_state = "brullbarhide"
+	default_material = "brullbarhide"
 	value = 500 //way cool
-	setup_material()
-		src.setMaterial(getMaterial("brullbarhide"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/kingbrullbarhide
 	name = "king brüllbär hide"
 	desc = "The hide of a king brüllbär"
 	icon_state = "brullbarhide"
+	default_material = "kingbrullbarhide"
 	value = 5000 //holy shit man
-	setup_material()
-		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/carbon
 	name = "carbon nano fibre fabric"
 	desc = "carbon based hi-tech material."
 	icon_state = "carbonfibre"
+	default_material = "carbonfibre"
 	value = 200
-	setup_material()
-		src.setMaterial(getMaterial("carbonfibre"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/dyneema
 	name = "dyneema fabric"
 	desc = "carbon nanofibres and space spider silk!"
 	icon_state = "dyneema"
+	default_material = "dyneema"
 	value = 500 //whatever
-	setup_material()
-		src.setMaterial(getMaterial("dyneema"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/hauntium
 	name = "hauntium fabric"
 	desc = "This cloth seems almost alive."
+	default_material = "hauntium"
 	value = 300
 	icon_state = "dyneema"
-
-	setup_material()
-		src.setMaterial(getMaterial("hauntium"), appearance = 1, setname = 0)
-		..()
 
 /obj/item/material_piece/cloth/beewool
 	name = "bee wool"
 	desc = "Some bee wool."
 	icon_state = "beewool"
+	default_material = "beewool"
 	value = 75
-	setup_material()
-		src.setMaterial(getMaterial("beewool"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/soulsteel
 	name = "soulsteel bar"
 	desc = "A bar of soulsteel. Metal made from souls."
 	icon_state = "soulsteel"
+	default_material = "soulsteel"
 	value = 500 //curse you
-	setup_material()
-		src.setMaterial(getMaterial("soulsteel"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/bone
 	name = "bits of bone"
 	desc = "some bits and pieces of bones."
 	icon_state = "scrap3"
+	default_material = "bone"
 	value = -10 //trash at best, crime at worst
-	setup_material()
-		src.setMaterial(getMaterial("bone"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/gnesis
 	name = "gnesis wafer"
 	desc = "A warm, pulsing block of weird alien computer crystal stuff."
 	icon_state = "gnesis"
+	default_material = "gnesis"
 	value = 100 //weird but commonish
-	setup_material()
-		src.setMaterial(getMaterial("gnesis"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/gnesisglass
 	name = "gnesisglass wafer"
 	desc = "A shimmering, transclucent block of weird alien computer crystal stuff."
 	icon_state = "gnesisglass"
+	default_material = "gnesisglass"
 	value = 100 //sure
-	setup_material()
-		src.setMaterial(getMaterial("gnesisglass"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/coral
 	name = "coral"
 	desc = "A piece of coral. Nice!"
 	icon_state = "coral"
+	default_material = "coral"
 	value = 150 //space tourists love that shit
-	setup_material()
-		src.setMaterial(getMaterial("coral"), appearance = 0, setname = 0)
-		..()
 
 /obj/item/material_piece/neutronium
 	name = "neutronium"
 	desc = "Neutrons condensed into a solid form."
 	icon_state = "bar"
+	default_material = "neutronium"
 	value = 5000 //i guess? i don't know how often this comes up
-	setup_material()
-		src.setMaterial(getMaterial("neutronium"), appearance = 0, setname = 0)
-		..()

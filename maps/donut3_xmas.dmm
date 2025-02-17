@@ -24726,7 +24726,7 @@
 /turf/floor/shuttlebay,
 /area/station/hallway/secondary/exit)
 "gVQ" = (
-/obj/machinery/nanofab/mining,
+
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
 /obj/decal/tile_edge/line/yellow{
 	dir = 4;
@@ -25278,7 +25278,7 @@
 /area/station/hallway/primary/west)
 "heg" = (
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
-/obj/machinery/nanofab/refining,
+
 /obj/decal/tile_edge/line/yellow{
 	dir = 6;
 	icon_state = "line2"

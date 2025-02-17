@@ -17747,7 +17747,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/nanofab/refining,
 /turf/floor/plating,
 /area/station/maintenance/east)
 "aGL" = (
@@ -39526,7 +39525,6 @@
 /turf/floor/cautionblack,
 /area/station/quartermaster/storage)
 "btB" = (
-/obj/machinery/nanofab/refining,
 /turf/floor/cautionblack,
 /area/station/quartermaster/storage)
 "btC" = (
@@ -45762,7 +45760,7 @@
 	icon_state = "2-4"
 	},
 /obj/disposalpipe/segment/mail,
-/obj/machinery/nanofab/mining,
+
 /turf/floor/yellow/side{
 	dir = 1
 	},
@@ -46621,7 +46619,7 @@
 	},
 /area/station/engine/combustion_chamber)
 "bHN" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/plating/airless,
 /area/station/mining/magnet)
 "bHO" = (

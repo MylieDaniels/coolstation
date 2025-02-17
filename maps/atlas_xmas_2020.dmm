@@ -1373,7 +1373,6 @@
 	},
 /area/station/mining/refinery)
 "ds" = (
-/obj/machinery/nanofab/mining,
 /turf/floor/engine{
 	dir = 4;
 	icon_state = "engine_caution_corners"
@@ -1862,7 +1861,6 @@
 /area/station/mining/refinery)
 "eF" = (
 /obj/machinery/light_switch/auto,
-/obj/machinery/nanofab/refining,
 /turf/floor/stairs/wide/other,
 /area/station/mining/refinery)
 "eG" = (

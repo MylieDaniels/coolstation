@@ -1825,7 +1825,7 @@
 /turf/floor/plating,
 /area/station/mining/refinery)
 "aeR" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/plating,
 /area/station/mining/refinery)
 "aeS" = (
@@ -2824,7 +2824,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "aix" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/plating,
 /area/station/mining/refinery)
 "aiy" = (

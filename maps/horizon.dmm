@@ -18871,7 +18871,7 @@
 /turf/floor/black,
 /area/station/mining/refinery)
 "aVH" = (
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_x = 12
@@ -24240,7 +24240,7 @@
 	},
 /area/space)
 "bhQ" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bhS" = (

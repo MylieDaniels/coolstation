@@ -55968,7 +55968,7 @@
 	},
 /area/station/quartermaster/refinery)
 "cpd" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -55981,7 +55981,7 @@
 /area/station/quartermaster/refinery)
 "cpf" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/nanofab/refining,
+
 /turf/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -65962,7 +65962,7 @@
 	},
 /area/station/mining/staff_room)
 "cLN" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/plating,
 /area/station/mining/staff_room)
 "cLO" = (

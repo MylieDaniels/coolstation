@@ -20252,7 +20252,7 @@
 /turf/space/fluid,
 /area/space)
 "aUc" = (
-/obj/machinery/nanofab/refining,
+
 /turf/space/fluid,
 /area/space)
 "aUd" = (
@@ -32950,7 +32950,7 @@
 /turf/floor/white,
 /area/station/hallway/secondary/exit)
 "bzm" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/delivery/caution,
 /area/station/quartermaster/office)
 "bzn" = (
@@ -35178,7 +35178,7 @@
 	},
 /area/station/mining/staff_room)
 "bEw" = (
-/obj/machinery/nanofab/mining,
+
 /obj/disposalpipe/segment,
 /turf/floor/yellow/side{
 	dir = 4
@@ -40402,7 +40402,7 @@
 	},
 /area/station/quartermaster/refinery)
 "bRr" = (
-/obj/machinery/nanofab/refining,
+
 /obj/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -40422,7 +40422,7 @@
 	},
 /area/station/quartermaster/refinery)
 "bRt" = (
-/obj/machinery/nanofab/refining,
+
 /obj/disposalpipe/segment{
 	dir = 4
 	},

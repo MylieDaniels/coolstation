@@ -4972,7 +4972,7 @@
 	},
 /area/station2/mining/refinery)
 "amy" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine{
 	icon_state = "engine_caution_corners";
 	dir = 4
@@ -36318,12 +36318,12 @@
 /turf/floor/cautionblack,
 /area/station2/hangar/arrivals)
 "bCu" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bCv" = (
 /obj/disposalpipe/segment/brig,
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/light{
 	dir = 4;
 	layer = 9.1;
@@ -64315,7 +64315,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor/caution/north,
 /area/station/maintenance/disposal)
 "cMj" = (

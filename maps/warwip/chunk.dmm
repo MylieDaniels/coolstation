@@ -19243,7 +19243,7 @@
 /turf/floor,
 /area/station/hydroponics/lobby)
 "sNJ" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/grime,
 /area/station/mining/refinery)
 "sNT" = (

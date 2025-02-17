@@ -20344,7 +20344,7 @@
 /area/station/mining/refinery)
 "aVH" = (
 /obj/disposalpipe/segment/brig,
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_x = 12
@@ -26274,7 +26274,7 @@
 	},
 /area/station/mining/magnet)
 "bhQ" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bhR" = (

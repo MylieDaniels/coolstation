@@ -2064,7 +2064,6 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "fm" = (
-/obj/machinery/nanofab/refining,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -9992,7 +9991,6 @@
 /turf/floor/black,
 /area/station/security/armory)
 "yl" = (
-/obj/machinery/nanofab/mining,
 /turf/floor/yellow/side{
 	dir = 6
 	},

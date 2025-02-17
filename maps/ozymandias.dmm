@@ -23718,7 +23718,7 @@
 	pixel_x = -10;
 	tag = ""
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "gBX" = (
@@ -32640,7 +32640,7 @@
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "iYi" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/refinery)
 "iYm" = (
@@ -52325,7 +52325,7 @@
 /turf/floor/blueblack,
 /area/station/turret_protected/ai_upload)
 "ogA" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/engine/caution/east,
 /area/station/storage/warehouse)
 "ogI" = (
@@ -68284,7 +68284,7 @@
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "ssY" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/engine/caution/west,
 /area/station/storage/warehouse)
 "stE" = (
@@ -77643,7 +77643,7 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/mining/refinery)
 "uHF" = (

@@ -22001,7 +22001,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor/grime,
 /area/station/storage/warehouse{
 	name = "Warehouse"

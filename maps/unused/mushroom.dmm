@@ -3646,7 +3646,7 @@
 /turf/floor,
 /area/station/quartermaster/storage)
 "air" = (
-/obj/machinery/nanofab,
+
 /turf/floor/cautionblack/side{
 	dir = 4
 	},

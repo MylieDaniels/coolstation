@@ -1031,7 +1031,7 @@
 /turf/floor/carpet/grime,
 /area/station/chapel/office)
 "db" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine{
 	dir = 4;
 	icon_state = "engine_caution_corners"

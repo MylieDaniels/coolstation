@@ -8069,7 +8069,7 @@
 /turf/floor,
 /area/station/quartermaster/office)
 "asz" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/quartermaster/office)
 "asA" = (
@@ -13263,7 +13263,7 @@
 /turf/floor/plating,
 /area/station/mining/staff_room)
 "aEC" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/staff_room)
 "aED" = (
@@ -14586,7 +14586,7 @@
 /turf/floor,
 /area/station/quartermaster/refinery)
 "aHQ" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/quartermaster/refinery)
 "aHR" = (
@@ -14596,7 +14596,7 @@
 /turf/floor,
 /area/station/quartermaster/refinery)
 "aHS" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/quartermaster/refinery)
 "aHT" = (

@@ -26417,12 +26417,12 @@
 /turf/floor/plating/random,
 /area/station/mining/refinery)
 "bhL" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bhM" = (
 /obj/disposalpipe/segment/brig,
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/light{
 	dir = 4;
 	layer = 9.1;
@@ -52257,7 +52257,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor/caution/north,
 /area/station/maintenance/disposal)
 "clZ" = (

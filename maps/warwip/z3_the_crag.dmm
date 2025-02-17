@@ -7057,7 +7057,7 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/lobby)
 "IY" = (
@@ -7741,7 +7741,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/mining/lobby)
 "Nd" = (

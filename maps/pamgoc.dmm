@@ -1459,7 +1459,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/nanofab/mining,
+
 /obj/machinery/power/apc/autoname/east,
 /turf/floor/yellow/side{
 	dir = 5
@@ -45731,7 +45731,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/nanofab/refining,
+
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
@@ -48488,11 +48488,11 @@
 /turf/floor/engine,
 /area/station/engine/core)
 "bNj" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/delivery,
 /area/station/quartermaster/office)
 "bNk" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/shuttlebay{
 	name = "reinforced plating"
 	},

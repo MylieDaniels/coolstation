@@ -6867,7 +6867,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/quartermaster/refinery)
 "dZT" = (
@@ -12957,7 +12957,7 @@
 /turf/floor/white,
 /area/station/medical/cdc)
 "hCp" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/refinery)
 "hCs" = (

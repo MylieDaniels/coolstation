@@ -33360,11 +33360,11 @@
 /turf/floor,
 /area/station/construction)
 "bOI" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/industrial,
 /area/station/mining/refinery)
 "bOJ" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/industrial,
 /area/station/mining/refinery)
 "bOM" = (

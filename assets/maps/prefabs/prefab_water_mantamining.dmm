@@ -471,7 +471,6 @@
 /turf/floor,
 /area/prefab/tunnelsnake)
 "bo" = (
-/obj/machinery/nanofab/mining,
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
@@ -597,7 +596,6 @@
 /turf/variableTurf/clear,
 /area/noGenerate)
 "bC" = (
-/obj/machinery/nanofab/refining,
 /turf/floor/caution/south,
 /area/prefab/tunnelsnake)
 "bD" = (

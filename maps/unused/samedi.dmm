@@ -4699,7 +4699,7 @@
 /turf/floor/cautionblack,
 /area/station/mining/staff_room)
 "ajN" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/cautionblack,
 /area/station/mining/refinery)
 "ajO" = (
@@ -5403,7 +5403,7 @@
 /turf/space,
 /area/space)
 "alx" = (
-/obj/machinery/nanofab/mining,
+
 /obj/machinery/light_switch/west,
 /turf/floor/cautionblack,
 /area/station/mining/refinery)
@@ -16358,7 +16358,7 @@
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "aJU" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/caution/corner/ne{
 	dir = 1
 	},

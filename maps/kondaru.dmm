@@ -25310,7 +25310,7 @@
 /turf/floor/caution/westeast,
 /area/station/mining/refinery)
 "bwO" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bwP" = (
@@ -25325,7 +25325,7 @@
 	pixel_y = 20;
 	tag = ""
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor/engine,
 /area/station/mining/refinery)
 "bwR" = (
@@ -55097,7 +55097,7 @@
 	},
 /area/station/mining/staff_room)
 "rgw" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/magnet)
 "rgA" = (
@@ -61773,7 +61773,7 @@
 /turf/floor,
 /area/station/security/secwing)
 "xVR" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/mining/magnet)
 "xXb" = (

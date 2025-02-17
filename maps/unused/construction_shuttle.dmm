@@ -334,11 +334,11 @@
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aX" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aY" = (
-/obj/machinery/nanofab/mining,
+
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aZ" = (

@@ -35639,7 +35639,7 @@
 	dir = 4;
 	icon_state = "line1"
 	},
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/light{
 	dir = 4
 	},
@@ -37012,7 +37012,7 @@
 /turf/floor/blue,
 /area/station/medical/medbay/treatment)
 "lKv" = (
-/obj/machinery/nanofab/refining,
+
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
@@ -41822,7 +41822,7 @@
 	dir = 8;
 	icon_state = "line1"
 	},
-/obj/machinery/nanofab/refining,
+
 /turf/floor,
 /area/station/mining/staff_room)
 "omk" = (
@@ -42525,7 +42525,7 @@
 	dir = 8;
 	icon_state = "line1"
 	},
-/obj/machinery/nanofab/mining,
+
 /turf/floor,
 /area/station/mining/staff_room)
 "oGd" = (

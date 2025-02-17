@@ -3727,7 +3727,7 @@
 	},
 /area/station/quartermaster/office)
 "ait" = (
-/obj/machinery/nanofab,
+
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -34101,7 +34101,7 @@
 	name = "S light switch";
 	pixel_y = -24
 	},
-/obj/machinery/nanofab,
+
 /turf/floor/grime,
 /area/station/mining/magnet)
 "btM" = (

@@ -32442,7 +32442,7 @@
 	},
 /area/station/storage/warehouse)
 "bDL" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/shuttlebay{
 	name = "reinforced plating"
 	},
@@ -34786,7 +34786,7 @@
 /turf/floor,
 /area/station/quartermaster/office)
 "bJL" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/delivery,
 /area/station/quartermaster/office)
 "bJM" = (
@@ -42275,7 +42275,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/nanofab/refining,
+
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
@@ -44527,7 +44527,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/nanofab/mining,
+
 /obj/machinery/power/apc/autoname/west,
 /turf/floor/yellow/side{
 	dir = 9

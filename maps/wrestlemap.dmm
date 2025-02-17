@@ -15679,7 +15679,7 @@
 /obj/decal/tile_edge/stripe{
 	dir = 1
 	},
-/obj/machinery/nanofab,
+
 /turf/floor/shuttlebay,
 /area/station/quartermaster/refinery)
 "gzO" = (
@@ -17129,7 +17129,7 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "hhr" = (
-/obj/machinery/nanofab,
+
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/cautionblack,
 /area/station/storage/warehouse)
@@ -17315,7 +17315,7 @@
 /turf/floor/plating,
 /area/station/com_dish/comdish)
 "hlB" = (
-/obj/machinery/nanofab/mining,
+
 /obj/decal/tile_edge/stripe{
 	dir = 4;
 	icon_state = "delivery2";
@@ -40582,7 +40582,7 @@
 /turf/floor/red,
 /area/station/medical/medbay/surgery)
 "rrF" = (
-/obj/machinery/nanofab/refining,
+
 /obj/decal/tile_edge/stripe{
 	dir = 6
 	},
@@ -55634,7 +55634,7 @@
 	name = "The Ring Entrance"
 	})
 "xMT" = (
-/obj/machinery/nanofab/mining,
+
 /obj/decal/tile_edge/stripe{
 	dir = 4;
 	icon_state = "delivery2";

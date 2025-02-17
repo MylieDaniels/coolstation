@@ -22679,7 +22679,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/obj/machinery/nanofab/mining,
+
 /turf/floor/airless/caution/north,
 /area/station/mining/refinery)
 "aWc" = (
@@ -22967,7 +22967,7 @@
 /turf/floor/plating,
 /area/station/crew_quarters/hor)
 "aWK" = (
-/obj/machinery/nanofab/refining,
+
 /turf/floor/airless/caution/south,
 /area/station/mining/refinery)
 "aWL" = (

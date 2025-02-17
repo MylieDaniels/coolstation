@@ -700,7 +700,7 @@
 /datum/blob_ability/reinforce
 	name = "Reinforce Blob"
 	icon_state = "blob-reinforce"
-	desc = "Reinforce the selected blob bit with a material deposit on the same tile. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material. A single blob bit can be repeatedly reinforced to push its properties closer to that of the reinforcing material."
+	desc = "Reinforce the selected blob bit with a material deposit on the same tile. Blob bits with reinforcements may be more durable or more heat resistant, or otherwise may bear special properties depending on the properties of the material."
 	bio_point_cost = 2
 	cooldown_time = 20
 
@@ -735,7 +735,7 @@
 		B.visible_message("<span class='alert'><b>[B] reinforces using [reinforcing]!</b></span>")
 
 
-		B.setMaterial(getInterpolatedMaterial(B.material, reinforcing.material, 0.17))
+		B.setMaterial(B.material)
 		qdel(reinforcing)
 
 		owner.playsound_local(owner.loc, "sound/voice/blob/blobreinforce[rand(1, 2)].ogg", 50, 1)
@@ -1422,7 +1422,7 @@
 			taking = 0
 			return 1
 		var/datum/material/to_merge = mats[max_id]
-		owner.my_material = getInterpolatedMaterial(owner.my_material, to_merge, 0.17)
+		owner.my_material = to_merge
 		for (var/obj/O in deposits)
 			qdel(O)
 		boutput(usr, "<span class='notice'>Applying upgrade to the blob...</span>")

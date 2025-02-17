@@ -2630,3 +2630,10 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 		// Otherwise, output to ghosts
 		if (isdead(M) || iswraith(M) || isghostdrone(M) || isVRghost(M) || inafterlifebar(M))
 			boutput(M, rendered)
+
+/// Merges two names into one.
+/proc/getInterpolatedName(var/name1, var/name2, var/t)
+	var/ot = 1 - t
+	var/part1 = copytext(name1, 1, round((length(name1) * ot) + 0.5))
+	var/part2 = copytext(name2, round((length(name2) * ot) + 0.5), 0)
+	return capitalize(ckey("[part1][part2]"))

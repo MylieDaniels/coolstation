@@ -97,7 +97,7 @@
 			overmind.blobs -= src
 		if (O)
 			overmind = O
-			setMaterial(copyMaterial(O.my_material))
+			setMaterial(O.my_material)
 			color = material.color
 			original_color = color
 			O.blobs |= src
@@ -306,7 +306,7 @@
 	proc/create_chunk(var/turf/T)
 		var/obj/item/material_piece/wad/BC = new()
 		BC.set_loc(T)
-		BC.setMaterial(copyMaterial(material))
+		BC.setMaterial(material)
 		BC.name = "chunk of blob"
 
 	proc/take_damage(var/amount,var/damage_mult = 1,var/damtype = "brute",var/mob/user)
@@ -1325,7 +1325,7 @@
 	New(nloc, mat, blob)
 		..(nloc)
 		src.overmind = blob
-		setMaterial(copyMaterial(mat))
+		setMaterial(mat)
 		pixel_x = rand(-12, 12)
 		pixel_y = rand(-12, 12)
 

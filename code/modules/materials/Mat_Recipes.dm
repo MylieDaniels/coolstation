@@ -65,4 +65,4 @@
 /datum/material_recipe/synthblubber
 	name = "synthblubber"
 	result_id = "synthblubber"
-	requirements = list("coral", "latex")
+	requirements = list("coral", "synthleather")

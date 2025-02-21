@@ -333,7 +333,7 @@
 
 	var/obj/item/first_part = null
 	var/obj/item/second_part = null
-	var/resultName = "???"
+	var/datum/material_recipe/current_recipe = null
 
 	New()
 		..()
@@ -344,7 +344,7 @@
 
 	attack_hand(mob/user as mob)
 		var/html = ""
-		html += "<div style=\"margin: auto;text-align:center\">[first_part ? "<a href='byond://?src=\ref[src];remove=\ref[first_part]'>[first_part.name]</a>" : "EMPTY"] <i class=\"icon-plus\"></i> [second_part ? "<a href='byond://?src=\ref[src];remove=\ref[second_part]'>[second_part.name]</a>" : "EMPTY"]   <i class=\"icon-double-angle-right\"></i> [resultName]</div><br>"
+		html += "<div style=\"margin: auto;text-align:center\">[first_part ? "<a href='byond://?src=\ref[src];remove=\ref[first_part]'>[first_part.name]</a>" : "EMPTY"] <i class=\"icon-plus\"></i> [second_part ? "<a href='byond://?src=\ref[src];remove=\ref[second_part]'>[second_part.name]</a>" : "EMPTY"]   <i class=\"icon-double-angle-right\"></i> [current_recipe ? current_recipe.name : "????"]</div><br>"
 		html += "<div style=\"margin: auto;text-align:center\"><a href='byond://?src=\ref[src];activate=1'><i class=\"icon-check-sign icon-large\"></i></a></div><br><br>"
 
 		for(var/obj/item/I in src)
@@ -377,19 +377,17 @@
 				amt = max(0, amt)
 				if(amt && isnum(amt) && FP && FP.amount >= amt && SP && SP.amount >= amt && (FP in src) && (SP in src))
 					flick("smelter1",src)
-					var/datum/material_recipe/RE = matchesMaterialRecipe(list(FP.material.mat_id,SP.material.mat_id))
-					if(RE)
+					if(current_recipe)
 						var/newtype
 						var/output_item = 0
 						var/datum/material/output_material
 
-						if(RE)
-							if(RE.result_item)
-								newtype = RE.result_item
-								output_item = 1
-							else if(RE.result_id)
-								output_material = getMaterial(RE.result_id)
-								newtype = output_material.bar_type
+						if(current_recipe.result_item)
+							newtype = current_recipe.result_item
+							output_item = 1
+						else if(current_recipe.result_id)
+							output_material = getMaterial(current_recipe.result_id)
+							newtype = output_material.bar_type
 
 						var/obj/item/piece = new newtype(src)
 
@@ -400,7 +398,7 @@
 							addMaterial(piece, usr)
 						else
 							piece.set_loc(get_turf(src))
-						RE?.apply_to_obj(piece)
+						current_recipe?.apply_to_obj(piece)
 						first_part = null
 						second_part = null
 						boutput(usr, "<span class='notice'>You make [piece].</span>")
@@ -422,16 +420,14 @@
 			else if (second_part == L)
 				second_part = null
 
-		updateResultName()
+		updateResult()
 		attack_hand(usr)
 
-	proc/updateResultName()
+	proc/updateResult()
 		if(first_part && second_part)
-			var/datum/material_recipe/RE = matchesMaterialRecipe(list(first_part.material.mat_id,second_part.material.mat_id))
-			if(RE && RE.name)
-				resultName = RE.name
-				return
-		resultName = "???"
+			current_recipe = matchesMaterialRecipe(list(first_part.material.mat_id,second_part.material.mat_id))
+			return
+		current_recipe = null
 
 	proc/addMaterial(var/obj/item/W, var/mob/user)
 		for(var/obj/item/A in src)

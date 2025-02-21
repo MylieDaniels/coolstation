@@ -10998,14 +10998,6 @@
 	dir = 8
 	},
 /area/station/crew_quarters/barber_shop)
-"iEh" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/access_spawn/engineering_mechanic,
-/obj/machinery/door/airlock/engineering,
-/turf/floor,
-/area/station/engine/elect)
 "iEs" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -14800,6 +14792,15 @@
 "lAc" = (
 /turf/wall/r_wall,
 /area/station/engine/ptl)
+"lAi" = (
+/obj/machinery/door/airlock/glass/engineering,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/firedoor_spawn,
+/obj/access_spawn/engineering_mechanic,
+/turf/floor/yellow,
+/area/station/storage/tools)
 "lBr" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
@@ -20635,6 +20636,15 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/south)
+"pMZ" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/access_spawn/engineering_mechanic,
+/obj/machinery/door/airlock/engineering,
+/obj/firedoor_spawn,
+/turf/floor,
+/area/station/engine/elect)
 "pNc" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -21997,15 +22007,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/hallway/primary/southeast)
-"qJv" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-
-/turf/floor/grime,
-/area/station/storage/warehouse{
-	name = "Warehouse"
-	})
 "qKg" = (
 /obj/machinery/computer3/terminal/zeta{
 	setup_os_string = "ZETA_MAINFRAME"
@@ -30582,15 +30583,6 @@
 	},
 /turf/floor/black,
 /area/station/security/armory)
-"xwC" = (
-/obj/machinery/door/airlock/glass/engineering,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/access_spawn/emergency_storage,
-/obj/firedoor_spawn,
-/turf/floor/yellow,
-/area/station/storage/tools)
 "xwG" = (
 /mob/living/critter/small_animal/bird/timberdoodle{
 	name = "Noodle"
@@ -67380,7 +67372,7 @@ sSD
 ppm
 xhY
 dic
-xwC
+lAi
 rpc
 emz
 iDO
@@ -68587,7 +68579,7 @@ iNX
 aIL
 agx
 qGT
-iEh
+pMZ
 ktx
 pPt
 jRo
@@ -77977,7 +77969,7 @@ jdW
 jdW
 fpZ
 fpZ
-qJv
+dzV
 mgc
 emK
 lZR

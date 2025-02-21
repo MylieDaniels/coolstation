@@ -225,6 +225,16 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"bn" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/button/elevator/eng{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "br" = (
 /obj/machinery/conveyor/north{
 	name = "garbo belt";
@@ -1964,6 +1974,16 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jF" = (
+/obj/machinery/light/fluorescent{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "jH" = (
 /turf/floor/cautionblack/side,
 /area/station/mining/lobby)
@@ -2520,19 +2540,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
-"mw" = (
-/obj/machinery/button/elevator/eng{
-	pixel_x = 32
-	},
-/obj/machinery/light/fluorescent{
-	dir = 4
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/floor/grime,
-/area/station/engine/hotloop)
 "my" = (
 /obj/decal/cleanable/dirt/random,
 /obj/item/device/light/flashlight,
@@ -3882,6 +3889,13 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai)
+"tL" = (
+/obj/machinery/button/elevator/qm{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "tM" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4429,14 +4443,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
-"wn" = (
-/obj/table/reinforced/auto,
-/obj/random_item_spawner/tools_w_igloves/maybe_few,
-/obj/machinery/button/elevator/qm{
-	pixel_x = -32
-	},
-/turf/floor/cautionblack,
-/area/station/mining/lobby)
 "wo" = (
 /obj/machinery/light/fluorescent,
 /turf/floor/grime,
@@ -4926,6 +4932,12 @@
 	dir = 8
 	},
 /area/station/medical/basement)
+"yV" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor,
+/area/station/mining/lobby)
 "yW" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /obj/machinery/light/fluorescent/cyan{
@@ -7052,14 +7064,6 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/inner/south)
-"IX" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8;
-	tag = "icon-xtra_bigstripe-edge (WEST)"
-	},
-
-/turf/floor,
-/area/station/mining/lobby)
 "IY" = (
 /obj/decal/poster/wallsign/pride/random{
 	pixel_y = 32
@@ -7737,13 +7741,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
-"Nc" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-
-/turf/floor,
-/area/station/mining/lobby)
 "Nd" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
@@ -9585,6 +9582,13 @@
 /obj/disposalpipe/segment,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"VE" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/floor,
+/area/station/mining/lobby)
 "VF" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -10315,6 +10319,11 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"Zy" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/tools_w_igloves/maybe_few,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "Zz" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -63188,8 +63197,8 @@ Bs
 pH
 Bs
 Bs
-mw
-IB
+jF
+bn
 IB
 Vq
 Bs
@@ -66784,8 +66793,8 @@ ie
 Pz
 Pz
 gK
-wn
-Pz
+Zy
+tL
 Pz
 EX
 gh
@@ -67388,7 +67397,7 @@ mT
 jP
 lU
 lU
-Nc
+yV
 On
 jH
 NH
@@ -68596,7 +68605,7 @@ mT
 jP
 lU
 lU
-IX
+VE
 Lp
 jH
 lT

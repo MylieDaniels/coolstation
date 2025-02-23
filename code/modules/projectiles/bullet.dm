@@ -1594,4 +1594,4 @@ soon it will go away */
 		..()
 
 	on_max_range_die(obj/projectile/O)
-		new /obj/item/coil/small/(get_turf(O))
+		//new /obj/item/coil/small/(get_turf(O))

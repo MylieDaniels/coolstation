@@ -7857,12 +7857,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
-"gmm" = (
-/obj/cable/brown{
-	icon_state = "1-2"
-	},
-/turf/floor/grime,
-/area/station/engine/gas)
 "gmv" = (
 /obj/submachine/cargopad{
 	name = "Mechanical Workshop Pad"
@@ -10998,6 +10992,15 @@
 	dir = 8
 	},
 /area/station/crew_quarters/barber_shop)
+"iEh" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/access_spawn/engineering_mechanic,
+/obj/machinery/door/airlock/engineering,
+/obj/firedoor_spawn,
+/turf/floor,
+/area/station/engine/elect)
 "iEs" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -12635,6 +12638,15 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/south)
+"jRV" = (
+/obj/cable/brown{
+	icon_state = "1-2"
+	},
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/engine/gas)
 "jSn" = (
 /obj/storage/crate/freezer{
 	name = "Freezer - Spare Parts"
@@ -14792,15 +14804,6 @@
 "lAc" = (
 /turf/wall/r_wall,
 /area/station/engine/ptl)
-"lAi" = (
-/obj/machinery/door/airlock/glass/engineering,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/firedoor_spawn,
-/obj/access_spawn/engineering_mechanic,
-/turf/floor/yellow,
-/area/station/storage/tools)
 "lBr" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
@@ -20636,15 +20639,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/hallway/primary/south)
-"pMZ" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/access_spawn/engineering_mechanic,
-/obj/machinery/door/airlock/engineering,
-/obj/firedoor_spawn,
-/turf/floor,
-/area/station/engine/elect)
 "pNc" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -30583,6 +30577,15 @@
 	},
 /turf/floor/black,
 /area/station/security/armory)
+"xwC" = (
+/obj/machinery/door/airlock/glass/engineering,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/firedoor_spawn,
+/obj/access_spawn/engineering_mechanic,
+/turf/floor/yellow,
+/area/station/storage/tools)
 "xwG" = (
 /mob/living/critter/small_animal/bird/timberdoodle{
 	name = "Noodle"
@@ -59838,7 +59841,7 @@ vYy
 rfg
 nij
 oZP
-gmm
+jRV
 usL
 nLN
 nwu
@@ -67372,7 +67375,7 @@ sSD
 ppm
 xhY
 dic
-lAi
+xwC
 rpc
 emz
 iDO
@@ -68579,7 +68582,7 @@ iNX
 aIL
 agx
 qGT
-pMZ
+iEh
 ktx
 pPt
 jRo

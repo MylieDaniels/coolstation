@@ -1974,16 +1974,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
-"jF" = (
-/obj/machinery/light/fluorescent{
-	dir = 4
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/floor/grime,
-/area/station/engine/hotloop)
 "jH" = (
 /turf/floor/cautionblack/side,
 /area/station/mining/lobby)
@@ -2540,6 +2530,16 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
+"mw" = (
+/obj/machinery/light/fluorescent{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/grime,
+/area/station/engine/hotloop)
 "my" = (
 /obj/decal/cleanable/dirt/random,
 /obj/item/device/light/flashlight,
@@ -4443,6 +4443,11 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"wn" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/tools_w_igloves/maybe_few,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "wo" = (
 /obj/machinery/light/fluorescent,
 /turf/floor/grime,
@@ -10161,6 +10166,12 @@
 /obj/item/game_kit,
 /turf/floor/plating,
 /area/station/crew_quarters/arcade)
+"YH" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 1
+	},
+/turf/floor/cautionblack/side,
+/area/station/mining/lobby)
 "YI" = (
 /turf/wall/r_wall,
 /area/station/crew_quarters/bathroom)
@@ -10319,11 +10330,6 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
-"Zy" = (
-/obj/table/reinforced/auto,
-/obj/random_item_spawner/tools_w_igloves/maybe_few,
-/turf/floor/cautionblack,
-/area/station/mining/lobby)
 "Zz" = (
 /obj/grille/catwalk/jen,
 /obj/cable{
@@ -63197,7 +63203,7 @@ Bs
 pH
 Bs
 Bs
-jF
+mw
 bn
 IB
 Vq
@@ -66793,7 +66799,7 @@ ie
 Pz
 Pz
 gK
-Zy
+wn
 tL
 Pz
 EX
@@ -68298,7 +68304,7 @@ fz
 ax
 DL
 qN
-jH
+YH
 ie
 jP
 MX

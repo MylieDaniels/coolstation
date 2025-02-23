@@ -32237,12 +32237,6 @@
 	name = "reinforced plating"
 	},
 /area/station/storage/warehouse)
-"bDL" = (
-
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/station/storage/warehouse)
 "bDM" = (
 /obj/disposalpipe/segment/mail{
 	dir = 1;
@@ -34565,10 +34559,6 @@
 "bJK" = (
 /obj/item/device/radio/beacon,
 /turf/floor,
-/area/station/quartermaster/office)
-"bJL" = (
-
-/turf/floor/delivery,
 /area/station/quartermaster/office)
 "bJM" = (
 /obj/machinery/camera{
@@ -41944,16 +41934,6 @@
 	},
 /turf/floor/grime,
 /area/station/quartermaster/refinery)
-"cbC" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/turf/floor/grime,
-/area/station/quartermaster/refinery)
 "cbD" = (
 /obj/machinery/mass_driver{
 	dir = 1;
@@ -44188,16 +44168,6 @@
 /obj/disposalpipe/segment/ejection,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
-"chy" = (
-/obj/cable{
-	icon_state = "0-4"
-	},
-
-/obj/machinery/power/apc/autoname/west,
-/turf/floor/yellow/side{
-	dir = 9
-	},
-/area/station/mining/staff_room)
 "chz" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -55702,6 +55672,12 @@
 /obj/decal/garland/ephemeral,
 /turf/floor/delivery,
 /area/station/engine/hotloop)
+"gMq" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/engine/coldloop)
 "gOr" = (
 /obj/decal/wreath/ephemeral,
 /turf/wall/r_wall,
@@ -59976,6 +59952,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/solar/south)
+"pCV" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/station/quartermaster/refinery)
 "pDh" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -61616,6 +61601,15 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/medical/morgue)
+"stH" = (
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname/west,
+/turf/floor/yellow/side{
+	dir = 9
+	},
+/area/station/mining/staff_room)
 "stQ" = (
 /turf/floor/stairs{
 	dir = 1;
@@ -64267,6 +64261,12 @@
 /obj/decal/wreath/ephemeral,
 /turf/wall,
 /area/station/hallway/secondary/entry)
+"xHu" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/station/quartermaster/refinery)
 "xHE" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -115150,7 +115150,7 @@ vlS
 bwc
 bEy
 bFh
-bGO
+gMq
 bGM
 bHA
 bIz
@@ -118469,7 +118469,7 @@ adC
 bID
 bID
 bCG
-bDL
+bBT
 bEC
 bDP
 bGa
@@ -121496,7 +121496,7 @@ bGh
 bGW
 bHN
 bIK
-bJL
+bGV
 bFp
 bMy
 bNW
@@ -122420,7 +122420,7 @@ ccy
 ccy
 ccy
 ccy
-chy
+stH
 ciQ
 cke
 clE
@@ -129966,7 +129966,7 @@ bXr
 bXr
 bXr
 cbB
-cdX
+xHu
 cdW
 bWm
 gDG
@@ -130569,7 +130569,7 @@ bWm
 bWn
 bWn
 caa
-cbC
+pCV
 ccK
 cdY
 bWm

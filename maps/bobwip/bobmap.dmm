@@ -6322,10 +6322,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
-"cOU" = (
-
-/turf/floor,
-/area/station/mining/refinery)
 "cOV" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -15668,6 +15664,15 @@
 	},
 /turf/floor/plating,
 /area/station/storage/eva)
+"gzA" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor,
+/area/station/mining/refinery)
 "gzC" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
@@ -16360,16 +16365,6 @@
 	dir = 5
 	},
 /area/station/hallway/primary/northeast)
-"gQk" = (
-
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/floor,
-/area/station/mining/refinery)
 "gQC" = (
 /obj/machinery/portable_atmospherics/canister/air/large,
 /turf/floor/plating,
@@ -24093,6 +24088,12 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"jWD" = (
+/obj/machinery/manufacturer_attachment/canister_port,
+/turf/floor/yellow/side{
+	dir = 4
+	},
+/area/station/mining/lobby)
 "jWE" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -38881,6 +38882,12 @@
 	dir = 9
 	},
 /area/station/science/lobby)
+"pQC" = (
+/obj/machinery/manufacturer_attachment/canister_port{
+	dir = 8
+	},
+/turf/floor,
+/area/station/engine/gas)
 "pQP" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -111321,10 +111328,10 @@ lHj
 mCq
 nuy
 lsu
-gQk
+gzA
 pAo
 qFx
-cOU
+ilL
 bbg
 nPd
 akd
@@ -116490,7 +116497,7 @@ mpM
 kFi
 kFi
 tHQ
-kFi
+pQC
 kFi
 kFi
 qDC
@@ -118873,7 +118880,7 @@ kux
 eMF
 nsq
 ffM
-kux
+jWD
 rIu
 sgw
 kux

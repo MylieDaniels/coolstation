@@ -91,7 +91,7 @@
 	on_transplant(mob/M)
 		. = ..()
 		if(!broken)
-			ADD_STATUS_LIMIT(M, "Food", 6)
+			ADD_STATUS_LIMIT(M, "Food", 5)
 
 	on_removal()
 		. = ..()
@@ -100,7 +100,7 @@
 	unbreakme()
 		..()
 		if(donor)
-			ADD_STATUS_LIMIT(src.donor, "Food", 6)
+			ADD_STATUS_LIMIT(src.donor, "Food", 5)
 
 	breakme()
 		..()

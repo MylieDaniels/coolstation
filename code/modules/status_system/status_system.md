@@ -51,4 +51,9 @@ They are intended to apply special effects to mobs based on the eaten food. Dura
 
 There exists a special wrapper to handle these, [/mob/living/proc/add_food_bonus].
 
-You can only have 4 food status effects active at once, determined by [exclusiveGroup = "Food"][/datum/statusEffect/exclusiveGroup] and [statusGroupLimits][/var/statusGroupLimits].
+You can only have 3 food status effects active at once, determined by [exclusiveGroup = "Food"][/datum/statusEffect/exclusiveGroup] and [statusGroupLimits][/var/statusGroupLimits].
+
+### Organic Food Effects
+
+In addition to food status effects, you may also have 1 "Organic" food status effect, determined by [exclusiveGroup = "Organic"][/datum/statusEffect/exclusiveGroup].
+These should only come from player-created food, and generally should be "cooler" than just a stat up. These are not added with add_food_bonus, because it has unnecessary checks.

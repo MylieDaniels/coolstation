@@ -1138,6 +1138,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\modules\status_system\statusEffects.dm"
 #include "code\modules\status_system\statusFoodBad.dm"
 #include "code\modules\status_system\statusFoodBuffs.dm"
+#include "code\modules\status_system\statusFoodOrganic.dm"
 #include "code\modules\status_system\statusSystem.dm"
 #include "code\modules\telescience\radiostation.dm"
 #include "code\modules\telescience\teleport_jammer.dm"

@@ -4,7 +4,7 @@ var/list/datum/statusEffect/globalStatusInstances = list()
 
 /// Simple global list of groupname : amount, that tells the system how many effects of a group we can have active at most.
 /// See exclusiveGroup. Buffs above the max will not be applied.
-var/global/list/statusGroupLimits = list("Food"=3,"Fresh Produce"=1)
+var/global/list/statusGroupLimits = list("Food"=3,"Organic"=1)
 
 /proc/testStatus()
 	var/inp = input(usr,"Which status?","Test status","airrit") as text

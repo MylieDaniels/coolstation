@@ -1223,3 +1223,25 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/turf/T = get_turf(O)
 		src.emit_chems(T, O)
 		src.emit_gas(T, 1)
+
+// watermelon seeds that richochet stupidly
+/datum/projectile/special/watermelon_seed
+	name = "watermelon seed"
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "trace"
+	power = 3
+	cost = 1
+	dissipation_rate = 0.1
+	dissipation_delay = 2
+	ks_ratio = 1.0
+	sname = "watermelon"
+	shot_sound = 'sound/impact_sounds/Slap.ogg'
+	shot_number = 1
+	damage_type = D_KINETIC
+	hit_ground_chance = 50
+
+	on_hit(atom/hit, direction, obj/projectile/P)
+		if(!ismob(hit))
+			if (!shoot_reflected_bounce(P, hit, 6, PROJ_RAPID_HEADON_BOUNCE))
+				on_max_range_die(P)
+		..()

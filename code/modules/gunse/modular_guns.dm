@@ -45,6 +45,7 @@ giving an "average" spread for stock guns around 5-10
 
 ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/ // PARENT TYPE TO ALL MODULER GUN'S
+	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
 	var/gun_DRM = 0 // identify the gun model / type
 	var/obj/item/gun_parts/barrel/barrel = null
 	var/obj/item/gun_parts/grip/grip = null //need either a grip or a stock to sensibly use
@@ -286,7 +287,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			I.set_loc(src)
 			part.add_overlay_to_gun(src,0)
 			//set the built receiver iconstate because this is sort of a WIP so, easier to figure out what the hell's going on
-			icon_state = "[initial(icon_state)]-built"
+			//icon_state = "[initial(icon_state)]-built"
 		else
 			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attaching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
@@ -967,7 +968,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
-	icon_state = "[initial(icon_state)]-built" //if i don't do this it's -built-built-built
+	//icon_state = "[initial(icon_state)]-built" //if i don't do this it's -built-built-built
 	parts = list()
 	if(barrel)
 		parts += barrel
@@ -1672,30 +1673,42 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 		else
 			stock = new /obj/item/gun_parts/stock/italian(src)
 
-//Italian Revolver
-//Extremely Stylish
-//Heavy Ammo
-//Cylinder "Magazine"
-ABSTRACT_TYPE(/obj/item/gun/modular/italian)
+//Italian guns focus on fire rate, sometimes accuracy. They tend to have shite damage, even in hefty sizes.
+ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 /obj/item/gun/modular/italian
 	name = "abstract Italian gun"
 	real_name = "abstract Italian gun"
 	desc = "abstract type do not instantiate"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
-	icon_state = "italian" //only
-	//basic revolving mechanism
-	action = "double"
-	//this will be a "magazine" but like tubes we'll have a slightly different firing method
+	icon_state = "italian"
+	gun_DRM = GUN_ITALIAN
+
+//Italian Revolver
+//Extremely Stylish
+//Heavy Ammo
+//Cylinder "Magazine"
+/obj/item/gun/modular/italian/revolver
+	name = "Italian revolver receiver"
+	real_name = "\improper Italianetto"
+	desc = "An Italian revolver, less damaging but certainly faster than an NT pistol."
+	icon_state = "it_rivoltella"
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 10
 	//color = "#FFFF99"
-	grip_overlay_x = GRIP_OFFSET_SHORT
-	stock_overlay_x = STOCK_OFFSET_SHORT
-	barrel_overlay_x = BARREL_OFFSET_SHORT
+
+	grip_overlay_x = -4
+	grip_overlay_y = -1
+	stock_overlay_x = -5
+	stock_overlay_y = 1
+	barrel_overlay_x = 4
+	barrel_overlay_y = 1
+
 	jam_frequency_fire = 5
 	jam_frequency_reload = 0
-	var/currently_firing = FALSE //this double action pull is slow
 	fiddlyness = 25
+	max_ammo_capacity = 3
+	var/currently_firing = FALSE //this double action pull is slow
+	var/damage_multiplier = 0.8
 
 	//ideally we have two lists
 	//one for projectiles
@@ -1716,16 +1729,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 				..() //fire
 			else if (!currently_firing)
 				currently_firing = TRUE
-				sleep(10) //heavy double action
-				hammer_cocked = TRUE
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				..()
-				currently_firing = FALSE
+				SPAWN_DBG(1 SECOND) //heavy double action
+					hammer_cocked = TRUE
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					..()
+					currently_firing = FALSE
 		else
-			sleep(10) //heavy double action
-			//check if still held by same person
-			process_ammo()
-			..()
+			SPAWN_DBG(1 SECOND) //heavy double action
+				//check if still held by same person
+				process_ammo()
+				..()
 
 	//fuuuuck
 	//HOWEVER this will be integral to fanning the hammer, as long as you attackself within like, a few secs of firing, you'll chain fire approximately where you were
@@ -1743,18 +1756,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			hammer_cocked = 1
 		buildTooltipContent()
 
-/obj/item/gun/modular/italian/basic
+	alter_projectile(obj/projectile/P)
+		. = ..()
+		P.power *= src.damage_multiplier
+
+/obj/item/gun/modular/italian/revolver/prebuilt
 	name = "basic Italian revolver"
 	real_name = "\improper Italianetto"
-	desc = "Una pistola realizzata in acciaio mediocre."
-	max_ammo_capacity = 1 //2 shots
+	//desc = "Una pistola realizzata in acciaio mediocre."
+
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/small(src)
 		grip = new /obj/item/gun_parts/grip/italian(src)
 
 //Standard factory issue
-/obj/item/gun/modular/italian/italiano
+/obj/item/gun/modular/italian/revolver/italiano
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata in acciaio di qualità e pelle.."
@@ -1773,7 +1790,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			grip = new /obj/item/gun_parts/grip/italian/cowboy(src)
 
 //mama mia
-/obj/item/gun/modular/italian/big_italiano
+/obj/item/gun/modular/italian/revolver/big_italiano
 	name = "masterwork Italian revolver"
 	real_name = "\improper Italianone"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
@@ -1789,7 +1806,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			barrel = new /obj/item/gun_parts/barrel/italian/accurate(src)
 
 //da jokah babiyyyy
-/obj/item/gun/modular/italian/silly
+/obj/item/gun/modular/italian/revolver/silly
 	name = "jokerfied Italian revolver"
 	real_name = "\improper Grande Italiano"
 	max_ammo_capacity = 3
@@ -1865,3 +1882,5 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		else
 			return
 */
+
+/obj/item/gun/modular/italian

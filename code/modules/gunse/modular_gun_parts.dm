@@ -28,7 +28,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		return 1
 
 	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
-		var/image/I = image(icon, "[icon_state]-built")
+		//var/image/I = image(icon, "[icon_state]-built")
 		if(correctly) //proper assembly?
 			I.pixel_x = overlay_x
 			I.pixel_y = overlay_y
@@ -589,7 +589,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
-	icon_state = "it_revolver"
+	icon_state = "it_penne"
 	spread_angle = 7 // "alta qualità"
 	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	name_addition = "paisan"

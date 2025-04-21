@@ -406,7 +406,7 @@ THE_USUAL_FLAVOURS(pistol/anti_mutant, "\improper NT Jean-Nerre-De Boulier dart"
 			name = ".31.0a tranquilizer pistol darts"
 			amount_left = 15
 			max_amount = 15
-			caliber = 0.31
+			caliber = CALIBER_LIGHT
 			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
 */
 

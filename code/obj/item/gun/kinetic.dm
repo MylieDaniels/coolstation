@@ -351,7 +351,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	icon_state = "minigun"
 	item_state = "heavy"
 	force = MELEE_DMG_LARGE
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 100
 	auto_eject = 1
 
@@ -430,7 +430,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	desc = "'Cause ya gotta have Faith."
 	icon_state = "faith"
 	force = MELEE_DMG_PISTOL
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 4
 	auto_eject = 1
 	w_class = W_CLASS_SMALL
@@ -450,7 +450,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "detective"
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_REVOLVER
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 7
 	gildable = 1
 
@@ -466,7 +466,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "colt_saa"
 	w_class = W_CLASS_NORMAL
 	force = MELEE_DMG_REVOLVER
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	spread_angle = 1
 	max_ammo_capacity = 7
 	var/hammer_cocked = 0
@@ -506,7 +506,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	shoot_delay = 2
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_PISTOL
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 18
 	auto_eject = 1
 	has_empty_state = 1
@@ -590,7 +590,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "spas"
 	force = MELEE_DMG_RIFLE
 	contraband = 7
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	max_ammo_capacity = 8
 	auto_eject = 1
 	can_dual_wield = 0
@@ -629,7 +629,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "shotty"
 	force = MELEE_DMG_RIFLE
 	contraband = 5
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	max_ammo_capacity = 8
 	auto_eject = 0
 	can_dual_wield = 0
@@ -712,7 +712,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "ak47"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 30 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -732,7 +732,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "ohr"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 4 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -753,7 +753,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "tranq"
 	force = MELEE_DMG_RIFLE
 	//contraband = 8
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 4 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -810,7 +810,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	silenced = 1
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 10
 	auto_eject = 1
 	hide_attack = 1
@@ -852,7 +852,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "flaregun"
 	force = MELEE_DMG_PISTOL
 	contraband = 2
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	max_ammo_capacity = 1
 	has_empty_state = 1
 
@@ -978,7 +978,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_SMG
 	contraband = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 30
 	auto_eject = 1
 
@@ -1000,7 +1000,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_NORMAL
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 15
 	auto_eject = 1
 	has_empty_state = 1
@@ -1042,7 +1042,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_SMG
 	contraband = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 30
 	auto_eject = 1
 	spread_angle = 12.5
@@ -1068,7 +1068,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 15
 	auto_eject = 1
 	hide_attack = 1
@@ -1087,7 +1087,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "shotgun"
 	force = MELEE_DMG_RIFLE
 	contraband = 7
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	max_ammo_capacity = 8
 	auto_eject = 1
 	two_handed = 1
@@ -1107,7 +1107,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "assault_rifle"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 30
 	auto_eject = 1
 	object_flags = NO_ARM_ATTACH
@@ -1162,7 +1162,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "lmg"
 	wear_image_icon = 'icons/mob/back.dmi'
 	force = MELEE_DMG_RIFLE
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 100
 	auto_eject = 0
 
@@ -1278,7 +1278,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	inhand_image_icon = 'icons/obj/unused/slamgun.dmi'
 	item_state = "slamgun-ready-world"
 	force = MELEE_DMG_RIFLE
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	max_ammo_capacity = 1
 	auto_eject = 0
 	spread_angle = 10 // sorry, no sniping with slamguns
@@ -1403,7 +1403,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "sniper"
 	wear_image_icon = 'icons/mob/back.dmi'
 	force = MELEE_DMG_RIFLE
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 4
 	auto_eject = 1
 	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY | ONBACK
@@ -1650,7 +1650,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system. This one has a small hole in the side of it. Odd."
 	force = MELEE_DMG_SMG
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	max_ammo_capacity = 30
 	auto_eject = 0
 

@@ -295,7 +295,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	power = 20
 	implanted = null
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	casing = /obj/item/casing/shotgun/gray
 	spread_projectile_type = /datum/projectile/bullet/shot_salt
 	speed_min = 28

@@ -83,7 +83,7 @@ toxic - poisons
 	hit_type = DAMAGE_CUT
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 	casing = /obj/item/casing/small
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	dud_freq = 10
 
@@ -100,7 +100,7 @@ toxic - poisons
 	jam_mult = 0.7
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 	casing = /obj/item/casing/small
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = null //plastic, doesn't leave holes, sure why not
 	dud_freq = 2
 
@@ -145,7 +145,7 @@ toxic - poisons
 	dissipation_rate = 2
 	dissipation_delay = 8
 	projectile_speed = 48
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	hit_type = DAMAGE_BLUNT
 	implanted = /obj/item/implant/projectile/bullet_nine_mm_NATO
@@ -168,7 +168,7 @@ soon it will go away */
 	hit_type = DAMAGE_CUT
 	implanted = /obj/item/implant/projectile/bullet_22
 	casing = /obj/item/casing/small
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 
 	smartgun
@@ -192,7 +192,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	jam_mult = 1
 	implanted = /obj/item/implant/projectile/bullet_pistol_medium
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/medium
 	dud_freq = 5
@@ -214,7 +214,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	hit_type = DAMAGE_CUT
 	implanted = /obj/item/implant/projectile/bullet_45
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/medium
 */
@@ -227,7 +227,7 @@ soon it will go away */
 	hit_type = DAMAGE_CUT
 	jam_mult = 2
 	implanted = /obj/item/implant/projectile/bullet_pistol_heavy
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	casing = /obj/item/casing/medium
 	dud_freq = 10
@@ -274,7 +274,7 @@ soon it will go away */
 	hit_type = DAMAGE_CUT
 	jam_mult = 1
 	implanted = /obj/item/implant/projectile/bullet_rifle_weak
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = null //also plastic
 	casing = /obj/item/casing/medium
 	dud_freq = 1
@@ -298,7 +298,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
 	casing = /obj/item/casing/rifle
@@ -321,7 +321,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
 	casing = /obj/item/casing/rifle
@@ -342,7 +342,7 @@ soon it will go away */
 	projectile_speed = 72
 	max_range = 100
 	casing = /obj/item/casing/rifle_loud
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	dud_freq = 5
 	fouling = 8
@@ -374,7 +374,7 @@ soon it will go away */
 	shot_sound = 'sound/weapons/railgun.ogg'
 	dissipation_delay = 10
 	casing = /obj/item/casing/rifle_loud
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	dud_freq = 3
 
@@ -471,7 +471,7 @@ soon it will go away */
 	dissipation_rate = 10
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
-	caliber = 0.62 // roughly
+	caliber = CALIBER_HEAVY // roughly
 	icon_turf_hit = "bhole"
 	hit_ground_chance = 60
 	implanted = /obj/item/implant/projectile/shot_buck
@@ -537,7 +537,7 @@ soon it will go away */
 	implanted = null
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_turf_hit = "bhole"
 	casing = /obj/item/casing/shotgun/gray
 	dud_freq = 0
@@ -566,7 +566,7 @@ soon it will go away */
 	implanted = null
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_turf_hit = "bhole"
 	casing = /obj/item/casing/shotgun/blue
 	dud_freq = 2
@@ -598,7 +598,7 @@ soon it will go away */
 	implanted = null
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_turf_hit = "bhole"
 	casing = /obj/item/casing/shotgun/orange
 	dud_freq = 3
@@ -621,7 +621,7 @@ soon it will go away */
 	implanted = null
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_BLUNT
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_turf_hit = null
 	casing = /obj/item/casing/shotgun/blue
 
@@ -678,7 +678,7 @@ soon it will go away */
 	implanted = null
 	shot_sound = 'sound/effects/syringeproj.ogg'
 	dissipation_delay = 10
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	reagent_payload = "haloperidol"
 	casing = /obj/item/casing/rifle
 	dud_freq = 2
@@ -691,7 +691,7 @@ soon it will go away */
 		dud_freq = 0
 
 		pistol
-			caliber = 0.31
+			caliber = CALIBER_LIGHT
 			casing = /obj/item/casing/small
 			projectile_speed = 12
 			shot_sound = 'sound/weapons/tranq_pistol.ogg'
@@ -699,7 +699,7 @@ soon it will go away */
 	//haha gannets, fuck you I stole ur shit! - kyle
 	law_giver
 		sname = "knockout"
-		caliber = 0.31
+		caliber = CALIBER_LIGHT
 		casing = /obj/item/casing/small
 		shot_sound = 'sound/weapons/tranq_pistol.ogg'
 
@@ -784,7 +784,7 @@ soon it will go away */
 	color_blue = 0
 	icon_state = "flare"
 	implanted = null
-	caliber = 0.62 // 12 guage
+	caliber = CALIBER_HEAVY // 12 guage
 	icon_turf_hit = "bhole"
 	casing = /obj/item/casing/shotgun/orange
 
@@ -816,7 +816,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
 	casing = /obj/item/casing/rifle
@@ -838,7 +838,7 @@ soon it will go away */
 	ks_ratio = 1.0
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
 	casing = /obj/item/casing/rifle

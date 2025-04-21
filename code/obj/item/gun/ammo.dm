@@ -54,7 +54,7 @@
 	icon_state = "power_cell"
 	m_amt = 40000
 	g_amt = 0
-	caliber = 0.31 //doing it here because most of it's going to be here
+	caliber = CALIBER_LIGHT //doing it here because most of it's going to be here
 	//var/cartridge_length = 20
 	var/amount_left = 0.0
 	var/max_amount = 1000
@@ -310,7 +310,7 @@
 	amount_left = 8.0
 	max_amount = 8.0
 	ammo_type = new/datum/projectile/bullet/custom
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_dynamic = 1
 	icon_short = "custom"
 	icon_empty = "custom-0"
@@ -383,7 +383,7 @@
 	amount_left = 7.0
 	max_amount = 7.0
 	ammo_type = new/datum/projectile/bullet/pistol_medium
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_dynamic = 1
 	icon_short = "38"
 	icon_empty = "speedloader_empty"
@@ -417,7 +417,7 @@
 	amount_left = 7.0
 	max_amount = 7.0
 	ammo_type = new/datum/projectile/bullet/pistol_heavy
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	icon_dynamic = 1
 	icon_short = "38"
 	icon_empty = "speedloader_empty"
@@ -468,7 +468,7 @@
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 0
 	icon_empty = "12-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
@@ -484,7 +484,7 @@
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 0
 	icon_empty = "12-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
@@ -497,7 +497,7 @@
 	icon_short = "custom"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 1
 	icon_empty = "custom-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
@@ -509,7 +509,7 @@
 	icon_state = "AEX"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 0
 	icon_empty = "AEX-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
@@ -521,7 +521,7 @@
 	icon_state = "bg"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 0
 	icon_empty = "bg-0"
 	sound_load = 'sound/weapons/gunload_click.ogg'
@@ -534,7 +534,7 @@
 	icon_state = "ak47"
 	amount_left = 30.0
 	max_amount = 30.0
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 //most of these are going away but might as well have fun with it until then
@@ -545,7 +545,7 @@
 	icon_state = "stenag_mag"
 	amount_left = 30.0
 	max_amount = 30.0
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	armor_piercing
@@ -562,7 +562,7 @@
 	icon_empty = "40mmR-0"
 	amount_left = 100.0
 	max_amount = 100.0
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 /obj/item/ammo/bullets/rifle_3006
@@ -572,7 +572,7 @@
 	icon_state = "rifle_clip"
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 
 /obj/item/ammo/bullets/rifle_762_NATO
 	sname = "Juicer BIG"
@@ -581,7 +581,7 @@
 	icon_state = "rifle_box_mag" //todo
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 
 /obj/item/ammo/bullets/tranq_darts
 	sname = "8mm Short Tranquilizer"
@@ -590,7 +590,7 @@
 	icon_state = "tranq_clip"
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 
 	syndicate
 		sname = ".31.0a Tranquilizer Deluxe"
@@ -602,7 +602,7 @@
 			name = ".31.0a tranquilizer pistol darts"
 			amount_left = 15
 			max_amount = 15
-			caliber = 0.31
+			caliber = CALIBER_LIGHT
 			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
 
 	anti_mutant
@@ -624,7 +624,7 @@
 	max_amount = 8
 	icon_state = "flare"
 	ammo_type = new/datum/projectile/bullet/flare
-	caliber = 0.62
+	caliber = CALIBER_HEAVY
 	icon_dynamic = 0
 	icon_empty = "flare-0"
 
@@ -851,7 +851,7 @@
 	amount_left = 15.0
 	max_amount = 15.0
 	ammo_type = new/datum/projectile/bullet/pistol_weak
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 
 	five_shots
 		amount_left = 5.0
@@ -877,7 +877,7 @@
 	icon_empty = "lmg_ammo-0"
 	amount_left = 100.0
 	max_amount = 100.0
-	caliber = 0.31
+	caliber = CALIBER_LIGHT
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	weak

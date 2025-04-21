@@ -37,6 +37,10 @@
 #define BARREL_PENALTY 20
 #define GRIP_PENALTY 10
 
+//standard bullet calibers
+#define CALIBER_LIGHT 0.31
+#define CALIBER_HEAVY 0.62
+
 //modular gun shit
 #define GUN_NANO 				(1<<0)
 #define GUN_FOSS 				(1<<1)

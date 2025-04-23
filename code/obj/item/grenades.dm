@@ -1836,7 +1836,7 @@ PIPE BOMBS + CONSTRUCTION
 			var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
 			implanted.owner = M
 			M.implant += implanted
-			implanted.implanted(M, null, 25 * sqstrength)
+			implanted.implanted(M, null, 5 * sqstrength)
 			boutput(M, "<span class='alert'><b>You are struck by shrapnel!</b></span>")
 			if (!M.stat)
 				M.emote("scream")
@@ -1852,7 +1852,7 @@ PIPE BOMBS + CONSTRUCTION
 			var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
 			implanted.owner = M
 			M.implant += implanted
-			implanted.implanted(M, null, 25 * sqstrength)
+			implanted.implanted(M, null, 5 * sqstrength)
 			boutput(M, "<span class='alert'><b>You are struck by shrapnel!</b></span>")
 			if (!M.stat)
 				M.emote("scream")
@@ -1890,7 +1890,7 @@ PIPE BOMBS + CONSTRUCTION
 				var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
 				implanted.owner = M
 				M.implant += implanted
-				implanted.implanted(M, null, 25 * sqstrength)
+				implanted.implanted(M, null, 5 * sqstrength)
 				boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
 				if (!M.stat)
 					M.emote("scream")

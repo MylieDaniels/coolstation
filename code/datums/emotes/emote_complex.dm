@@ -444,6 +444,7 @@
 /datum/emote/faint
 /datum/emote/faint/enact(mob/user, voluntary = 0, param)
 	user.sleeping = 1
+	user.force_laydown_standup()
 	return list("<B>[user]</B> faints.", null, MESSAGE_VISIBLE)
 
 

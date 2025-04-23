@@ -1164,7 +1164,7 @@ soon it will go away */
 					var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
 					implanted.owner = M
 					M.implant += implanted
-					implanted.implanted(M, null, 2)
+					implanted.implanted(M, null, 5)
 					boutput(M, "<span class='alert'>You are struck by shrapnel!</span>")
 					if (!M.stat)
 						M.emote("scream")

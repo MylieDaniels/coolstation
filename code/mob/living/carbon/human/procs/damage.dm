@@ -45,7 +45,7 @@
 							src.implant += implanted
 							if (P.proj_data.material)
 								implanted.setMaterial(P.proj_data.material)
-							implanted.implanted(src, null, 60)
+							implanted.implanted(src, null, damage * 0.66) // lower than piercing ammo
 							//extra damage from silver for werewolves
 							if (istype(implanted, /datum/material/metal/silver) && iswerewolf(src))
 								src.TakeDamage("chest", 0, (damage/armor_value_bullet), 0, DAMAGE_BURN)
@@ -59,6 +59,9 @@
 				else
 					if (src.organHolder && prob(50))
 						src.organHolder.damage_organ(damage/1, 0, 0, target_organ)
+
+				if (armor_value_bullet < 1.5) // piercing rounds go clean through unarmored people
+					return
 
 				if (P.implanted)
 					if (istext(P.implanted))
@@ -78,7 +81,7 @@
 							implanted.forensic_ID = P.forensic_ID
 						if (P.proj_data.material)
 							implanted.setMaterial(P.proj_data.material)
-						implanted.implanted(src, null, 100)
+						implanted.implanted(src, null, damage)
 					//extra damage from silver for werewolves
 						if (istype(implanted, /datum/material/metal/silver) && iswerewolf(src))
 							src.TakeDamage("chest", 0, (damage/armor_value_bullet), 0, DAMAGE_BURN)

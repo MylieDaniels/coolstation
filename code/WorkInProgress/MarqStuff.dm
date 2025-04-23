@@ -435,7 +435,7 @@
 				A.set_loc(target)
 				A.owner = target
 				H.implant += A
-				A.implanted(H, null, 100)
+				A.implanted(H, null, 25)
 			reagents.reaction(target, 2)
 			reagents.trans_to(target, reagents.total_volume)
 			take_bleeding_damage(target, null, 8, DAMAGE_STAB)

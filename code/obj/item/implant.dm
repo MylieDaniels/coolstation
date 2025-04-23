@@ -800,7 +800,8 @@ THROWING DARTS
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "bullet"
 	desc = "A spent bullet."
-	var/bleed_timer = 0
+	loose = TRUE
+	var/damage_scale = 0
 
 	bullet_pistol_heavy
 		name = "Juicer Jr. round"
@@ -821,12 +822,10 @@ THROWING DARTS
 	bullet_pistol_weak
 		name = "8mm Short round"
 		desc = "Standard plastic bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
-		loose = TRUE
 
 	bullet_rifle_weak
 		name = "8mm Long round"
 		desc = "Honestly the exact same thing as the pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
-		loose = TRUE
 
 	bullet_rifle_weak_ap
 		name = "8mm Long AP round"
@@ -859,77 +858,62 @@ THROWING DARTS
 	staple
 		name = "staple"
 		desc = "Well that's not very nice."
-		loose = TRUE
 
 	shrapnel
 		name = "shrapnel"
 		icon = 'icons/obj/scrap.dmi'
 		desc = "A bunch of jagged shards of metal."
 		icon_state = "2metal2" //4u
-		loose = TRUE
+		loose = FALSE
 
 	dart
 		name = "dart"
 		icon = 'icons/obj/chemical.dmi'
 		desc = "A small hollow dart."
 		icon_state = "syringeproj"
-		loose = TRUE
 
 	flintlock
 		name= "flintlock round"
 		desc = "Rather unperfect round ball. Looks very old."
 		icon_state = "flintlockbullet"
-		loose = TRUE
 
-/obj/item/implant/projectile/implanted(mob/living/carbon/C, var/mob/I, var/bleed_time = 60)
+/obj/item/implant/projectile/implanted(mob/living/carbon/C, var/mob/I, var/implant_damage = 0)
 	SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, C)
-	if (!istype(C) || !isnull(I)) //Don't make non-organics bleed and don't act like a launched bullet if some doofus is just injecting it somehow.
+	if (!istype(C)) //Don't make non-organics bleed
 		return
 
 	if (C != src.owner)
 		src.owner = C
 
-	for (var/obj/item/implant/projectile/P in C)
-		if (P.bleed_timer)
-			P.bleed_timer = max(bleed_time, P.bleed_timer)
-			return
+	if(implant_damage > 0)
+		src.damage_scale = clamp(implant_damage, 1, 100)
 
-	src.bleed_timer = bleed_time
-	SPAWN_DBG(0.5 SECONDS)
-//		boutput(C, "<span class='alert'>You start bleeding!</span>") // the blood system takes care of this bit now
-		src.bleed_loop()
-
-/obj/item/implant/projectile/proc/bleed_loop() // okay it doesn't actually cause bleeding now but um w/e
-	if (src.bleed_timer-- < 0)
-		return
-
-	if (!iscarbon(src.owner) || (src.loc != src.owner))
-		src.owner = null
+/obj/item/implant/projectile/on_life(mult)
+	. = ..()
+	if(!src.damage_scale)
 		return
 
 	var/mob/living/carbon/C = src.owner
 
-	if (isdead(C))
-		src.owner = null
+	//werewolf silver implants handling
+	if (prob(60) && iswerewolf(C) && istype(src:material, /datum/material/metal/silver))
+		random_burn_damage(C, rand(5,10))
+		C.take_toxin_damage(rand(1,3))
+		boutput(C, "<span class='alert'>You feel a [pick("searing", "hot", "burning")] pain in your chest![pick("", "There's gotta be silver in there!", )]</span>")
 		return
 
-	if (issimulatedturf(C.loc))
-		if(prob(35))
-			random_brute_damage(C, 1)
-		if(prob(1))
-			C.emote("faint")
-		if(prob(4))
-			C.emote(pick("pale", "shiver"))
-		if(prob(4))
-			boutput(C, "<span class='alert'>You feel a [pick("sharp", "stabbing", "startling", "worrying")] pain in your chest![pick("", " It feels like there's something lodged in there!", " There's gotta be something stuck in there!", " You feel something shift around painfully!")]</span>")
-		//werewolf silver implants handling
-		if (prob(60) && iswerewolf(C) && istype(src:material, /datum/material/metal/silver))
-			random_burn_damage(C, rand(5,10))
-			C.take_toxin_damage(rand(1,3))
-			C.stamina -= 30
-			boutput(C, "<span class='alert'>You feel a [pick("searing", "hot", "burning")] pain in your chest![pick("", "There's gotta be silver in there!", )]</span>")
-	SPAWN_DBG(rand(40,70))
-		src.bleed_loop()
+	if(probmult(src.damage_scale))
+		random_brute_damage(C, 1)
+		SPAWN_DBG(rand(0.1 SECONDS, 3 SECONDS)) // to make effects not always happen on life tick
+			if(!C)
+				return
+			if(prob(5) && !ON_COOLDOWN(C, "bullet_faint", 10 SECONDS))
+				C.emote("faint")
+			if(prob(15))
+				C.emote(pick("pale", "shiver"))
+			if(prob(15))
+				boutput(C, "<span class='alert'>You feel a [pick("sharp", "stabbing", "startling", "worrying")] pain in your chest![pick("", " It feels like there's something lodged in there!", " There's gotta be something stuck in there!", " You feel something shift around painfully!")]</span>")
+
 	return
 
 /obj/item/implant/access

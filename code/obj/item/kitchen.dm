@@ -44,6 +44,7 @@ TRAYS
 	throw_speed = 3
 	throw_range = 5
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
+	combat_click_delay = 0.7 SECONDS
 	stamina_damage = 5
 	stamina_cost = 10
 	stamina_crit_chance = 15
@@ -133,6 +134,7 @@ TRAYS
 	desc = "A multi-pronged metal object, used to pick up objects by piercing them. Helps with eating some foods."
 	dir = NORTH
 	throwforce = 7
+	force = 5
 
 	New()
 		..()
@@ -171,6 +173,7 @@ TRAYS
 	throwforce = 10
 	desc = "A long bit of metal that is sharpened on one side, used for cutting foods. Also useful for butchering dead animals. And live ones."
 	dir = NORTH
+	combat_click_delay = 0.9 SECONDS
 
 	New()
 		..()

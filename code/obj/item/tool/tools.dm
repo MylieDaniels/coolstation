@@ -82,13 +82,14 @@ Handsaw
 	tool_flags = TOOL_SCREWING
 	w_class = W_CLASS_TINY
 
-	force = 5
+	force = 4
+	combat_click_delay = 0.5 SECONDS
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	stamina_damage = 10
+	stamina_damage = 5
 	stamina_cost = 5
-	stamina_crit_chance = 30
+	stamina_crit_chance = 15
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 

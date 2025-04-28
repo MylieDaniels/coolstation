@@ -532,10 +532,11 @@
 	name = "syndicate fighting utility knife"
 	desc = "A light but robust combat knife that allows you to move faster in fights."
 	icon_state = "combat_knife"
-	force = 15
+	force = 8
 	throwforce = 20
 	stamina_cost = 5
 	c_flags = EQUIPPED_WHILE_HELD
+	combat_click_delay = 0.5 SECONDS
 
 
 	setupProperties()

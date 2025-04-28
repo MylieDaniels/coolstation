@@ -1155,7 +1155,7 @@
 		cooldown = 0
 		moveDelay = 5
 		moveDelayDuration = 5
-		damageMult = 0.80
+		damageMult = 0.65
 
 		image = "dagger"
 		name = "Slice"

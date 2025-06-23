@@ -33,61 +33,61 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		else
 			return ..()
 
-/obj/item/gun/modular/italian/chamber_round()
-	var/ammotype = ammo_list[src.cylinder_index]
-	if(ammotype)
-		current_projectile = new ammotype() // this one goes in
-		src.ammo_list[src.cylinder_index] = null // preserve order of remaining
-		src.stored_ammo_count--
-	src.cylinder_index++
-	if(src.cylinder_index > src.max_ammo_capacity)
-		src.cylinder_index = 1
+	chamber_round()
+		var/ammotype = ammo_list[src.cylinder_index]
+		if(ammotype)
+			current_projectile = new ammotype() // this one goes in
+			src.ammo_list[src.cylinder_index] = null // preserve order of remaining
+			src.stored_ammo_count--
+		src.cylinder_index++
+		if(src.cylinder_index > src.max_ammo_capacity)
+			src.cylinder_index = 1
 
-/obj/item/gun/modular/italian/ammo_reserve()
-	if(src.dirty_ammo)
-		src.dirty_ammo = FALSE
-		src.stored_ammo_count = 0
-		for(var/i in 1 to length(src.ammo_list))
-			if(!isnull(src.ammo_list[i]))
-				src.stored_ammo_count++
-	return src.stored_ammo_count
+	ammo_reserve()
+		if(src.dirty_ammo)
+			src.dirty_ammo = FALSE
+			src.stored_ammo_count = 0
+			for(var/i in 1 to length(src.ammo_list))
+				if(!isnull(src.ammo_list[i]))
+					src.stored_ammo_count++
+		return src.stored_ammo_count
 
-/obj/item/gun/modular/italian/load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
-	// load the ammo reserves first. for. good reasons. not roulette.
-	if (src.ammo_reserve() < src.max_ammo_capacity)
-		if (src.sound_type)
-			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
-		else
-			playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		// load the ammo reserves first. for. good reasons. not roulette.
+		if (src.ammo_reserve() < src.max_ammo_capacity)
+			if (src.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
+			else
+				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
 
-		//load the previous cylinder and spin to it (cheaper than going forward if you load a lot)
-		var/potential_slot = src.cylinder_index
-		for(var/i in 1 to length(src.ammo_list))
-			potential_slot--
-			if(!potential_slot)
-				potential_slot = length(src.ammo_list)
-			if(isnull(src.ammo_list[potential_slot]))
-				src.ammo_list[potential_slot] = donor_ammo.projectile_type
-				src.stored_ammo_count++
-				src.cylinder_index = potential_slot
-				break
-	//single shot and chamber handling
-	else if(!src.current_projectile)
-		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
-		src.current_projectile = new donor_ammo.projectile_type()
-		if (src.sound_type)
-			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
-		else
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-		return FALSE
-	//load the magazine after the chamber
+			//load the previous cylinder and spin to it (much computationally cheaper than going forward if you load a lot of bullets)
+			var/potential_slot = src.cylinder_index
+			for(var/i in 1 to length(src.ammo_list))
+				potential_slot--
+				if(!potential_slot)
+					potential_slot = length(src.ammo_list)
+				if(isnull(src.ammo_list[potential_slot]))
+					src.ammo_list[potential_slot] = donor_ammo.projectile_type
+					src.stored_ammo_count++
+					src.cylinder_index = potential_slot
+					break
+		//single shot and chamber handling
+		else if(!src.current_projectile)
+			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
+			src.current_projectile = new donor_ammo.projectile_type()
+			if (src.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+			else
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+			return FALSE
+		//load the magazine after the chamber
 
-	//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
-	if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
-		src.jammed = JAM_LOAD
-		boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
-		return FALSE
-	return TRUE
+		//This can stay for now
+		if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
+			src.jammed = JAM_LOAD
+			boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+			return FALSE
+		return TRUE
 
 //Extremely stylish revolver with an almost double action and a fannable hammer to boot.
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
@@ -119,13 +119,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	shoot(var/atom/movable/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
-		if (src.current_projectile)
-			if(!src.currently_firing)
+		if(!src.currently_firing)
+			if (src.current_projectile)
 				src.currently_firing = TRUE
 
-				SPAWN_DBG(src.hammer_cocked ? 0 : 0.3 SECONDS) // what the hell have i done here
+				SPAWN_DBG(src.hammer_cocked ? 0 : 0.2 SECONDS) // what the hell have i done here
 					if(!src.hammer_cocked)
 						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+						sleep(0.1 SECONDS)
 					src.hammer_cocked = TRUE
 					var/offset_x = target.x - start.x
 					var/offset_y = target.y - start.y
@@ -141,6 +142,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 					src.currently_firing = FALSE
 					sleep(0.3 SECONDS)
 					src.process_ammo()
+			else
+				src.process_ammo()
 
 	attack_self(mob/user)
 		if(src.currently_firing && (src.jammed || src.hammer_cocked))
@@ -148,12 +151,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		if(!src.jammed && !src.hammer_cocked) // fan the damn hammer
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			boutput(user,"<span><b>You cock the hammer.</b></span>")
-			src.hammer_cocked = 1
+			src.hammer_cocked = TRUE
 		return ..()
 
 	alter_projectile(obj/projectile/P)
 		P.power = P.power * (0.5 + 0.15 * src.two_handed)
 		..()
+
+	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+		if(src.hammer_cocked)
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 20, 1)
+			boutput(user,"<span><b>You lower the hammer.</b></span>")
+			src.hammer_cocked = FALSE
+		return ..()
+
 
 
 //Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
@@ -177,7 +188,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	shoot_delay = 0.1 SECONDS
 
 	recoil_strength = 2
-	recoil_inaccuracy_max = 35
+	recoil_inaccuracy_max = 20
 	recoil_stacking_enabled = TRUE
 	recoil_stacking_amount = 0.5
 	recoil_stacking_safe_stacks = 1

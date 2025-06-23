@@ -427,6 +427,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		//one more distance check
 		if (GET_DIST(owner, target_gun) > 1 || GET_DIST(owner, donor_ammo) > 1)
 			interrupt(INTERRUPT_ALWAYS)
+			return ..()
 
 		//special handling for flash bulbs, which don't have projectile_type I guess. onStart should have validated the gun and ammo with each other.
 		if (!donor_ammo.projectile_type)
@@ -442,7 +443,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				boutput(owner, "<span class='notice'>You finish loading a flashtube into [target_gun].</span>")
 
 		else //All normal guns
-
 			if(!target_gun.load_ammo(owner, donor_ammo))
 				interrupt(INTERRUPT_ALWAYS)
 

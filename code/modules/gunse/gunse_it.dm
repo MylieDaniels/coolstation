@@ -169,8 +169,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	grip_overlay_y = -4
 	stock_overlay_x = -8
 	stock_overlay_y = -2
-	load_time = 0.35 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
-	max_ammo_capacity = 36
+	load_time = 0.3 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
+	max_ammo_capacity = 15
 	bulkiness = 3
 	var/successful_chamber_frequency = 30
 
@@ -267,7 +267,52 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		barrel = new /obj/item/gun_parts/barrel/italian/joker(src)
 		grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
 
+
 // RATTLERS
+
+//basic, occasionally one handed
+/obj/item/gun/modular/italian/rattler/basic
+	name = "basic Italian rattler"
+	real_name = "\improper Bacino"
+	desc = "WIP Italian gun"
+
+	load_time = 0.4 SECONDS
+	successful_chamber_frequency = 30
+
+	make_parts()
+		if(prob(60))
+			stock = new /obj/item/gun_parts/stock/italian/wire(src)
+		else if(prob(50))
+			stock = new /obj/item/gun_parts/stock/italian(src)
+		else
+			grip = new /obj/item/gun_parts/grip/italian/bandit(src)
+
+		if(prob(40))
+			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/italian/buntline(src)
+
+//better and approved for rattling
+/obj/item/gun/modular/italian/rattler/improved
+	name = "improved Italian rattler"
+	real_name = "\improper Costola"
+	desc = "WIP Italian gun"
+
+	load_time = 0.3 SECONDS
+	successful_chamber_frequency = 33
+
+	make_parts()
+		if(prob(70))
+			stock = new /obj/item/gun_parts/stock/italian(src)
+		else
+			stock = new /obj/item/gun_parts/stock/italian/wire(src)
+
+		if (prob(5)) // it happens to a lot of gunse
+			barrel = new /obj/item/gun_parts/barrel/italian/small(src)
+		else if(prob(40))
+			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/italian/buntline(src)
 
 //oh thats a spooky meatball
 /obj/item/gun/modular/italian/rattler/masterwork
@@ -281,3 +326,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)
 		barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+
+//gluttonous beast
+/obj/item/gun/modular/italian/rattler/saucy
+	name = "saucy Italian rattler"
+	real_name = "\improper Sterno"
+	desc = "WIP Italian gun"
+
+	shoot_delay = 0.1 SECONDS
+
+	max_ammo_capacity = 26
+	load_time = 0.2 SECONDS
+	successful_chamber_frequency = 20
+
+	make_parts()
+		if(prob(60))
+			grip = new /obj/item/gun_parts/grip/italian/bigger(src)
+		else if(prob(80))
+			grip = new /obj/item/gun_parts/grip/italian(src)
+		else
+			grip = new /obj/item/gun_parts/grip/italian/meatball(src)
+
+		if(prob(50))
+			barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
+

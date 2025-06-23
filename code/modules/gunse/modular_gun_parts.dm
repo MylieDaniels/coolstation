@@ -394,7 +394,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	add_suffix = " polearm"
 	icon_state = "nt_blue_very"
-	length = 50
+	length = 30
 	icon = 'icons/obj/items/modular_guns/64.dmi'
 	bulkiness = 5
 
@@ -598,15 +598,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 4
 
 /obj/item/gun_parts/barrel/italian/tommy
-	name = "vented italian barrel"
-	desc = "aaaaaa ill fix this soon"
+	name = "canna di fucile ventilata"
+	desc = "una canna di fucile grande e ventilata a gas"
 	icon_state = "italian_tommy"
-	add_suffix = " garlic-scented"
+	add_suffix = " sospettosa"
 	spread_angle = 1
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
-	// possibly a recoil reduction bonus?
+	scatter = TRUE
+	// maybe MORE recoil?
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -815,7 +816,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/italian
 	name = "hunting stock"
-	desc = "A fancy walnut Italian stock for hunting (write this in italian later)" //convert from 1-2 hand and conceal
+	desc = "A fancy walnut Italian stock for hunting (write this in italian later)"
 	spread_angle = -5 // brety gud
 	//max_ammo_capacity = 0 // does not add ammo
 	//jam_frequency = 3 // a little more jammy
@@ -827,7 +828,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/italian/wire
 	name = "wire stock"
-	desc = "A long Italian wire stock that currently doesn't fold"
+	desc = "A long Italian wire stock (write this in italian later)"
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
 

@@ -25565,7 +25565,7 @@
 	},
 /area/space)
 "sEp" = (
-/obj/item/gun/modular/italian/italiano,
+/obj/item/gun/modular/italian/revolver/italiano,
 /turf/floor/plating/airless/asteroid,
 /area/space)
 "sFo" = (

@@ -1,31 +1,111 @@
 
 
-//Italian Revolver
-//Extremely Stylish
-//Heavy Ammo
-//Cylinder "Magazine"
+//Italian Gunse
+//Lower damage, higher fire rate
+//Cylinder "magazine"
 ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 /obj/item/gun/modular/italian
 	name = "abstract Italian gun"
 	real_name = "abstract Italian gun"
 	desc = "abstract type do not instantiate"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
-	icon_state = "italian_short" //only
-	//basic revolving mechanism
-	action = "double"
-	//this will be a "magazine" but like tubes we'll have a slightly different firing method
 	gun_DRM = GUN_ITALIAN
+	jam_frequency = 0
+	var/cylinder_index = 1
+	var/dirty_ammo = TRUE
+	var/stored_ammo_count = 0 // only count our ammo when actually needed, otherwise use tricks to avoid checking the entire cylinder a ton
+
+	build_gun()
+		..()
+		if(length(src.ammo_list) < src.max_ammo_capacity)
+			src.ammo_list.len = src.max_ammo_capacity
+		src.dirty_ammo = TRUE
+
+	reset_gun()
+		..()
+		src.cylinder_index = 1
+		src.dirty_ammo = TRUE
+
+	MouseDrop_T(obj/O as obj, mob/user as mob)
+		if(src.built && O == src && GET_DIST(src, user) <= 1)
+			user.visible_message("<span class='notice'>[user] spins the cylinder.</span>", "<span class='notice'>You spin the cylinder.</span>")
+			src.cylinder_index = rand(1, src.max_ammo_capacity)
+		else
+			return ..()
+
+/obj/item/gun/modular/italian/chamber_round()
+	var/ammotype = ammo_list[src.cylinder_index]
+	if(ammotype)
+		current_projectile = new ammotype() // this one goes in
+		src.ammo_list[src.cylinder_index] = null // preserve order of remaining
+		src.stored_ammo_count--
+	src.cylinder_index++
+	if(src.cylinder_index > src.max_ammo_capacity)
+		src.cylinder_index = 1
+
+/obj/item/gun/modular/italian/ammo_reserve()
+	if(src.dirty_ammo)
+		src.dirty_ammo = FALSE
+		src.stored_ammo_count = 0
+		for(var/i in 1 to length(src.ammo_list))
+			if(!isnull(src.ammo_list[i]))
+				src.stored_ammo_count++
+	return src.stored_ammo_count
+
+/obj/item/gun/modular/italian/load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
+	// load the ammo reserves first. for. good reasons. not roulette.
+	if (src.ammo_reserve() < src.max_ammo_capacity)
+		if (src.sound_type)
+			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
+		else
+			playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+
+		//load the previous cylinder and spin to it (cheaper than going forward if you load a lot)
+		var/potential_slot = src.cylinder_index
+		for(var/i in 1 to length(src.ammo_list))
+			potential_slot--
+			if(!potential_slot)
+				potential_slot = length(src.ammo_list)
+			if(isnull(src.ammo_list[potential_slot]))
+				src.ammo_list[potential_slot] = donor_ammo.projectile_type
+				src.stored_ammo_count++
+				src.cylinder_index = potential_slot
+				break
+	//single shot and chamber handling
+	else if(!src.current_projectile)
+		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
+		src.current_projectile = new donor_ammo.projectile_type()
+		if (src.sound_type)
+			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
+		else
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		return FALSE
+	//load the magazine after the chamber
+
+	//Since we load the chamber first anyway there's no process_ammo call anymore. This can stay though
+	if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
+		src.jammed = JAM_LOAD
+		boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+		return FALSE
+	return TRUE
+
+//Extremely stylish revolver with an almost double action and a fannable hammer to boot.
+ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
+/obj/item/gun/modular/italian/revolver
+	name = "abstract Italian revolver"
+	real_name = "abstract Italian revolver"
+	icon_state = "italian_revolver"
 	spread_angle = 10
-	//color = "#FFFF99"
 	barrel_overlay_x = 5
 	grip_overlay_x = -4
 	grip_overlay_y = -4
 	stock_overlay_x = -5
 	stock_overlay_y = -2
-	jam_frequency = 5
-	jam_frequency = 0
-	var/currently_firing = FALSE //this double action pull is slow
-	fiddlyness = 25
+	var/hammer_cocked = FALSE
+	var/currently_firing = FALSE
+	load_time = 1 SECOND
+	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
+	max_ammo_capacity = 5
 
 	//ideally we have two lists
 	//one for projectiles
@@ -36,59 +116,117 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	//spin cylinder by clickdragging onto itself if not cocked
 	//decock on load?
 
-	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
-		//If we're doing a double action thing here where it automatically resets and is ready to fire the next shot?
-		//Maybe a short sleep, that's the tradeoff for not having to click it every time... I'm not putting it in until I sort out more
+	shoot(var/atom/movable/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		if (src.current_projectile)
-			if (hammer_cocked) //single action // not sure if && !currently_firing would feel good
-				..() //fire
-			else if (!currently_firing)
-				currently_firing = TRUE
-				sleep(10) //heavy double action
-				hammer_cocked = TRUE
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				..()
-				currently_firing = FALSE
-		else
-			sleep(10) //heavy double action
-			//check if still held by same person
-			process_ammo()
-			..()
+			if(!src.currently_firing)
+				src.currently_firing = TRUE
 
-	//fuuuuck
-	//HOWEVER this will be integral to fanning the hammer, as long as you attackself within like, a few secs of firing, you'll chain fire approximately where you were
+				SPAWN_DBG(src.hammer_cocked ? 0 : 0.3 SECONDS) // what the hell have i done here
+					if(!src.hammer_cocked)
+						playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					src.hammer_cocked = TRUE
+					var/offset_x = target.x - start.x
+					var/offset_y = target.y - start.y
+					while(src.hammer_cocked && src.current_projectile && src.loc == user && !src.jammed)
+						var/turf/T_start = get_turf(user)
+						var/turf/T_target = locate(T_start.x + offset_x, T_start.y + offset_y, T_start.z)
+						if(T_start && T_target)
+							..(T_target, T_start, user, POX, POY, is_dual_wield) // the voices told me its okay to do this
+							src.hammer_cocked = FALSE
+						else
+							break // if you aim off a world border this can happen
+						sleep(0.4 SECONDS)
+					src.currently_firing = FALSE
+					sleep(0.3 SECONDS)
+					src.process_ammo()
+
 	attack_self(mob/user)
-		if(!src.processing_ammo && !src.currently_firing)
-			process_ammo(user)
-		if(src.max_ammo_capacity)
-			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
-			src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
-		else
-			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
-		if(!hammer_cocked && !src.currently_firing) //for italian revolver purposes, doesn't process_ammo like normal
+		if(src.currently_firing && (src.jammed || src.hammer_cocked))
+			return
+		if(!src.jammed && !src.hammer_cocked) // fan the damn hammer
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 			boutput(user,"<span><b>You cock the hammer.</b></span>")
-			hammer_cocked = 1
-		buildTooltipContent()
+			src.hammer_cocked = 1
+		return ..()
 
-/obj/item/gun/modular/italian/basic
+	alter_projectile(obj/projectile/P)
+		P.power = P.power * (0.5 + 0.15 * src.two_handed)
+		..()
+
+
+//Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
+//but has a solid chance to fail to chamber each round- so keep spinning the drum for diminishing returns!
+ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
+/obj/item/gun/modular/italian/rattler
+	name = "abstract Italian rattler"
+	real_name = "abstract Italian rattler"
+	icon_state = "italian_rattler"
+	spread_angle = 5
+	barrel_overlay_x = 6
+	grip_overlay_x = -7
+	grip_overlay_y = -4
+	stock_overlay_x = -8
+	stock_overlay_y = -2
+	load_time = 0.35 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
+	max_ammo_capacity = 36
+	bulkiness = 3
+	var/successful_chamber_frequency = 30
+
+	shoot_delay = 0.1 SECONDS
+
+	recoil_strength = 2
+	recoil_inaccuracy_max = 35
+	recoil_stacking_enabled = TRUE
+	recoil_stacking_amount = 0.5
+	recoil_stacking_safe_stacks = 1
+	recoil_stacking_max_stacks = 10
+	camera_recoil_multiplier = 0.33
+	recoil_reset_mult = 0.85
+
+	shoot(target, start, mob/user, POX, POY, is_dual_wield)
+		..()
+		if(!src.jammed && prob(src.successful_chamber_frequency))
+			src.process_ammo(user)
+		else
+			src.cylinder_index++
+			if(src.cylinder_index > src.max_ammo_capacity)
+				src.cylinder_index = 1
+
+	build_gun()
+		..()
+		AddComponent(/datum/component/holdertargeting/fullauto, src.shoot_delay, src.shoot_delay, 1)
+
+	reset_gun()
+		..()
+		var/C = GetComponent(/datum/component/holdertargeting/fullauto)
+		qdel(C)
+
+	alter_projectile(obj/projectile/P)
+		P.power = P.power * (0.15 + 0.1 * src.two_handed + 0.2 * src.recoil / src.recoil_max)
+		..()
+
+
+// REVOLVERS
+
+//Pretty bad
+/obj/item/gun/modular/italian/revolver/basic
 	name = "basic Italian revolver"
 	real_name = "\improper Italianetto"
 	desc = "Una pistola realizzata in acciaio mediocre."
-	max_ammo_capacity = 1 //2 shots
+	max_ammo_capacity = 4
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/small(src)
 		grip = new /obj/item/gun_parts/grip/italian(src)
 
 //Standard factory issue
-/obj/item/gun/modular/italian/italiano
+/obj/item/gun/modular/italian/revolver/italiano
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata in acciaio di qualità e pelle.."
-	max_ammo_capacity = 2
+	max_ammo_capacity = 5
 
 	make_parts()
 		if (prob(50))
@@ -103,11 +241,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			grip = new /obj/item/gun_parts/grip/italian/cowboy(src)
 
 //mama mia
-/obj/item/gun/modular/italian/big_italiano
+/obj/item/gun/modular/italian/revolver/big_italiano
 	name = "masterwork Italian revolver"
 	real_name = "\improper Italianone"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
-	max_ammo_capacity = 3
+	max_ammo_capacity = 6
 
 	make_parts()
 
@@ -119,12 +257,27 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			barrel = new /obj/item/gun_parts/barrel/italian/accurate(src)
 
 //da jokah babiyyyy
-/obj/item/gun/modular/italian/silly
+/obj/item/gun/modular/italian/revolver/silly
 	name = "jokerfied Italian revolver"
 	real_name = "\improper Grande Italiano"
-	max_ammo_capacity = 3
+	max_ammo_capacity = 6
 	desc = "Io sono il pagliaccio, bambino!"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/joker(src)
 		grip = new /obj/item/gun_parts/grip/italian/cowboy/bandit(src)
+
+// RATTLERS
+
+//oh thats a spooky meatball
+/obj/item/gun/modular/italian/rattler/masterwork
+	name = "masterwork Italian rattler"
+	real_name = "\improper Spine in italian"
+	desc = "WIP Italian gun"
+
+	load_time = 0.25 SECONDS
+	successful_chamber_frequency = 35
+
+	make_parts()
+		stock = new /obj/item/gun_parts/stock/italian(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/tommy(src)

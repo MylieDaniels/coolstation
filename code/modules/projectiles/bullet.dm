@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/datum/projectile/bullet)
 //Multiplier for innate cartridge accuracy
 	var/accuracy_mult = 1
 //Amount of fouling to do per shot (50 shots of NT ammo until it starts to get rough and need cleaning, 100 shots before it really has problems. Other shots are much dirtier)
-	var/dirtiness = 1
+	//var/dirtiness = 1
 
 	// caliber list: update as needed
 	// 0.31 - standard pistol/rifle, standard barrel (replaces .22, 9mm, .38, .357, .45, .308, 30-06, 7.62, etc.)

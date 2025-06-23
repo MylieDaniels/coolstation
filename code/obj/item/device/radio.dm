@@ -641,7 +641,7 @@ var/list/headset_channel_lookup
 	frequency = FREQ_TRACKING //i guess that's fine
 	throw_speed = 1
 	throw_range = 3
-	w_class = W_CLASS_HUGE
+	w_class = W_CLASS_BULKY
 	flags = FPRINT | TABLEPASS | ONBACK | CONDUCT
 	item_state = "electropack"
 	desc = "A device that, when signaled on the correct frequency, causes a disabling electric shock to be sent to the animal (or human) wearing it."

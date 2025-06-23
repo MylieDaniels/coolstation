@@ -3,6 +3,7 @@
 	desc = "It's a closet! This one can be opened AND closed."
 	soundproofing = 3
 	can_flip_bust = 1
+	w_class = W_CLASS_HUGE
 	p_class = 3
 
 	New()
@@ -341,6 +342,7 @@
 	bound_height = 96
 	bound_width = 32
 	anchored = 2
+	w_class = W_CLASS_GIGANTIC
 
 	open(var/entangleLogic)
 		if (src.open)

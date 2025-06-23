@@ -47,7 +47,7 @@
 	item_state = "chemtank"
 	initial_volume = 1000
 	flags = OPENCONTAINER
-	w_class = W_CLASS_HUGE
+	w_class = W_CLASS_BULKY
 	incompatible_with_chem_dispensers = 1
 	throw_speed = 0.33
 	throw_range = 20

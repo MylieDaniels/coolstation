@@ -130,23 +130,23 @@
 	food_effects = list("food_refreshed")
 
 	walf
-	name = "stroopwalfel"
-	initial_reagents = list("tongueofdog"=5)
-	desc = "A traditional cookie from Holland. Oh ew, this one has a hair in it?"
-	heal(var/mob/living/M)
-		..()
-		if(!istype(M))
-			return
-		if (prob(15))
-			boutput(M, "<span class='success'>YOU FEEL WALF NOW</span>")
-			M.sound_scream = pick("sound/voice/animal/werewolf_howl.ogg",\
-									"sound/voice/animal/howl1.ogg",\
-									"sound/voice/animal/howl2.ogg",\
-									"sound/voice/animal/howl3.ogg",\
-									"sound/voice/animal/howl4.ogg",\
-									"sound/voice/animal/howl5.ogg",\
-									"sound/voice/animal/howl6.ogg",\
-									"sound/voice/animal/dogbark.ogg")
+		name = "stroopwalfel"
+		initial_reagents = list("tongueofdog"=5)
+		desc = "A traditional cookie from Holland. Oh ew, this one has a hair in it?"
+		heal(var/mob/living/M)
+			..()
+			if(!istype(M))
+				return
+			if (prob(15))
+				boutput(M, "<span class='success'>YOU FEEL WALF NOW</span>")
+				M.sound_scream = pick("sound/voice/animal/werewolf_howl.ogg",\
+										"sound/voice/animal/howl1.ogg",\
+										"sound/voice/animal/howl2.ogg",\
+										"sound/voice/animal/howl3.ogg",\
+										"sound/voice/animal/howl4.ogg",\
+										"sound/voice/animal/howl5.ogg",\
+										"sound/voice/animal/howl6.ogg",\
+										"sound/voice/animal/dogbark.ogg")
 
 
 /obj/item/reagent_containers/food/snacks/cookie

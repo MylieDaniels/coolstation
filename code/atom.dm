@@ -392,6 +392,9 @@
 	/// Continue moving until a wall or solid object is hit.
 	var/no_gravity = 0
 
+	// how big they are, determines what it fits inside and how it can be carried
+	var/w_class = W_CLASS_BULKY
+
 	/// how much it slows you down while pulling it, changed this from w_class because that's gunna cause issues with items that shouldn't fit in backpacks but also shouldn't slow you down to pull (sorry grayshift)
 	var/p_class = 2.5
 

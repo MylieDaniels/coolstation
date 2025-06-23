@@ -15,8 +15,8 @@
 	var/toggle = 1
 	var/force_dud = 0
 
-	w_class = W_CLASS_GIGANTIC /// HEH
-	p_class = 3 /// H E H
+	w_class = W_CLASS_BULKY // this used to be a heh about gigantic ttvs. now its a HEHEHE about bulky ones
+	p_class = W_CLASS_NORMAL
 	mats = 5
 
 	attackby(obj/item/item, mob/user)

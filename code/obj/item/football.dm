@@ -185,7 +185,7 @@
 	c_flags = EQUIPPED_WHILE_HELD
 	throw_range = 15
 	throwforce = 10
-	w_class = W_CLASS_HUGE
+	w_class = W_CLASS_BULKY
 	// look it is VERY IMPORTANT
 	plane = PLANE_HUD - 1
 	var/obj/maptext_junk/indicator

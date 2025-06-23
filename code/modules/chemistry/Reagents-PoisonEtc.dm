@@ -972,7 +972,7 @@ datum
 
 				if (istype(O,/obj/fluid))
 					return 1
-				if (isitem(O) && volume > O:w_class)
+				if (isitem(O) && volume > O.w_class)
 					var/obj/item/toMelt = O
 					if (!(toMelt.item_function_flags & IMMUNE_TO_ACID))
 						if(!O.hasStatus("acid"))

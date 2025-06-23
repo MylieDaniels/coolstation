@@ -31,6 +31,8 @@
 	/// if gun/bullet related, forensic profile of it
 	var/forensic_ID = null
 
+	w_class = W_CLASS_HUGE // using this as the base until 1000% sure everything has it defined
+
 	New()
 		. = ..()
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))

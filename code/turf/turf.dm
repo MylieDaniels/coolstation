@@ -445,7 +445,7 @@
 		return
 
 	if (A.z == 1 && zlevel != A.z)
-		if (!(isitem(A) && A:w_class <= W_CLASS_SMALL))
+		if (!(isitem(A) && A.w_class <= W_CLASS_SMALL))
 			for_by_tcl(C, /obj/machinery/communications_dish)
 				C.add_cargo_logs(A)
 

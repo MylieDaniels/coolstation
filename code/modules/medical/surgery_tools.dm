@@ -656,7 +656,7 @@ CONTAINS:
 
 /obj/item/robodefibrillator/mounted
 	var/obj/machinery/defib_mount/parent = null	//temp set while not attached
-	w_class = W_CLASS_BULKY
+	w_class = W_CLASS_HUGE
 
 	move_callback(var/mob/living/M, var/turf/source, var/turf/target)
 		if (parent)
@@ -1182,7 +1182,7 @@ CONTAINS:
 	deployed
 		var/list/spawn_contents = list()
 		icon_state = "bodybag-closed1"
-		w_class = W_CLASS_BULKY
+		w_class = W_CLASS_HUGE
 
 		New()
 			..()
@@ -1299,14 +1299,14 @@ CONTAINS:
 		if (src.open && src.open_image)
 			src.overlays += src.open_image
 			src.icon_state = "bodybag-open"
-			src.w_class = W_CLASS_BULKY
+			src.w_class = W_CLASS_HUGE
 		else if (!src.open)
 			src.overlays -= src.open_image
 			if (src.contents && length(src.contents))
 				src.icon_state = "bodybag-closed1"
 			else
 				src.icon_state = "bodybag-closed0"
-			src.w_class = W_CLASS_BULKY
+			src.w_class = W_CLASS_HUGE
 		else
 			src.overlays -= src.open_image
 			src.icon_state = "bodybag"

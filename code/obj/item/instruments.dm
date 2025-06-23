@@ -102,7 +102,7 @@
 /* -------------------- Large Instruments -------------------- */
 
 /obj/item/instrument/large
-	w_class = W_CLASS_GIGANTIC
+	w_class = W_CLASS_HUGE
 	p_class = 2 // if they're anchored you can't move them anyway so this should default to making them easy to move
 	throw_range = 4
 	throwforce = 25

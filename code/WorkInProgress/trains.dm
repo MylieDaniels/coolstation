@@ -10,6 +10,7 @@
 	anchored = ANCHORED
 	throw_spin = FALSE
 	event_handler_flags = Z_ANCHORED
+	w_class = W_CLASS_BUBSIAN
 	var/step_delay = 0.5
 	var/in_motion = FALSE
 	var/in_bump = 0

@@ -8,7 +8,7 @@
 	icon_state = "ammopouch"
 	desc = "A sturdy fabric pouch designed for carrying ammunition. Can be attatched to the webbing of a uniform to allow for quick access during combat."
 	w_class = W_CLASS_TINY
-	max_wclass = 1
+	max_wclass = W_CLASS_TINY
 	slots = 5
 	does_not_open_in_pocket = 0
 	can_hold = list(/obj/item/ammo)

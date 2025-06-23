@@ -7,7 +7,7 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_storage.dmi'
 	throw_speed = 2
 	throw_range = 8
-	max_wclass = 2
+	max_wclass = W_CLASS_SMALL
 	var/list/kit_styles = null
 
 	New()

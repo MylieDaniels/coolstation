@@ -421,12 +421,12 @@
 	bite_adjectives = list("rather large","big","expansive","proportionally small but still sizable")
 
 /datum/limb/small_critter/bee // can hold slightly larger things
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 	actions = list("pokes")
 	sound_attack = null
 
-/datum/limb/small_critter/bee/strong // can hold any sized thing (unless we have items with w_class > 99 somewhere I guess)
-	max_wclass = 99
+/datum/limb/small_critter/bee/strong // can hold any sized thing, do NOT make something heavier than bubsian
+	max_wclass = W_CLASS_BUBSIAN
 
 /datum/limb/small_critter/bee/strong/bubs // da bubs
 	dam_low = 18

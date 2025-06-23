@@ -2143,7 +2143,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 						if (item_num_to_throw)
 							for (var/obj/item/itm in target_turf) // We want to kick items only
-								if (itm.w_class >= W_CLASS_HUGE)
+								if (itm.w_class > W_CLASS_BULKY)
 									continue
 
 								var/atom/throw_target = get_edge_target_turf(itm, target_dir)

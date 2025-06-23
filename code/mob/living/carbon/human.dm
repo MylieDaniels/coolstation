@@ -3078,7 +3078,7 @@
 				src.show_text("<span class='alert'><B>[src.chest_item]</B> was shat out, that's got to hurt!</span>")
 				src.changeStatus("stunned", 2 SECONDS)
 				take_bleeding_damage(src, src, 5)
-			else if (src.chest_item.w_class == W_CLASS_BULKY || src.chest_item.w_class == W_CLASS_HUGE)
+			else if (src.chest_item.w_class >= W_CLASS_BULKY)
 				poopingDamage = 50
 				src.show_text("<span class='alert'><B>[src.chest_item] explodes out of your ass, jesus christ!</B></span>")
 				src.changeStatus("stunned", 5 SECONDS)

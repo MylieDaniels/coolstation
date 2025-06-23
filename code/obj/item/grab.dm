@@ -8,7 +8,7 @@
 	icon = 'icons/ui/hud_human_new.dmi'
 	icon_state = "reinforce"
 	name = "grab"
-	w_class = W_CLASS_HUGE
+	w_class = W_CLASS_BULKY
 	anchored = 1
 	var/break_prob = 45
 	var/assailant_stam_drain = 30

@@ -285,7 +285,7 @@
 	var/cloaked = 0
 	flags = FPRINT | TABLEPASS | NOSPLASH
 	w_class = W_CLASS_SMALL
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 
 	New()
 		..()

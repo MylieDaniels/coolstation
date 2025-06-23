@@ -188,13 +188,13 @@
                        HAS_FLAG(x:kind_of_limb, LIMB_HEAVIER) |\
                        HAS_FLAG(x:kind_of_limb, LIMB_TREADS))
 
-#define W_CLASS_TINY 1
-#define W_CLASS_SMALL 2
-#define W_CLASS_NORMAL 3
-#define W_CLASS_BULKY 4
-#define W_CLASS_HUGE 5
-#define W_CLASS_GIGANTIC 6
-#define W_CLASS_BUBSIAN 10
+#define W_CLASS_TINY 1 // fits in tiny lil stuff, can be picked up by mice and such
+#define W_CLASS_SMALL 2 // fits in belts/pockets/boxes
+#define W_CLASS_NORMAL 3 // fits in backpacks
+#define W_CLASS_BULKY 4 // shouldnt fit in anything except crates/lockers/bigger, can be picked up by humans
+#define W_CLASS_HUGE 5 // may be heftable with assistance
+#define W_CLASS_GIGANTIC 6 // this aint happening
+#define W_CLASS_BUBSIAN 10 // this thing weighs as much as a train
 
 ///Anything above this prevents you from swimming
 #define SWIMMING_UPPER_W_CLASS_BOUND W_CLASS_SMALL

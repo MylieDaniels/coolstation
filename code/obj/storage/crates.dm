@@ -10,6 +10,7 @@
 	throwforce = 50 //ouch
 	can_flip_bust = 1
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS | NO_MOUSEDROP_QOL
+	w_class = W_CLASS_HUGE
 
 	get_desc()
 		. = ..()

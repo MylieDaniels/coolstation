@@ -829,13 +829,13 @@
 		src.hit_type = DAMAGE_BURN
 		src.force = 150
 		src.icon_state = "axe1"
-		src.w_class = W_CLASS_HUGE
+		src.w_class = W_CLASS_BULKY
 	else
 		boutput(user, "<span class='notice'>The axe can now be concealed.</span>")
 		src.hit_type = DAMAGE_CUT
 		src.force = 40
 		src.icon_state = "axe0"
-		src.w_class = W_CLASS_HUGE
+		src.w_class = W_CLASS_BULKY
 	src.add_fingerprint(user)
 	user.update_inhands()
 	return

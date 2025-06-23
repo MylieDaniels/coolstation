@@ -13,7 +13,7 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
 	var/obj/target_item = null
 	var/cooktime = 0
-	var/max_wclass = 3
+	var/max_wclass = W_CLASS_NORMAL
 	var/obj/item/material_piece/my_bar = null
 
 	New()

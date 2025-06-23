@@ -9,7 +9,7 @@
 	item_state = "backpack"
 	flags = ONBACK | FPRINT | TABLEPASS | NOSPLASH
 	w_class = W_CLASS_BULKY
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 	wear_image_icon = 'icons/mob/back.dmi'
 	does_not_open_in_pocket = 0
 	spawn_contents = list(/obj/item/storage/box/starter)
@@ -318,7 +318,7 @@
 	flags = FPRINT | TABLEPASS | ONBELT | NOSPLASH
 	w_class = W_CLASS_BULKY
 	slots = 5
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 	does_not_open_in_pocket = 0
 	stamina_damage = 0
 	stamina_cost = 0
@@ -358,7 +358,7 @@
 	icon_state = "belt"
 	item_state = "belt"
 	flags = FPRINT | TABLEPASS | ONBELT | NOSPLASH
-	max_wclass = 2
+	max_wclass = W_CLASS_SMALL
 	does_not_open_in_pocket = 0
 	stamina_damage = 10
 	stamina_cost = 5
@@ -559,7 +559,7 @@
 	desc = "Holds normal-sized items, such as skulls."
 	icon_state = "minerbelt"
 	item_state = "utility"
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 	item_function_flags = IMMUNE_TO_ACID
 
 /obj/item/storage/belt/security

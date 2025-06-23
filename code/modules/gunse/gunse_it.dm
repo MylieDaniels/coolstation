@@ -36,7 +36,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	chamber_round()
 		var/ammotype = ammo_list[src.cylinder_index]
 		if(ammotype)
-			current_projectile = new ammotype() // this one goes in
+			src.set_current_projectile(new ammotype()) // this one goes in
 			src.ammo_list[src.cylinder_index] = null // preserve order of remaining
 			src.stored_ammo_count--
 		src.cylinder_index++
@@ -74,13 +74,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		//single shot and chamber handling
 		else if(!src.current_projectile)
 			boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
-			src.current_projectile = new donor_ammo.projectile_type()
+			src.set_current_projectile(new donor_ammo.projectile_type())
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
 			else
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-			return FALSE
-		//load the magazine after the chamber
 
 		//This can stay for now
 		if (prob(src.jam_frequency)) //jammed just because this thing sucks to load or you're clumsy
@@ -89,6 +87,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			return FALSE
 		return TRUE
 
+//THE REVOLVER
 //Extremely stylish revolver with an almost double action and a fannable hammer to boot.
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 /obj/item/gun/modular/italian/revolver
@@ -107,16 +106,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	shoot_delay = 0.1 SECONDS // listen, this is a lie. its actually 0.4 seconds if youre good
 	max_ammo_capacity = 5
 
-	//ideally we have two lists
-	//one for projectiles
-	//one for projectile status
-	//index goes 1, advances one until max, then resets to 1
-	//shot is ready to fire if 1, fired sets shot to 0, jammed (misfire) set to 2
-	//load and fire in that order, every time
-	//spin cylinder by clickdragging onto itself if not cocked
-	//decock on load?
-
-	shoot(var/atom/movable/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
+	shoot(var/turf/target,var/turf/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		if(!src.currently_firing)
@@ -139,9 +129,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 						else
 							break // if you aim off a world border this can happen
 						sleep(0.4 SECONDS)
+						src.process_ammo()
 					src.currently_firing = FALSE
-					sleep(0.3 SECONDS)
-					src.process_ammo()
 			else
 				src.process_ammo()
 
@@ -166,7 +155,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		return ..()
 
 
-
+//THE RATTLER
 //Massive drum-like cylinder that increases in damage and decreases in accuracy as it is fired,
 //but has a solid chance to fail to chamber each round- so keep spinning the drum for diminishing returns!
 ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
@@ -185,19 +174,19 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	bulkiness = 3
 	var/successful_chamber_frequency = 30
 
-	shoot_delay = 0.1 SECONDS
+	shoot_delay = 0.15 SECONDS
 
-	recoil_strength = 2
-	recoil_inaccuracy_max = 20
+	recoil_strength = 4
+	recoil_inaccuracy_max = 15
 	recoil_stacking_enabled = TRUE
-	recoil_stacking_amount = 0.5
+	recoil_stacking_amount = 2
 	recoil_stacking_safe_stacks = 1
 	recoil_stacking_max_stacks = 10
-	camera_recoil_multiplier = 0.33
-	recoil_reset_mult = 0.85
+	recoil_reset_mult = 0.9
 
 	shoot(target, start, mob/user, POX, POY, is_dual_wield)
-		..()
+		if(src.current_projectile)
+			..()
 		if(!src.jammed && prob(src.successful_chamber_frequency))
 			src.process_ammo(user)
 		else
@@ -283,7 +272,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 //oh thats a spooky meatball
 /obj/item/gun/modular/italian/rattler/masterwork
 	name = "masterwork Italian rattler"
-	real_name = "\improper Spine in italian"
+	real_name = "\improper Cranio"
 	desc = "WIP Italian gun"
 
 	load_time = 0.25 SECONDS

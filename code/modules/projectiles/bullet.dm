@@ -852,8 +852,6 @@ soon it will go away */
 			M.changeStatus("staggered", clamp(P.power/8, 5, 1) SECONDS)
 
 	auto
-		fullauto_valid = 1
-		sname = "full auto"
 		shot_volume = 66
 		cost = 1
 		shot_number = 1

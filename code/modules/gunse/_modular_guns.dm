@@ -316,7 +316,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//single shot and chamber handling
 	if(!src.current_projectile)
 		boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [src]</span>")
-		src.current_projectile = new donor_ammo.projectile_type()
+		src.set_current_projectile(new donor_ammo.projectile_type())
 		if (src.sound_type)
 			playsound(src.loc, "sound/weapons/modular/[src.sound_type]-slowcycle.ogg", 60, 1)
 		else
@@ -623,7 +623,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(JAM_FIRE) //problem on fire, either dud round or light strike
 			if(prob(current_projectile.dud_freq)) //unlucky, dump the round
 				src.jammed = FALSE
-				src.current_projectile = null
+				src.set_current_projectile(null)
 				//come up with a good sound for this
 				boutput(user, "You pry the dud round out of [src]") //drop a dud
 				return 0
@@ -685,7 +685,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/proc/chamber_round()
 	var/ammotype = ammo_list[src.ammo_reserve()]
-	current_projectile = new ammotype() // this one goes in
+	src.set_current_projectile(new ammotype()) // this one goes in
 	ammo_list.Remove(ammotype) //and remove it from the list
 
 //cycle weapon + update counter
@@ -894,7 +894,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return
 
 	if(!flash_auto)
-		current_projectile = null // empty chamber
+		src.set_current_projectile(null) // empty chamber
 
 	src.update_icon()
 
@@ -921,7 +921,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank_level--
 		else
 			crank_level = 0
-	current_projectile = null // empty chamber
+	src.set_current_projectile(null) // empty chamber
 	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
@@ -1051,7 +1051,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level for autoloader
 			if(!current_projectile)
-				current_projectile = new /datum/projectile/laser/flashbulb()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb())
 			src.inventory_counter.update_number(crank_level)
 			//07_Flywheel Toy Car.wav by 14GPanskaVitek_Martin -- https://freesound.org/s/420215/ -- License: Attribution 3.0
 			playsound(src.loc, "sound/weapons/modular/crank-flywheel.ogg", 60, 0, pitch = (0.65 + (crank_level * 0.03)))
@@ -1074,17 +1074,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			qdel(current_projectile)
 		switch(crank_level)
 			if (0)
-				current_projectile = null // this shouldnt happen but just in case!
+				src.set_current_projectile(null) // this shouldnt happen but just in case!
 			if (1)
-				current_projectile = new /datum/projectile/laser/flashbulb()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb())
 			if (2)
-				current_projectile = new /datum/projectile/laser/flashbulb/two()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/two())
 			if (3)
-				current_projectile = new /datum/projectile/laser/flashbulb/three()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/three())
 			if (4)
-				current_projectile = new /datum/projectile/laser/flashbulb/four()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/four())
 			if (5)
-				current_projectile = new /datum/projectile/laser/flashbulb/five()
+				src.set_current_projectile(new /datum/projectile/laser/flashbulb/five())
 		playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.5 + (crank_level * 0.15))) //eventually make this buzzes and alarms and etc.
 		src.inventory_counter.update_number(crank_level)
 		currently_cranking_off = FALSE

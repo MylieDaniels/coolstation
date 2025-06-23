@@ -511,8 +511,6 @@ datum/projectile
 		hit_object_sound = 0
 		hit_mob_sound = 0
 
-		///if a fullauto-capable weapon should be able to fullauto this ammo type
-		fullauto_valid = 0
 
 	// Determines the amount of length units the projectile travels each tick
 	// A tile is 32 wide, 32 long, and 32 * sqrt(2) across.

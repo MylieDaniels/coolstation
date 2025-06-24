@@ -238,7 +238,7 @@ datum/pathogeneffects/benevolent/resurrection
 			M.HealDamage("All", 100000, 100000)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.blood_volume = 500 					// let's not have people immediately suffocate from being exsanguinated
+				H.reset_blood() // let's not have people immediately suffocate from being exsanguinated
 				H.take_toxin_damage(-INFINITY)
 				H.take_oxygen_deprivation(-INFINITY)
 				H.take_brain_damage(-INFINITY)

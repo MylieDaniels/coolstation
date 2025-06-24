@@ -1681,7 +1681,7 @@ PIPE BOMBS + CONSTRUCTION
 				if (meat > 1)
 					gibs(src.loc)
 				for (var/turf/splat in view(meat,src.loc))
-					make_cleanable( /obj/decal/cleanable/blood,splat)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,splat)
 			if (ghost) //throw objects towards bomb center
 				var/turf/T = get_turf(src.loc)
 				if (ghost > 1)

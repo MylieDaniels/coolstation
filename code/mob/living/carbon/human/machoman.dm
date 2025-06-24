@@ -13,15 +13,13 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 'sound/voice/macho/macho_mumbling05.ogg', 'sound/voice/macho/macho_mumbling07.ogg', 'sound/voice/macho/macho_shout08.ogg')
 
 /mob/living/carbon/human/machoman
+	ideal_blood_volume = 1000
 	var/list/macho_arena_turfs
 	New(loc, shitty)
 		..()
 		//src.mind = new
 		src.gender = "male"
 		src.real_name = pick("M", "m") + pick("a", "ah", "ae") + pick("ch", "tch", "tz") + pick("o", "oh", "oe") + " " + pick("M","m") + pick("a","ae","e") + pick("n","nn")
-
-		if (!src.reagents)
-			src.create_reagents(1000)
 
 		src.reagents.add_reagent("omegazine", 200)
 
@@ -1320,8 +1318,8 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		gib.streak_cleanable(NORTH)
 		qdel(src)
 

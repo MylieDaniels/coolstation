@@ -519,12 +519,13 @@
 		src.add_blood(target)
 		target.set_loc(src)
 		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 3) // hilariously easy to hear someone being shoveled into a compost tank
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			src.reagents.add_reagent(H.blood_id, floor((rand() * 0.2 + 0.2) * H.blood_volume))
-			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.blood_volume))
-		else
-			src.reagents.add_reagent("poo", 75)
+		if(isliving(target))
+			var/mob/living/L = target
+			if(L.uses_blood)
+				L.reagents.trans_to(src, floor((rand() * 0.2 + 0.2) * H.total_volume))
+				src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.total_volume))
+			else
+				src.reagents.add_reagent("poo", 75)
 		if (target.mind)
 			target.ghostize()
 		qdel(target)

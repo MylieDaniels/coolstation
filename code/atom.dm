@@ -525,10 +525,6 @@
 		if (length(src.attached_objs))
 			for (var/atom/movable/M as anything in attached_objs)
 				M.set_loc(src.loc)
-		if (islist(src.tracked_blood))
-			src.track_blood()
-		if (islist(src.tracked_mud))
-			src.track_mud()
 		actions.interrupt(src, INTERRUPT_MOVE)
 		#ifdef COMSIG_MOVABLE_MOVED
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)

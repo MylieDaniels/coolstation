@@ -760,8 +760,8 @@
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 
-			if (H.blood_volume > 400 && H.blood_volume > 0)
-				H.blood_volume -= 2*mult
+			if (H.reagents.total_volume > H.ideal_blood_volume * 0.8)
+				H.reagents.remove_reagent(H.blood_id, H.ideal_blood_volume / 250 * mult)
 
 /datum/bioEffect/polycythemia
 	name = "Polycythemia"
@@ -781,8 +781,8 @@
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 
-			if (H.blood_volume < 600 && H.blood_volume > 0)
-				H.blood_volume += 2*mult
+			if (H.reagents.total_volume < H.ideal_blood_volume * 1.2)
+				H.reagents.add_reagent(H.blood_id, H.ideal_blood_volume / 250 * mult)
 
 
 ////////////////////////////

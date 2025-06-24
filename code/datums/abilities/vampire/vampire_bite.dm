@@ -77,8 +77,8 @@
 	var/mob/living/carbon/human/M = src.owner
 	var/datum/abilityHolder/vampire/H = src
 
-
-	if (HH.blood_volume <= 0)
+	var/blood_left = HH.reagents.get_reagent_amount(HH.blood_id)
+	if (blood_left <= 0)
 		boutput(M, __red("This human is completely void of blood... Wow!"))
 		return 0
 
@@ -86,14 +86,12 @@
 		if (prob(20))
 			boutput(M, __red("The blood of the dead provides little sustenance..."))
 
-		var/bitesize = 5 * mult
+		var/bitesize = min(5 * mult, blood_left / 4)
 		M.change_vampire_blood(bitesize, 1)
 		M.change_vampire_blood(bitesize, 0)
 		H.tally_bite(HH,bitesize)
-		if (HH.blood_volume < 20 * mult)
-			HH.blood_volume = 0
-		else
-			HH.blood_volume -= 20 * mult
+
+		HH.reagents.remove_reagent(HH.blood_id, 20 * mult)
 		if (istype(H)) H.blood_tracking_output()
 
 	else if (HH.bioHolder && HH.traitHolder.hasTrait("training_chaplain"))
@@ -124,14 +122,11 @@
 				boutput(M, __red("[HH] doesn't have enough blood left to drink."))
 				return 0
 		else
-			var/bitesize = 10 * mult
+			var/bitesize = min(10 * mult, blood_left / 2)
 			M.change_vampire_blood(bitesize, 1)
 			M.change_vampire_blood(bitesize, 0)
 			H.tally_bite(HH,bitesize)
-			if (HH.blood_volume < 20 * mult)
-				HH.blood_volume = 0
-			else
-				HH.blood_volume -= 20 * mult
+			HH.reagents.remove_reagent(HH.blood_id, 20 * mult)
 			//vampires heal, thralls don't
 			if (!thrall)
 				M.HealDamage("All", 3, 3)
@@ -139,7 +134,7 @@
 				M.take_oxygen_deprivation(-1)
 
 				if (mult >= 1) //mult is only 1 or greater during a pointblank true suck
-					if (HH.blood_volume < 300 && prob(15))
+					if (HH.reagents.get_reagent_amount(HH.blood_id) < (HH.ideal_blood_volume * 0.6) && prob(15))
 						if (!HH.getStatusDuration("paralysis"))
 							boutput(HH, __red("Your vision fades to blackness."))
 						HH.changeStatus("paralysis", 10 SECONDS)
@@ -155,159 +150,6 @@
 
 	if (istype(H))
 		H.check_for_unlocks()
-
-	eat_twitch(src.owner)
-	playsound(src.owner.loc,"sound/items/drink.ogg", rand(10,50), 1, pitch = 1.4)
-	HH.was_harmed(M, special = "vamp")
-
-/datum/abilityHolder/vampiric_thrall/var/list/blood_tally
-/datum/abilityHolder/vampiric_thrall/var/const/max_take_per_mob = 250
-
-/datum/abilityHolder/vampiric_thrall/proc/can_take_blood_from(var/mob/living/carbon/human/target)
-	.= 1
-	if (src.blood_tally)
-		if (target in src.blood_tally)
-			.= src.blood_tally[target] < max_take_per_mob
-
-/datum/abilityHolder/vampiric_thrall/proc/tally_bite(var/mob/living/carbon/human/target, var/blood_amt_taken)
-	if (!src.blood_tally)
-		src.blood_tally = list()
-
-	if (!(target in src.blood_tally))
-		src.blood_tally[target] = 0
-
-	src.blood_tally[target] += blood_amt_taken
-
-/datum/abilityHolder/vampiric_thrall/proc/can_bite(var/mob/living/carbon/human/target, is_pointblank = 1)
-	var/datum/abilityHolder/vampiric_thrall/holder = src
-	var/mob/living/M = holder.owner
-	var/datum/abilityHolder/vampiric_thrall/H = holder
-
-	if (!M || !target)
-		return 0
-
-	if (!ishuman(target)) // Only humans use the blood system.
-		boutput(M, __red("You can't seem to find any blood vessels."))
-		return 0
-	else
-		var/mob/living/carbon/human/humantarget = target
-		if (istype(humantarget.mutantrace, /datum/mutantrace/vampiric_thrall))
-			boutput(M, __red("You cannot drink the blood of a thrall."))
-			return 0
-
-	if (M == target)
-		boutput(M, __red("Why would you want to bite yourself?"))
-		return 0
-
-	if (ismobcritter(M) && !istype(H))
-		boutput(M, __red("Critter mobs currently don't have to worry about blood. Lucky you."))
-		return 0
-
-	if (istype(H) && H.vamp_isbiting)
-		if (vamp_isbiting != target)
-			boutput(M, __red("You are already draining someone's blood!"))
-			return 0
-
-	if (is_pointblank && target.head && target.head.c_flags & (BLOCKCHOKE))
-		boutput(M, __red("You need to remove their headgear first."))
-		return 0
-
-	if (check_target_immunity(target) == 1)
-		target.visible_message("<span class='alert'><B>[M] bites [target], but fails to even pierce [his_or_her(target)] skin!</B></span>")
-		return 0
-
-	var/mob/master = null
-	if(src.owner.mind && src.owner.mind.master)
-		master = whois_ckey_to_mob_reference(src.owner.mind.master)
-	if ((target.mind && target.mind.special_role == ROLE_VAMPTHRALL) && target.is_mentally_dominated_by(master))
-		boutput(M, __red("You can't drink the blood of your master's thralls!"))
-		return 0
-
-	if (isnpcmonkey(target))
-		boutput(M, __red("Drink monkey blood?! That's disgusting!"))
-		return 0
-
-	if (!holder.can_take_blood_from(target))
-		return 0
-
-
-	return 1
-
-/datum/abilityHolder/vampiric_thrall/proc/do_bite(var/mob/living/carbon/human/HH, var/mult = 1, var/thrall = 0)
-	.= 1
-	var/mob/living/carbon/human/M = src.owner
-	var/datum/abilityHolder/vampiric_thrall/H = src
-
-
-	if (HH.blood_volume <= 0)
-		boutput(M, __red("This human is completely void of blood... Wow!"))
-		return 0
-
-	if (isdead(HH))
-		if (prob(20))
-			boutput(M, __red("The blood of the dead provides little sustenance..."))
-
-		var/bitesize = 5 * mult
-		M.change_vampire_blood(bitesize, 1)
-		M.change_vampire_blood(bitesize, 0)
-		H.tally_bite(HH,bitesize)
-		if (HH.blood_volume < 20 * mult)
-			HH.blood_volume = 0
-		else
-			HH.blood_volume -= 20 * mult
-
-	else if (HH.bioHolder && HH.traitHolder.hasTrait("training_chaplain"))
-		M.visible_message("<span class='alert'><b>[M]</b> begins to crisp and burn!</span>", "<span class='alert'>You drank the blood of a holy man! It burns!</span>")
-		M.emote("scream")
-		if (M.get_vampire_blood() >= 20 * mult)
-			M.change_vampire_blood(-20 * mult, 0)
-		else
-			M.change_vampire_blood(0, 0, 1)
-		M.TakeDamage("chest", 0, 30 * mult)
-
-	else
-		if (isvampire(HH))
-			var/bitesize = 20 * mult
-			if (HH.get_vampire_blood() >= bitesize)
-				HH.change_vampire_blood(-bitesize, 0)
-				HH.change_vampire_blood(-bitesize, 1) // Otherwise, two vampires could perpetually feed off of each other, trading blood endlessly.
-
-				M.change_vampire_blood(bitesize, 0)
-				M.change_vampire_blood(bitesize, 1)
-				H.tally_bite(HH,bitesize)
-				if (prob(50))
-					boutput(M, __red("This is the blood of a fellow vampire!"))
-			else
-				HH.change_vampire_blood(0, 0, 1)
-				boutput(M, __red("[HH] doesn't have enough blood left to drink."))
-				return 0
-		else
-			var/bitesize = 10 * mult
-			M.change_vampire_blood(bitesize, 1)
-			M.change_vampire_blood(bitesize, 0)
-			H.tally_bite(HH,bitesize)
-			if (HH.blood_volume < 20 * mult)
-				HH.blood_volume = 0
-			else
-				HH.blood_volume -= 20 * mult
-			//vampires heal, thralls don't
-			if (!thrall)
-				M.HealDamage("All", 3, 3)
-				M.take_toxin_damage(-1)
-				M.take_oxygen_deprivation(-1)
-
-				if (mult >= 1) //mult is only 1 or greater during a pointblank true suck
-					if (HH.blood_volume < 300 && prob(15))
-						if (!HH.getStatusDuration("paralysis"))
-							boutput(HH, __red("Your vision fades to blackness."))
-						HH.changeStatus("paralysis", 10 SECONDS)
-					else
-						if (prob(65))
-							HH.changeStatus("weakened", 1 SECOND)
-							HH.stuttering = min(HH.stuttering + 3, 10)
-
-	if (!can_take_blood_from(HH) && (mult >= 1) && (isunconscious(HH) || HH.health <= 90))
-		HH.death(0)
 
 	eat_twitch(src.owner)
 	playsound(src.owner.loc,"sound/items/drink.ogg", rand(10,50), 1, pitch = 1.4)
@@ -366,7 +208,7 @@
 
 	onUpdate()
 		..()
-		if(get_dist(M, HH) > 7 || M == null || HH == null || HH.blood_volume <= 0)
+		if(get_dist(M, HH) > 7 || M == null || HH == null || HH.reagents.total_volume <= 10)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
@@ -421,7 +263,7 @@
 
 	onInterrupt() //Called when the action fails / is interrupted.
 		if (state == ACTIONSTATE_RUNNING)
-			if (HH.blood_volume <= 0)
+			if (HH.reagents.get_reagent_amount(HH.blood_id) <= 0)
 				boutput(M, __red("[HH] doesn't have enough blood left to drink."))
 			else if (!H.can_take_blood_from(H, HH))
 				boutput(M, __red("You have drank your fill [HH]'s blood. It tastes all bland and gross now."))
@@ -439,7 +281,6 @@
 			H.vamp_isbiting = null
 		if (HH)
 			HH.vamp_beingbitten = 0 // Victim might have been gibbed, who knowns.
-
 
 
 /datum/targetable/vampire/vampire_bite
@@ -484,10 +325,6 @@
 		actions.start(new/datum/action/bar/icon/vamp_blood_suc(M,H,HH,src), M)
 
 		return 0
-
-/datum/targetable/vampire/vampire_bite/thrall
-	thrall = 1
-
 
 /datum/action/bar/icon/vamp_blood_suc
 	duration = 30
@@ -559,7 +396,7 @@
 
 	onInterrupt() //Called when the action fails / is interrupted.
 		if (state == ACTIONSTATE_RUNNING)
-			if (HH.blood_volume < 0)
+			if (HH.reagents.get_reagent_amount(HH.blood_id) <= 0)
 				boutput(M, __red("[HH] doesn't have enough blood left to drink."))
 			else if (!H.can_take_blood_from(H, HH))
 				boutput(M, __red("You have drank your fill [HH]'s blood. It tastes all bland and gross now."))

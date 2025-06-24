@@ -150,10 +150,6 @@ var/list/ban_from_airborne_fluid = list()
 		//if (AM.event_handler_flags & USE_FLUID_ENTER)
 		//	AM.ExitedFluid(src,newloc)
 
-
-	add_tracked_blood(atom/movable/AM as mob|obj)
-		.=0
-
 	update() //returns list of created fluid tiles
 		if (!src.group) return
 		.= list()

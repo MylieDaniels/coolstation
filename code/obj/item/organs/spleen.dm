@@ -11,20 +11,23 @@
 	on_life(var/mult = 1)
 		if (!..())
 			return 0
-		if (donor.blood_volume < 500 && donor.blood_volume > 0) // if we're full or empty, don't bother v
+		var/blood_add = 0
+		if (donor.reagents.total_volume < donor.ideal_blood_volume && donor.reagents.total_volume > 0) // if we're full or empty, don't bother v
 			if (prob(66))
-				donor.blood_volume += 1 * mult // maybe get a little blood back ^
+				blood_add += 1 * mult // maybe get a little blood back ^
 			else if (src.robotic)  // garuanteed extra blood with robotic spleen
-				donor.blood_volume += 2 * mult
-		else if (donor.blood_volume > 500)
+				blood_add += 2 * mult
+		else if (donor.reagents.total_volume > donor.ideal_blood_volume)
 			if (prob(20))
-				donor.blood_volume -= 1 * mult
+				donor.reagents.remove_reagent(donor.blood_id, 1 * mult)
 		if(emagged)
-			donor.blood_volume += 2 * mult //Don't worry friend, you'll have /plenty/ of blood!
+			blood_add += 2 * mult //Don't worry friend, you'll have /plenty/ of blood!
+		if(blood_add)
+			donor.reagents.add_reagent(donor.blood_id, 1 * mult)
 		return 1
 
 	on_broken(var/mult = 1)
-		donor.blood_volume -= 2 * mult
+		donor.reagents.remove_reagent(donor.blood_id, 2 * mult)
 
 	disposing()
 		if (holder)

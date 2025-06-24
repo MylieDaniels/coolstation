@@ -141,12 +141,9 @@
 							for (var/obj/fluid/F in FG.members)
 								LAGCHECK(LAG_MED)
 								if (!F) continue
-								var/obj/decal/cleanable/blood/dynamic/B = make_cleanable(/obj/decal/cleanable/blood/dynamic,F.loc)
+								var/obj/decal/cleanable/tracked_reagents/dynamic/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,F.loc)
 								B.sample_reagent = "blood"
-								B.add_volume(F.color, do_fluid_react = 0)
-								B.handle_reagent_list(FG.reagents.reagent_list)
-								B.blood_DNA = F.blood_DNA
-								B.blood_type = F.blood_type
+								B.transfer_volume(FG.reagents, amount = 15, vis_amount = rand(3,5), F.blood_DNA, F.blood_type, do_fluid_react = 0)
 
 						FG.evaporate()
 						if (FG?.qdeled)

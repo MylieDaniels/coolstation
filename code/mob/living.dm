@@ -97,14 +97,17 @@
 
 	var/metabolizes = 1
 
-	var/can_bleed = 1
+
+	/// can we bleed at all?
+	var/uses_blood = FALSE
+	/// what do we need in our bloodstream to stay alive?
 	var/blood_id = null
-	var/blood_volume = 500
+	/// how much of it?
+	var/ideal_blood_volume = 200
 	var/blood_pressure = null
 	var/blood_color = DEFAULT_BLOOD_COLOR
 	var/bleeding = 0
 	var/bleeding_internal = 0
-	var/blood_absorption_rate = 1 // amount of blood to absorb from the reagent holder per Life()
 	var/list/bandaged = list()
 	var/being_staunched = 0 // is someone currently putting pressure on their wounds?
 
@@ -136,7 +139,10 @@
 	vision = new()
 	src.attach_hud(vision)
 	src.vis_contents += src.chat_text
-	if (can_bleed)
+	tracked_reagents = new /datum/reagents(8)
+	tracked_reagents.my_atom = src
+	if (uses_blood)
+		src.reset_blood()
 		src.ensure_bp_list()
 	if (blood_id)
 		all_blood_reagents |= blood_id
@@ -173,6 +179,9 @@
 		qdel(A)
 	stomach_process = null
 	skin_process = null
+
+	qdel(tracked_reagents)
+	tracked_reagents = null
 
 	for(var/mob/dead/aieye/E in src.contents)
 		E.cancel_camera()
@@ -1217,6 +1226,8 @@
 /mob/living/Move(var/turf/NewLoc, direct)
 	var/oldloc = loc
 	. = ..()
+	if(src.tracked_reagents.total_volume)
+		src.track_reagents()
 	if (isturf(oldloc) && isturf(loc) && move_laying)
 		var/list/equippedlist = src.equipped_list()
 		if (length(equippedlist))
@@ -2271,7 +2282,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
 	actions.interrupt(src, INTERRUPT_ATTACKED)
-	if (src.can_bleed && isitem(AM))
+	if (src.uses_blood && isitem(AM))
 		var/obj/item/I = AM
 		if ((I.hit_type == DAMAGE_STAB && prob(20)) || (I.hit_type == DAMAGE_CUT && prob(40)))
 			take_bleeding_damage(src, null, I.throwforce * 0.5, I.hit_type)
@@ -2347,3 +2358,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			whisper ? src.whisper(message) : src.say(message)
 		src.stat = old_stat // back to being dead 😌
+
+/mob/living/proc/reset_blood()
+	if(src.reagents)
+		src.reagents.clear_reagents()
+		src.reagents.maximum_volume = src.ideal_blood_volume * 2
+	else
+		src.create_reagents(src.ideal_blood_volume * 2)
+
+	if(src.uses_blood && !isnull(src.blood_id))
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume)

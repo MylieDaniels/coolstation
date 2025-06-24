@@ -290,10 +290,11 @@ datum
 
 			on_mob_life(var/mob/living/H, var/mult = 1)
 				..()
-				if (H.can_bleed)
+				if (H.uses_blood)
 					H.blood_volume += 0.5 * mult
 					if(prob(10))
 						H.take_oxygen_deprivation(-1 * mult)
+
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				M.take_toxin_damage(1 * mult) // Iron overdose fucks you up bad
 				if(probmult(5))

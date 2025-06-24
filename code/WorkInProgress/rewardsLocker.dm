@@ -1327,11 +1327,10 @@
 		var/blood_mult = 6.9
 		var/mob/living/L = activator
 		if(istype(L))
-			var/mob/living/carbon/human/H = activator
 			if(L.blood_id)
 				blood_id = L.blood_id
-			if(istype(H) && H.blood_volume)
-				blood_amount = H.blood_volume
+				if(L.reagents)
+					blood_amount = L.reagents.get_reagent_amount(L.blood_id)
 		activator.suiciding = 1
 		var/turf/T = get_turf(activator)
 		if (L?.traitHolder?.hasTrait("hemophilia"))

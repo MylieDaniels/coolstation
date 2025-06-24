@@ -979,7 +979,7 @@ SYNDICATE DRONE FACTORY AREAS
 			var/turf/middle = locate(src.x + 2, src.y + 2, src.z)
 			var/blood = 0
 			for(var/atom/A in range(2, middle))
-				if(istype(A, /obj/decal/cleanable/blood))
+				if(istype(A, /obj/decal/cleanable/tracked_reagents/blood))
 					blood = 1
 					break
 			if(blood == 1)

@@ -309,7 +309,7 @@ datum/teg_transformation/vampire
 				src.teg.grump -= 10
 			else
 				reagents.remove_any_to(100)
-				make_cleanable(/obj/decal/cleanable/blood,get_step(src.teg, SOUTH))
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_step(src.teg, SOUTH))
 				src.teg.efficiency_controller += 5
 				SPAWN_DBG(45 SECONDS)
 					if(src.teg?.active_form == src)
@@ -369,10 +369,7 @@ datum/teg_transformation/vampire
 				vampire.vamp_blood += bitesize
 				vampire.addPoints(bitesize)
 				vampire.tally_bite(victim,bitesize)
-				if (victim.blood_volume < bitesize)
-					victim.blood_volume = 0
-				else
-					victim.blood_volume -= bitesize
+				victim.reagents.remove_any(bitesize)
 		else
 			if(P.proj_data.damage_type & (D_KINETIC | D_ENERGY | D_SLASHING))
 				var/damage = P.power*P.proj_data.ks_ratio
@@ -464,7 +461,7 @@ datum/teg_transformation/vampire
 				src.abilityHolder.thralls += target
 
 				target.set_mutantrace(/datum/mutantrace/vampiric_thrall)
-				var/datum/abilityHolder/vampiric_thrall/VZ = target.get_ability_holder(/datum/abilityHolder/vampiric_thrall)
+				var/datum/abilityHolder/vampire/thrall/VZ = target.get_ability_holder(/datum/abilityHolder/vampire/thrall)
 				if (VZ && istype(VZ))
 					VZ.master = H
 

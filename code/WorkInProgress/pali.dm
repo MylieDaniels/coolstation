@@ -120,7 +120,7 @@
 	health_burn = 50
 	add_abilities = list(/datum/targetable/critter/peck,
 						/datum/targetable/critter/tackle)
-	blood_id = "crime"
+	blood_id = "methamphetamine"
 
 	setup_hands()
 		..()
@@ -136,7 +136,7 @@
 	Life(datum/controller/process/mobs/parent)
 		. = ..()
 		if (!isdead(src))
-			src.reagents.add_reagent("crime", 10)
+			src.reagents.add_reagent("methamphetamine", 10)
 			src.fix_pulling_sprite() // just in case
 
 	set_pulling(atom/movable/A)

@@ -309,13 +309,6 @@ var/mutable_appearance/fluid_ma
 			AM.ExitedFluid(src,newloc)
 
 
-	proc/add_tracked_blood(atom/movable/AM as mob|obj)
-		AM.tracked_blood = list("bDNA" = src.blood_DNA, "btype" = src.blood_type, "color" = src.color, "count" = rand(2,6))
-		if (ismob(AM))
-			var/mob/M = AM
-			M.set_clothing_icon_dirty()
-
-
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		..()
 		if (!src.group || !src.group.reagents || !length(src.group.members)) return
@@ -810,25 +803,18 @@ var/mutable_appearance/fluid_ma
 
 	//BLOODSTAINS
 	if (F.group.master_reagent_id =="blood" || F.group.master_reagent_id == "bloodc")
-		if (F.group.master_reagent_id == "blood")
-			//if (ishuman(M))
-			if (src.lying)
-				if (src.wear_suit)
-					src.wear_suit.add_blood(F)
-					src.set_clothing_icon_dirty()
-				else if (src.w_uniform)
-					src.w_uniform.add_blood(F)
-					src.set_clothing_icon_dirty()
-			else
-				if (src.shoes)
-					src.shoes.add_blood(F)
-					src.set_clothing_icon_dirty()
-			F.add_tracked_blood(src)
-			//else if (isliving(M))// || isobj(AM))
-			//	M.add_blood(F)
-			//	if (!M.anchored)
-			//		F.add_tracked_blood(M)
-
+		if (src.lying)
+			if (src.wear_suit)
+				src.wear_suit.add_blood(F)
+				src.set_clothing_icon_dirty()
+			else if (src.w_uniform)
+				src.w_uniform.add_blood(F)
+				src.set_clothing_icon_dirty()
+		else
+			if (src.shoes)
+				src.shoes.add_blood(F)
+				src.set_clothing_icon_dirty()
+		F.group.reagents.trans_to(src.tracked_reagents)
 
 	var/do_reagent_reaction = 1
 

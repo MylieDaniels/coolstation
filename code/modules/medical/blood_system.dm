@@ -145,14 +145,14 @@ this is already used where it needs to be used, you can probably ignore it.
 		boutput(some_jerk, "<b class='notice'> You clamp the bleeders with the hemostat.</span>")
 		return
 
-	if (isdead(H) || H.nodamage || !H.can_bleed)
+	if (isdead(H) || H.nodamage || !H.uses_blood)
 		if (H.bleeding)
 			H.bleeding = 0
 			H.bleeding_internal = 0
 		//BLOOD_DEBUG("[H] is dead or immortal or otherwise not supposed to bleed, so their bleeding has been set to 0 and bleed damage was canceled")
 		return
 
-	if ((!isvampire(H) && H.blood_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // make sure we have blood to bleed
+	if ((!isvampire(H) && H.reagents.total_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // make sure we have blood to bleed
 		if (bloodsplatter) // make sure we want to make bloodsplatter
 			bleed(H, damage, 5, T) // actually bleed
 			//animate_blood_damage(some_idiot, some_jerk)
@@ -308,7 +308,7 @@ this is already used where it needs to be used, you can probably ignore it.
 		H.bleeding_internal = 0
 		return
 
-	if (H.blood_volume <= 0)
+	if (H.reagents.total_volume <= 0)
 		//BLOOD_DEBUG("[H] has no blood and their bleeding has been set to 0 and repair was canceled")
 		H.bleeding = 0 // you have no blood so stop trying to bleed
 		H.bleeding_internal = 0
@@ -399,12 +399,12 @@ this is already used where it needs to be used, you can probably ignore it.
 		blood_color_to_pass = rgb(current_reagent.fluid_r, current_reagent.fluid_g, current_reagent.fluid_b, max(current_reagent.transparency,255))
 
 	if (!blood_system) // we're here because we want to create a decal, so create it anyway
-		var/obj/decal/cleanable/blood/dynamic/B = null
+		var/obj/decal/cleanable/tracked_reagents/dynamic//B = null
 		if (T.messy > 0)
-			B = locate(/obj/decal/cleanable/blood/dynamic) in T
+			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic/) in T
 
 		if (!B) // look for an existing dynamic blood decal and add to it if you find one
-			B = make_cleanable( /obj/decal/cleanable/blood/dynamic,T)
+			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic/,T)
 
 		if (ischangeling(H))
 			B.ling_blood = 1
@@ -425,10 +425,10 @@ this is already used where it needs to be used, you can probably ignore it.
 	if (!isliving(some_idiot))
 		return
 
-	if (isdead(H) || H.nodamage || !H.can_bleed)
+	if (isdead(H) || H.nodamage || !H.uses_blood)
 		if (H.bleeding)
 			H.bleeding = 0 // stop that
-		//BLOOD_DEBUG("[some_idiot] is either dead, immortal, or has can_bleed disabled, so bleed was canceled")
+		//BLOOD_DEBUG("[some_idiot] is either dead, immortal, or has uses_blood disabled, so bleed was canceled")
 		return
 
 	if (isvampire(H)) // vampires should be special
@@ -438,16 +438,12 @@ this is already used where it needs to be used, you can probably ignore it.
 
 	if ((!isvampire(H) && H.blood_volume > 0) || (isvampire(H) && H.get_vampire_blood() > 0)) // you shouldn't bleed unless you have blood okay
 		//BLOOD_DEBUG("[H] blood level [H.blood_volume]")
-		var/obj/decal/cleanable/blood/dynamic/B = null
+		var/obj/decal/cleanable/tracked_reagents/dynamic//B = null
 		if (T.messy > 0)
-			B = locate(/obj/decal/cleanable/blood/dynamic) in T
+			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic/) in T
 
 		if (!B) // look for an existing dynamic blood decal and add to it if you find one
-			B = make_cleanable( /obj/decal/cleanable/blood/dynamic,T)
-			if (H.blood_id)
-				B.set_sample_reagent_custom(H.blood_id, 0)
-			else if (H.blood_color)
-				B.color = blood_color_to_pass
+			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic/,T)
 
 		if (ischangeling(H))
 			B.ling_blood = 1
@@ -466,12 +462,8 @@ this is already used where it needs to be used, you can probably ignore it.
 				H.blood_volume = 0
 				//BLOOD_DEBUG("[H]'s blood volume dropped below 0 and was reset to 0")
 
-		B.add_volume(blood_color_to_pass, H.blood_id, num_amount, vis_amount)
+		B.add_volume(H.reagents, num_amount, vis_amount)
 		//BLOOD_DEBUG("[H] adds volume to existing blood decal")
-
-		if (B.reagents && H.reagents?.total_volume)
-			//BLOOD_DEBUG("[H] transfers reagents to blood decal [log_reagents(H)]")
-			H.reagents.trans_to(B, min(round(num_amount / 2, 1), 5))
 	else
 		return
 
@@ -730,7 +722,7 @@ this is already used where it needs to be used, you can probably ignore it.
 
 	var/mob/living/H = some_idiot
 
-	if (H.stat ==  2 || H.nodamage || !H.can_bleed || isvampire(H))
+	if (H.stat ==  2 || H.nodamage || !H.uses_blood || isvampire(H))
 		if (H.bleeding)
 			H.bleeding = 0
 			H.bleeding_internal = 0

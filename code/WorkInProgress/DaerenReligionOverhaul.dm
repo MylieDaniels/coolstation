@@ -222,7 +222,7 @@
 		C.losebreath = 0
 		C.delStatus("paralysis")
 		repair_bleeding_damage(C, 100, 10)
-		C.blood_volume = 500 //this is to prevent people from instantly relapsing into shock/heart failure/braindeath at low blood
+		C.reset_blood() //this is to prevent people from instantly relapsing into shock/heart failure/braindeath at low blood
 
 		return 0
 

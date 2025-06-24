@@ -114,6 +114,7 @@
 			hotspot.temperature = falloff_affected_temp
 			hotspot.set_loc(T)
 		affected_hotspots += hotspot
+		affected[T] = hotspot.temperature
 
 		hotspot.volume = 400
 		hotspot.set_real_color()

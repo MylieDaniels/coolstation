@@ -74,7 +74,7 @@
 
 	src.create_radiation_element()
 
-	if (src.master.can_bleed)
+	if (src.master.uses_blood)
 		src.create_bleeding_element()
 
 	if (src.master.can_throw)

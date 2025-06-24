@@ -404,7 +404,7 @@ datum
 			return ret
 
 		//multiplier is used to handle realtime metabolizations over byond time
-		proc/metabolize(var/mob/target, var/multiplier = 1)
+		proc/metabolize(var/mob/living/target, var/multiplier = 1)
 			if (islist(src.addiction_tally) && length(src.addiction_tally)) // if we got some addictions to process
 				//DEBUG_MESSAGE("metabolize([target]) addiction_tally processing")
 				for (var/rid in src.addiction_tally) // look at each addiction tally
@@ -420,13 +420,10 @@ datum
 			for (var/current_id in reagent_list)
 				var/datum/reagent/current_reagent = reagent_list[current_id]
 				if (current_reagent)
+					if(target.blood_id == current_reagent.id)
+						continue
+
 					mult_per_reagent = min(multiplier,current_reagent.how_many_depletions(target)) //limit the multiplier by how many depletions we have left
-
-					//Actually, cap the multiplier minimum at 1	. This preserves some of the original expected funky stuff pre-realtime changes.
-					// If someone who knows more about chemistry than MBC wants to remove this line, go right ahead :
-					//mult_per_reagent = max(mult_per_reagent, 1)
-					//hey this is mbc a couple months later, i commented out this line.
-
 
 					current_reagent.on_mob_life(target, mult = mult_per_reagent)
 

@@ -131,7 +131,7 @@
 	made_from = "gnesis"
 	var/resources = 0 // reagents for humans go in heart, resources for flockdrone go in heart, now, not the brain
 	var/flockjuice_limit = 20 // pump flockjuice into the human host forever, but only a small bit
-	var/min_blood_amount = 450
+	var/min_blood_mult = 0.9
 	blood_id = "flockdrone_fluid"
 
 	on_transplant(var/mob/M as mob)
@@ -154,11 +154,11 @@
 			if(flockjuice > flockjuice_limit)
 				R.remove_reagent("flockdrone_fluid", flockjuice - flockjuice_limit)
 			// handle blood synthesis
-			if(H.blood_volume < min_blood_amount)
+			if(R.total_volume / H.ideal_blood_volume < min_blood_mult)
 				// consume flockjuice, convert into blood
-				var/converted_amt = min(flockjuice, min_blood_amount - H.blood_volume)
+				var/converted_amt = min(flockjuice, R.total_volume - min_blood_mult * H.ideal_blood_volume)
 				R.remove_reagent("flockdrone_fluid", converted_amt)
-				H.blood_volume += converted_amt
+				R.add_reagent(H.blood_id, converted_amt)
 
 /obj/item/organ/heart/flock/special_desc(dist, mob/user)
 	if(isflock(user))

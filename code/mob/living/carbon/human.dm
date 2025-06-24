@@ -172,9 +172,9 @@
 
 	var/icon/flat_icon = null
 
-	can_bleed = 1
+	uses_blood = 1
 	blood_id = "blood"
-	blood_volume = 500
+	ideal_blood_volume = 500
 
 /mob/living/carbon/human/New()
 	default_static_icon = human_static_base_idiocy_bullshit_crap // FUCK
@@ -184,8 +184,6 @@
 	image_cust_one = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_two = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_three = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
-
-	src.create_reagents(330)
 
 	hud = new(src)
 	src.attach_hud(hud)
@@ -488,13 +486,6 @@
 				randlimb = pick(all_valid_random_left_legs)
 				. += src.replace_with("l_leg", randlimb, user, show_message)
 		return .
-
-
-/mob/living/carbon/human/proc/is_vampire()
-	return get_ability_holder(/datum/abilityHolder/vampire)
-
-/mob/living/carbon/human/proc/is_vampiric_thrall()
-	return get_ability_holder(/datum/abilityHolder/vampiric_thrall)
 
 /mob/living/carbon/human/disposing()
 	for(var/obj/item/I in src)
@@ -1422,11 +1413,6 @@
 			var/datum/abilityHolder/vampire/V = get_ability_holder(/datum/abilityHolder/vampire)
 			if (V)
 				V.transmit_thrall_msg(message, src)
-			var/datum/abilityHolder/vampiric_thrall/T = get_ability_holder(/datum/abilityHolder/vampiric_thrall)
-			if (T)
-				T.msg_to_master(message)
-			src.say_language = original_language
-			return
 
 	message = process_accents(src,message)
 
@@ -2308,7 +2294,7 @@
 /mob/living/carbon/human/full_heal()
 	blinded = 0
 	bleeding = 0
-	blood_volume = 500
+	src.reset_blood()
 
 	if (!src.limbs)
 		src.limbs = new /datum/human_limbs(src)

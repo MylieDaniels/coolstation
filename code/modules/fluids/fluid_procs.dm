@@ -215,11 +215,11 @@ turf/floor/plating/airless/ocean_canpass()
 	//if possible_cleanable has a value, handle exclusively this decal. don't search thru the turf.
 	if (possible_cleanable)
 		if (possible_cleanable.qdeled || possible_cleanable.pooled) return
-		if (istype(possible_cleanable, /obj/decal/cleanable/blood/dynamic))
-			var/obj/decal/cleanable/blood/dynamic/blood = possible_cleanable
+		if (istype(possible_cleanable, /obj/decal/cleanable/tracked_reagents/dynamic))
+			var/obj/decal/cleanable/tracked_reagents/dynamic/blood = possible_cleanable
 			var/blood_dna = blood.blood_DNA
 			var/blood_type = blood.blood_type
-			var/is_tracks = istype(possible_cleanable,/obj/decal/cleanable/blood/dynamic/tracks)
+			var/is_tracks = istype(possible_cleanable,/obj/decal/cleanable/tracked_reagents/dynamic/tracks)
 			if (blood.reagents && blood.reagents.total_volume >= 13 || src.active_liquid || grab_any_amount)
 				if (blood.reagents)
 					var/datum/reagents/R = new(blood.reagents.maximum_volume) //Store reagents, delete cleanable, and then fluid react. prevents recursion
@@ -245,7 +245,7 @@ turf/floor/plating/airless/ocean_canpass()
 		if (C.qdeled || C.pooled) continue
 		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
 		if (C.sampled) continue //beware recursion
-		if (istype(C,/obj/decal/cleanable/blood/dynamic)) continue // handled above
+		if (istype(C,/obj/decal/cleanable/tracked_reagents/dynamic)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
 

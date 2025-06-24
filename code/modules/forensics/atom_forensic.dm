@@ -7,10 +7,6 @@
 	//var/list/forensic_info = null
 	var/list/forensic_trace = null // list(fprint, bDNA, btype) - can't get rid of this so easy!
 
-/atom/movable
-	var/tracked_blood = null // list(bDNA, btype, color, count)
-	var/tracked_mud = null
-
 /*
 /atom/proc/add_forensic_info(var/key, var/value)
 	if (!key || !value)
@@ -181,10 +177,6 @@
 	//	return
 	// The first version accidently looped through everything for every atom. Consequently, cleaner grenades caused horrendous lag on my local server. Woops.
 	if (!ismob(src)) // Mobs are a special case.
-		if (isobj(src))
-			var/obj/O = src
-			if (O.tracked_blood)
-				O.tracked_blood = null
 		if (isitem(src) && (src.fingerprints || src.blood_DNA || src.blood_type || src.mud_stained))
 			src.UpdateOverlays(null, "mud_splatter")
 			src.add_forensic_trace("fprints", src.fingerprints)
@@ -261,7 +253,7 @@
 				M.makeup_color = null
 				M.spiders = null
 				M.set_body_icon_dirty()
-			M.tracked_blood = null
+			M.tracked_reagents.clear_reagents()
 			M.set_clothing_icon_dirty()
 
 		else
@@ -273,80 +265,35 @@
 			L.blood_DNA = null
 			L.add_forensic_trace("btype", L.blood_type)
 			L.blood_type = null
-			L.tracked_blood = null
+			L.tracked_reagents.clear_reagents()
 			L.set_clothing_icon_dirty()
 	SEND_SIGNAL(src, COMSIG_ATOM_CLEANED)
 
-/atom/movable/proc/track_blood()
-	return
-/atom/movable/proc/track_mud()
-	return
-/* needs adjustment so let's stick with mobs for now
-/obj/track_blood()
-	if (!islist(src.tracked_blood))
-		return
-	var/obj/decal/cleanable/blood/dynamic/B = locate(/obj/decal/cleanable/blood/dynamic) in get_turf(src)
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
+/mob/living
+	var/datum/reagents/tracked_reagents
 
-	if (!B)
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic(get_turf(src))
-	B.add_volume(blood_color_to_pass, 1, src.tracked_blood, "smear3", src.last_move)
-
-	src.tracked_blood["count"] --
-	if (src.tracked_blood["count"] <= 0)
-		src.tracked_blood = null
-	return
-
-/obj/item/track_blood()
-	if (!islist(src.tracked_blood))
-		return
-	var/obj/decal/cleanable/blood/dynamic/B = locate(/obj/decal/cleanable/blood/dynamic) in get_turf(src)
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
-
-	if (!B)
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic(get_turf(src))
-	var/Istate = src.w_class > 4 ? "3" : src.w_class > 2 ? "2" : "1"
-	B.add_volume(blood_color_to_pass, 1, src.tracked_blood, Istate, src.last_move)
-
-	src.tracked_blood["count"] --
-	if (src.tracked_blood["count"] <= 0)
-		src.tracked_blood = null
-	return
-*/
-/mob/living/track_blood()
-	if (!islist(src.tracked_blood))
-		return
+/mob/living/proc/track_reagents()
 	var/turf/T = get_turf(src)
-	var/obj/decal/cleanable/blood/dynamic/tracks/B = null
+	var/obj/decal/cleanable/tracked_reagents/dynamic/tracks/B = null
 	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/blood/dynamic) in T
-
-	var/blood_color_to_pass = src.tracked_blood["color"] ? src.tracked_blood["color"] : DEFAULT_BLOOD_COLOR
+		B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 	if (!B)
 		if (T.active_liquid)
 			return
-		B = make_cleanable( /obj/decal/cleanable/blood/dynamic/tracks,get_turf(src))
-		B.set_sample_reagent_custom(src.tracked_blood["sample_reagent"],0)
+		B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic/tracks,get_turf(src))
 
 	var/list/states = src.get_step_image_states()
 
 	if (states[1] || states[2])
 		if (states[1])
-			B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 0.5, 0.5, src.tracked_blood, states[1], src.last_move, 0)
+			B.transfer_volume(src.tracked_reagents, 0.5, 0.5, null, null, states[1], src.last_move, 0)
 		if (states[2])
-			B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 0.5, 0.5, src.tracked_blood, states[2], src.last_move, 0)
+			B.transfer_volume(src.tracked_reagents, 0.5, 0.5, null, null, states[2], src.last_move, 0)
 	else
-		B.add_volume(blood_color_to_pass, src.tracked_blood["sample_reagent"], 1, 1, src.tracked_blood, "smear2", src.last_move, 0)
+		B.transfer_volume(src.tracked_reagents, 1, 1, null, null, "smear2", src.last_move, 0)
 
-	if (src.tracked_blood && isnum(src.tracked_blood["count"])) // mirror from below
-		src.tracked_blood["count"] --
-		if (src.tracked_blood["count"] <= 0)
-			src.tracked_blood = null
-			src.set_clothing_icon_dirty()
-			return
-	else
-		src.tracked_blood = null
+	if (!src.tracked_reagents.total_volume) // mirror from below
 		src.set_clothing_icon_dirty()
 		return
 
@@ -358,7 +305,6 @@
 
 /mob/living/silicon/robot/get_step_image_states()
 	return list(istype(src.part_leg_l) ? src.part_leg_l.step_image_state : null, istype(src.part_leg_r) ? src.part_leg_r.step_image_state : null)
-
 
 /*
                                   ''''''
@@ -454,34 +400,3 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 /mob/living/carbon/human
 	var/mud_gib_stage = 0.0
-
-
-/mob/living/track_mud()
-	if (!islist(src.tracked_mud))
-		return
-	var/turf/T = get_turf(src)
-	var/obj/decal/cleanable/mud/dynamic/tracks/B = null
-	if (T.messy > 0)
-		B = locate(/obj/decal/cleanable/mud/dynamic) in T
-
-	var/mud_color_to_pass = src.tracked_mud["color"] ? src.tracked_mud["color"] : DEFAULT_MUD_COLOR
-
-	if (!B)
-		if (T.active_liquid)
-			return
-		B = make_cleanable( /obj/decal/cleanable/mud/dynamic/tracks,get_turf(src))
-		B.set_sample_reagent_custom(src.tracked_mud["sample_reagent"],0)
-
-	B.add_volume(mud_color_to_pass, src.tracked_mud["sample_reagent"], 1, 0, src.tracked_mud, "footprints[rand(1,2)]", src.last_move, 0)
-
-	if (src.tracked_mud && isnum(src.tracked_mud["count"])) // mirror from below
-		src.tracked_mud["count"] --
-		if (src.tracked_mud["count"] <= 0)
-			src.tracked_mud = null
-			src.set_clothing_icon_dirty()
-			return
-	else
-		src.tracked_mud = null
-		src.set_clothing_icon_dirty()
-		return
-

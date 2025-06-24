@@ -986,7 +986,7 @@
 
 					mob.blinded = 0
 					mob.bleeding = 0
-					mob.blood_volume = 500
+					mob.reset_blood()
 
 					if (!mob.organHolder)
 						mob.organHolder = new(mob)
@@ -1070,14 +1070,14 @@
 		blood_points = max(0,blood_points)
 		cleanable_tally += (prev_blood - blood_points)
 		if (cleanable_tally > 20)
-			make_cleanable(/obj/decal/cleanable/blood,get_turf(mob))
+			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_turf(mob))
 			cleanable_tally = 0
 
 		mob.max_health = blood_points * blood_to_health_scalar
 		mob.max_health = (max(20,mob.max_health))
 
 	onDeath(gibbed)
-		var/datum/abilityHolder/vampiric_thrall/abil = mob.get_ability_holder(/datum/abilityHolder/vampiric_thrall)
+		var/datum/abilityHolder/vampire/thrall/abil = mob.get_ability_holder(/datum/abilityHolder/vampire/thrall)
 		if (abil)
 			if (abil.master)
 				abil.master.remove_thrall(mob)
@@ -1912,7 +1912,7 @@
 		var/can_output = 0
 		if (ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			if (H.blood_volume > 0)
+			if (H.reagents.total_volume > 0)
 				can_output = 1
 
 		if (!can_output)

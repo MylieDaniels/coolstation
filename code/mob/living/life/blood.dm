@@ -8,7 +8,7 @@
 		if (!blood_system) // I dunno if this'll do what I want but hopefully it will
 			return ..()
 
-		if (isdead(owner) || owner.nodamage || !owner.can_bleed || isvampire(owner)) // if we're dead or immortal or have otherwise been told not to bleed, don't bother
+		if (isdead(owner) || owner.nodamage || !owner.uses_blood || isvampire(owner)) // if we're dead or immortal or have otherwise been told not to bleed, don't bother
 			if (owner.bleeding)
 				owner.bleeding = 0 // also stop bleeding if we happen to be doing that
 			return ..()
@@ -79,23 +79,6 @@
 							bleed(owner, final_bleed, 3) // see blood_system.dm for the proc
 						if (5)
 							bleed(owner, final_bleed, 4)
-
-
-		////////////////////////////////////////////
-		//proc/handle_blood_pressure(var/mult = 1)//
-		////////////////////////////////////////////
-
-		if (!blood_system)
-			return ..()
-
-
-		if (critter_owner)
-			if (critter_owner.blood_volume < 500 && critter_owner.blood_volume > 0) // if we're full or empty, don't bother v
-				if (prob(66))
-					critter_owner.blood_volume += 1 * mult // maybe get a little blood back ^
-			else if (critter_owner.blood_volume > 500)
-				if (prob(20))
-					critter_owner.blood_volume -= 1 * mult
 
 		// very low (90/60 or lower) (<375u)
 		// low (100/65) (<415u)

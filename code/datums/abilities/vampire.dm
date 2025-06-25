@@ -109,7 +109,7 @@
 				if (set_null == 1)
 					AHZ.points = 0
 				else
-					AHZ.points = max(V.blood_points + change, 0)
+					AHZ.points = max(AHZ.points + change, 0)
 
 	return
 

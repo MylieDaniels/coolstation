@@ -2117,10 +2117,6 @@ datum
 				if (ishuman(M))
 					// i'm sorry sir but your blood counts as raw materials
 					var/mob/living/carbon/human/H = M
-					var/amt = conversion_rate * mult
-					if(H.blood_volume >= amt)
-						H.blood_volume -= amt
-					H.reagents.add_reagent(id, amt)
 					if(holder.get_reagent_amount(src.id) > 300)
 						// oh no
 						if(probmult(1)) // i hate you all, players
@@ -3147,13 +3143,14 @@ datum
 						for (var/uid in source_pathogens)
 							var/datum/pathogen/P = src.pathogens[uid]
 							logTheThing("pathology", H, null, "was transferred [src] containing pathogen [P].")
-							H.infected(P)
-					for (var/reagent_id in pathogen_controller.pathogen_affected_reagents)
-						if (target.has_reagent(reagent_id))
-							var/datum/reagent/blood/B = target.get_reagent(reagent_id)
-							if (!istype(B))
-								continue
-							B.pathogens = target_pathogens
+							H.infected(P, FALSE)
+					else
+						for (var/reagent_id in pathogen_controller.pathogen_affected_reagents)
+							if (target.has_reagent(reagent_id))
+								var/datum/reagent/blood/B = target.get_reagent(reagent_id)
+								if (!istype(B))
+									continue
+								B.pathogens = target_pathogens
 				return
 
 		blood/bloodc
@@ -3163,6 +3160,8 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				if(holder.my_atom && isliving(holder.my_atom)) // please dont boil the entire bloodstream of a ling
+					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
 					if (holder.my_atom)
@@ -3275,12 +3274,12 @@ datum
 						make_cleanable( /obj/decal/cleanable/urine,T)
 
 		poo
-			name = "compost"
+			name = "poo"
 			id = "poo"
 			description = "Raw fertilizer used for gardening."
 			reagent_state = SOLID
-			fluid_r = 100
-			fluid_g = 55
+			fluid_r = 150
+			fluid_g = 75
 			fluid_b = 0
 			transparency = 255
 			hygiene_value = -5

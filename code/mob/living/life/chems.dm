@@ -19,8 +19,8 @@
 				owner.reagents.remove_any(GET_MOB_PROPERTY(owner, PROP_CHEM_PURGE) * reagent_time_multiplier)
 
 
-		if (owner.nutrition > owner.blood_volume)
-			owner.nutrition = owner.blood_volume
+		if (owner.nutrition > owner.reagents.total_volume)
+			owner.nutrition = owner.reagents.total_volume
 		if (owner.nutrition < 0)
 			owner.contract_disease(/datum/ailment/malady/hypoglycemia, null, null, 1)
 

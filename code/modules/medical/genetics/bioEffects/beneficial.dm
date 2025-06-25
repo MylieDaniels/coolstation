@@ -612,8 +612,8 @@ var/list/radio_brains = list()
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 
-			if (H.blood_volume < 500 && H.blood_volume > 0)
-				H.blood_volume += 6*mult
+			if (H.reagents.total_volume < H.ideal_blood_volume)
+				H.reagents.add_reagent(H.blood_id, H.ideal_blood_volume / 100 * mult)
 
 
 ///////////////////////////

@@ -267,7 +267,7 @@ datum/teg_transformation/vampire
 
 		if(probmult(20))
 			for(var/mob/living/carbon/M in orange(5, teg))
-				if(M.blood_volume >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
+				if(M.uses_blood && M.reagents.total_volume >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
 					targets += M
 
 		if(length(targets))
@@ -279,7 +279,7 @@ datum/teg_transformation/vampire
 
 			if(target in abilityHolder.thralls)
 				H = target
-				if( abilityHolder.points > 100 && target.blood_volume < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
+				if( abilityHolder.points > 100 && target.reagents.total_volume < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
 					enthrall(H)
 			else
 				if(isalive(target))

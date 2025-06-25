@@ -2483,8 +2483,8 @@ datum
 						var/mob/living/L = M
 						if (L.bleeding)
 							repair_bleeding_damage(L, 10, 1)
-						if (L.blood_volume < 500)
-							L.blood_volume ++
+						if(L.uses_blood && L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume / 500)
 						if (ishuman(M))
 							var/mob/living/carbon/human/H = M
 							if (H.organHolder)

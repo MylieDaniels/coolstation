@@ -806,7 +806,7 @@ datum
 
 				if (isliving(M))
 					var/mob/living/H = M
-					H.blood_volume -= 3 * mult
+					bleed(H, 3 * mult, rand(2, 4))
 				if (probmult(6))
 					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\

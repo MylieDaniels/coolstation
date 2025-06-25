@@ -2352,7 +2352,7 @@
 	else
 		return null
 
-/mob/living/carbon/human/infected(var/datum/pathogen/P)
+/mob/living/carbon/human/infected(var/datum/pathogen/P, var/infect_blood = TRUE)
 	if (isdead(src))
 		return
 	if (ischangeling(src) || isvampire(src)) // Vampires were missing here. They're immune to old-style diseases too (Convair880).
@@ -2382,6 +2382,16 @@
 		src.pathogens += Q.pathogen_uid
 		src.pathogens[Q.pathogen_uid] = Q
 		Q.infected = src
+		if(infect_blood)
+			var/list/blood_pathogens = src.reagents.aggregate_pathogens()
+			blood_pathogens += Q.pathogen_uid
+			blood_pathogens[Q.pathogen_uid] = Q
+			for (var/reagent_id in pathogen_controller.pathogen_affected_reagents)
+				if (src.reagents.has_reagent(reagent_id))
+					var/datum/reagent/blood/B = src.reagents.get_reagent(reagent_id)
+					if (!istype(B))
+						continue
+					B.pathogens = blood_pathogens
 		logTheThing("pathology", src, null, "is infected by [Q].")
 		return 1
 	else
@@ -2395,6 +2405,15 @@
 			qdel(C)
 			src.pathogens[Q.pathogen_uid] = Q
 			Q.infected = src
+			if(infect_blood)
+				var/list/blood_pathogens = src.reagents.aggregate_pathogens()
+				blood_pathogens[Q.pathogen_uid] = Q
+				for (var/reagent_id in pathogen_controller.pathogen_affected_reagents)
+					if (src.reagents.has_reagent(reagent_id))
+						var/datum/reagent/blood/B = src.reagents.get_reagent(reagent_id)
+						if (!istype(B))
+							continue
+						B.pathogens = blood_pathogens
 			return 1
 	return 0
 

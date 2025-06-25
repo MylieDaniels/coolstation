@@ -1422,8 +1422,8 @@
 			owner.delStatus("bloodcurse")
 
 	onUpdate()
-		if (H.blood_volume > 400 && H.blood_volume > 0)
-			H.blood_volume -= units
+		if (H.uses_blood && H.reagents.total_volume > H.ideal_blood_volume * 0.8)
+			H.reagents.remove_any(units)
 		if (prob(5))
 			var/damage = rand(1,5)
 			var/bleed = rand(3,5)

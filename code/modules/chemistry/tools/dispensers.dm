@@ -522,8 +522,8 @@
 		if(isliving(target))
 			var/mob/living/L = target
 			if(L.uses_blood)
-				L.reagents.trans_to(src, floor((rand() * 0.2 + 0.2) * H.total_volume))
-				src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.total_volume))
+				L.reagents.trans_to(src, floor((rand() * 0.2 + 0.2) * L.reagents.total_volume))
+				src.reagents.add_reagent("poo", floor((rand() * 0.4 + 0.1) * L.reagents.total_volume))
 			else
 				src.reagents.add_reagent("poo", 75)
 		if (target.mind)

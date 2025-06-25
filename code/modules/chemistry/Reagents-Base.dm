@@ -288,12 +288,14 @@ datum
 			overdose = 20
 			pathogen_nutrition = list("iron")
 
-			on_mob_life(var/mob/living/H, var/mult = 1)
+			on_mob_life(var/mob/living/M, var/mult = 1)
 				..()
-				if (H.uses_blood)
-					H.blood_volume += 0.5 * mult
-					if(prob(10))
-						H.take_oxygen_deprivation(-1 * mult)
+				if (isliving(M))
+					var/mob/living/L = M
+					if(L.uses_blood)
+						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume / 1000 * mult)
+						if(prob(10))
+							L.take_oxygen_deprivation(-1 * mult)
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				M.take_toxin_damage(1 * mult) // Iron overdose fucks you up bad

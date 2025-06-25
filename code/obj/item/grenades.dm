@@ -919,7 +919,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				//Center tile
 				var/obj/effects/spray/S = spraybits[1]
-				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,S.loc)
 				if(is_blocked_turf(S.loc))
 					spraybits -= S
 					qdel(S)
@@ -928,9 +928,9 @@ PIPE BOMBS + CONSTRUCTION
 				for(var/i=0, i<src.splashzone, i++)
 					for(var/obj/effects/spray/SP in spraybits)
 						SP.set_loc(get_step(SP.loc, SP.original_dir))
-						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 						if(is_blocked_turf(SP.loc))
-							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 							spraybits -= SP
 							qdel(SP)
 

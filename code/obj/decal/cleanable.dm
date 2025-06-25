@@ -332,7 +332,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 						H.shoes.add_blood(src)
 						H.set_clothing_icon_dirty()
 				if (H.m_intent != "walk")
-					src.reagents.trans_to(H.tracked_reagents, rand(2, 4))
+					src.reagents.trans_to_direct(H.tracked_reagents, rand(2, 4))
 					H.set_clothing_icon_dirty()
 			else
 				L.add_blood(src)

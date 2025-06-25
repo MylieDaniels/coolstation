@@ -814,7 +814,7 @@ var/mutable_appearance/fluid_ma
 			if (src.shoes)
 				src.shoes.add_blood(F)
 				src.set_clothing_icon_dirty()
-		F.group.reagents.trans_to(src.tracked_reagents)
+		F.group.reagents.trans_to_direct(src.tracked_reagents, rand(3,4))
 
 	var/do_reagent_reaction = 1
 

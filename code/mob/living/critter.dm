@@ -81,6 +81,7 @@
 
 	var/pull_w_class = W_CLASS_SMALL
 
+	uses_blood = TRUE
 	blood_id = "blood"
 
 	New()

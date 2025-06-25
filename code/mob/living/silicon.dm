@@ -21,7 +21,7 @@
 
 	var/obj/item/cell/cell = null
 
-	uses_blood = 0
+	uses_blood = FALSE
 	blood_id = "oil"
 	use_stamina = 0
 	can_lie = 0

@@ -103,7 +103,7 @@
 	/// what do we need in our bloodstream to stay alive?
 	var/blood_id = null
 	/// how much of it?
-	var/ideal_blood_volume = 200
+	var/ideal_blood_volume = 100
 	var/blood_pressure = null
 	var/blood_color = DEFAULT_BLOOD_COLOR
 	var/bleeding = 0

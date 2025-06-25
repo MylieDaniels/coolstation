@@ -166,9 +166,10 @@
 
 		LAGCHECK(LAG_REALTIME)
 
-	var/hotspot_energy = energy / length(affected_hotspots)
-	for(var/obj/hotspot/fireflash/hotspot in affected_hotspots)
-		hotspot.thermal_energy += hotspot_energy
+	if(length(affected_hotspots))
+		var/hotspot_energy = energy / length(affected_hotspots)
+		for(var/obj/hotspot/fireflash/hotspot in affected_hotspots)
+			hotspot.thermal_energy += hotspot_energy
 	return affected
 
 

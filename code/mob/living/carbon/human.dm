@@ -172,7 +172,7 @@
 
 	var/icon/flat_icon = null
 
-	uses_blood = 1
+	uses_blood = TRUE
 	blood_id = "blood"
 	ideal_blood_volume = 500
 

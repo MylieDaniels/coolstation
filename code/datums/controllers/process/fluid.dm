@@ -143,7 +143,7 @@
 								if (!F) continue
 								var/obj/decal/cleanable/tracked_reagents/dynamic/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,F.loc)
 								B.sample_reagent = "blood"
-								B.transfer_volume(FG.reagents, amount = 15, vis_amount = rand(3,5), F.blood_DNA, F.blood_type, do_fluid_react = 0)
+								B.transfer_volume(FG.reagents, amount = 15, vis_amount = rand(3,5), bDNA = F.blood_DNA, btype = F.blood_type, do_fluid_react = 0)
 
 						FG.evaporate()
 						if (FG?.qdeled)

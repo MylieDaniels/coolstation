@@ -119,7 +119,7 @@
 /datum/ailment/malady/shock/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/malady/D)
 	if (..())
 		return
-	if (affected_mob.health >= 25 && affected_mob.nutrition >= 0 && (affected_mob.reagents > affected_mob.ideal_blood_volume * 0.6))
+	if (affected_mob.health >= 25 && affected_mob.nutrition >= 0 && (affected_mob.reagents.total_volume > affected_mob.ideal_blood_volume * 0.6))
 		boutput(affected_mob, "<span class='notice'>You feel better.</span>")
 		affected_mob.cure_disease(D)
 		return

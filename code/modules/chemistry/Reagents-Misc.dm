@@ -164,7 +164,7 @@ datum
 				var/datum/reagents/silver_fulminate_holder = holder
 				var/silver_fulminate_volume = volume
 				silver_fulminate_holder.del_reagent("silver_fulminate")
-				silver_fulminate_holder.temperature_reagents(silver_fulminate_holder.total_temperature + silver_fulminate_volume * 150, 400, 3500, 800, 10)
+				silver_fulminate_holder.temperature_reagents(silver_fulminate_holder.total_temperature + silver_fulminate_volume * 50, 400, 3500, 800, 10)
 				open_flame_reaction(silver_fulminate_holder)
 
 			reaction_temperature(var/exposed_temperature, var/exposed_volume)

@@ -3293,7 +3293,7 @@ datum
 		strange_reagent
 			id = "strange_reagent"
 			result = "strange_reagent"
-			required_reagents = list("omnizine" = 1, "mutagen" = 1, "water_holy" = 1)
+			required_reagents = list("omnizine" = 1, "mutagen" = 1, "plasma" = 1)
 			result_amount = 2
 			mix_phrase = "The substance begins moving on its own somehow."
 
@@ -3370,7 +3370,7 @@ datum
 			name = "Hairgrownium"
 			id = "hairgrownium"
 			result = "hairgrownium"
-			required_reagents = list("synthflesh" = 1,"ephedrine" = 1,"carpet" = 1)
+			required_reagents = list("synthflesh" = 1,"radium" = 1,"carpet" = 1)
 			result_amount = 3
 			mix_phrase = "The liquid becomes slightly hairy."
 
@@ -4012,3 +4012,40 @@ datum
 			mix_phrase = "The mixture comes together slowly. It doesn't seem like it wants to be here."
 			required_reagents = list("poor_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
 			result_amount = 7
+
+		// mylies hobochem recipes
+
+		melted_bugs
+			name = "melted bugs"
+			id = "melted bugs"
+			result = "denatured_enzyme"
+			mix_phrase = "The scorched shells bubble into a thick froth."
+			required_reagents = list("dead_bugs" = 1, "ethanol" = 0)
+			min_temperature = T0C + 120
+			result_amount = 0.5
+			on_reaction(var/datum/reagents/holder, created_volume)
+				if(prob(50))
+					holder.add_reagent("bitters", created_volume,,holder.total_temperature)
+				else
+					holder.add_reagent("black_goop", created_volume,,holder.total_temperature)
+
+		bonestuffs
+			name = "bonestuffs"
+			id = "bonestuffs"
+			result = null
+			mix_phrase = "Oh, that's genuine good stuff."
+			required_reagents = list("milk" = 1, "calcium" = 1, "carpet" = 1)
+			result_amount = 3
+			on_reaction(var/datum/reagents/holder, created_volume)
+				var/themix = round(rand(),0.01)
+				if(holder.has_reagent("black_goop", created_volume / 4))
+					themix += 0.4
+				if(holder.has_reagent("green_goop"))
+					themix -= 0.4
+				if(themix > 1.3)
+					holder.add_reagent("bloodc", created_volume)
+					playsound(holder.my_atom.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 40)
+					return
+				themix = clamp(themix, 0, 1)
+				holder.add_reagent("bonerjuice", themix,,holder.total_temperature)
+				holder.add_reagent("bhjuice", 1 - themix,,holder.total_temperature)

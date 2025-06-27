@@ -636,22 +636,6 @@ datum
 
 					src.reacting = ldmatter_reaction(holder, volume, id)
 
-
-			//Comment this out if you notice a lot of crashes. (It's probably a really bad idea to have this in)
-			/* i agree. also fuck snapcakes
-			reaction_turf(var/turf/T, var/volume)
-				if(prob(75)) return
-
-				var/datum/reagent/us = src
-				if(!T.reagents) T.create_reagents(50)
-				T.reagents.add_reagent(us.id, 5, null)
-				return
-			*/
-
-			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-				. = ..()
-				return
-
 		combustible/something
 			name = "something"
 			id = "something"

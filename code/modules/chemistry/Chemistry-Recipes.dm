@@ -1971,7 +1971,7 @@ datum
 			name = "Space Drugs"
 			id = "space_drugs"
 			result = "space_drugs"
-			required_reagents = list("mercury" = 1, "sugar" = 1, "ethanol" = 1)
+			required_reagents = list("iron" = 1, "sugar" = 1, "ethanol" = 1)
 			result_amount = 3
 			mix_phrase = "Slightly dizzying fumes drift from the solution."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -1980,7 +1980,7 @@ datum
 			name = "Space Drugs"
 			id = "space_drugs2"
 			result = "space_drugs"
-			required_reagents = list("mercury" = 2, "sugar" = 2, "lithium" = 1)
+			required_reagents = list("mercury" = 1, "sugar" = 3, "lithium" = 1)
 			result_amount = 5
 			mix_phrase = "Slightly dizzying fumes drift from the solution."
 			mix_sound = 'sound/misc/drinkfizz.ogg'

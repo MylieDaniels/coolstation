@@ -12,7 +12,7 @@
 	var/obj/item/beaker = null
 	var/list/dispensable_reagents = list(
 		"aluminium","carbon","chlorine","copper","ethanol",\
-		"fluorine","hydrogen","iodine","iron","mercury",\
+		"fluorine","hydrogen","iodine","iron","magnesium",\
 		"nitrogen","oxygen","phosphorus","potassium","silicon",\
 		"silver","sodium","sugar","sulfur","water"
 	)

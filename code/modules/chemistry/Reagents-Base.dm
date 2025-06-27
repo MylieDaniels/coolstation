@@ -83,6 +83,7 @@ datum
 			on_plant_life(var/obj/machinery/plantpot/P)
 				P.HYPdamageplant("poison",3)
 
+		/*
 		chromium
 			name = "chromium"
 			id = "chromium"
@@ -93,6 +94,7 @@ datum
 			fluid_b = 220
 			transparency = 255
 			penetrates_skin = 0
+		*/
 
 		copper
 			name = "copper"

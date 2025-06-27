@@ -403,7 +403,7 @@ datum
 			name = "Pyrosium"
 			id = "thalmerite"
 			result = "thalmerite"
-			required_reagents = list("silicon" = 1, "radium" = 1, "phosphorus" = 1)
+			required_reagents = list("silicon" = 1, "aluminium" = 1, "phosphorus" = 1)
 			result_amount = 3
 			mix_phrase = "The resultant gel begins to emit significant heat."
 
@@ -2097,7 +2097,7 @@ datum
 			name = "Acetaldehyde"
 			id = "acetaldehyde"
 			result = "acetaldehyde"
-			required_reagents = list("chromium" = 1, "oxygen" = 1, "copper" = 1, "ethanol" = 1)
+			required_reagents = list("oxygen" = 1, "copper" = 1, "ethanol" = 1)
 			result_amount = 3
 			required_temperature = T0C + 275
 			mix_phrase = "It smells like a bad hangover in here."
@@ -2328,8 +2328,8 @@ datum
 			name = "Cryoxadone" // leaving this name alone
 			id = "cryoxadone"
 			result = "cryoxadone"
-			required_reagents = list("cryostylane" = 1, "mutagen" = 1, "plasma" = 1)
-			result_amount = 3
+			required_reagents = list("acetone" = 1, "cryostylane" = 1, "mutagen" = 1, "plasma" = 1)
+			result_amount = 4
 			mix_phrase = "The solution bubbles softly."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -3691,7 +3691,7 @@ datum
 			name = "glitter"
 			id = "glitter"
 			result = "glitter"
-			required_reagents = list("itching" = 1, "colors" = 1, "paper" = 1, "silver" = 1)
+			required_reagents = list("itching" = 1, "colors" = 1, "silver" = 1)
 			result_amount = 4
 			mix_phrase = "The mixture becomes far more fabulous!"
 
@@ -3699,7 +3699,7 @@ datum
 			name = "harmless glitter"
 			id = "sparkles"
 			result = "sparkles"
-			required_reagents = list("colors" = 1, "paper" = 1, "platinum" = 1)
+			required_reagents = list("colors" = 1, "paper" = 1, "silver" = 1)
 			mix_phrase = "The mixture becomes far more fabulous- safely."
 
 		rotting

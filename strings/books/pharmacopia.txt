@@ -116,7 +116,7 @@
 		<div class = "salbutamol">
 		<ul>
 			<li>Salbutamol is a common bronchodilation medication for asthmatics. It may help with other breathing problems as well.
-			<li>Synthesis: treat oil with bromine, ammonia, and lithium and aluminium.
+			<li>Synthesis: treat oil with ammonia, lithium, and aluminium.
 		<br>
 		<h4><i>Advanced:</i></h4>
 		<ul>
@@ -139,8 +139,8 @@
 		<ul>
 			<li>Cryoxadone is a cryogenic healing ketone derived from acetone that is useful for deep tissue repairs of damage that otherwise might require surgical interference.
 			<li>Synthesis: create an acetyl group by first mixing oil, welding fuel, and oxygen.
-			<li>In a separate beaker, nitrogenate plasma and water to form cryostylane.
-			<li>In a third beaker, create unstable mutagen by combining radium, plasma, and chlorine.
+			<li>In a separate beaker, nitrogenate ethanol and water to form cryostylane.
+			<li>In a third beaker, create unstable mutagen by combining radium, carbon, and chlorine.
 			<li>Combine all reagents in a beaker with plasma.
 		</div>
 		<h3>Pentetic Acid</h3>
@@ -171,7 +171,7 @@
 		<div class ="diphenhydramine">
 		<ul>
 			<li>Anti-allergy medication. May cause drowsiness.
-			<li>Synthesis route involves mixing oil, carbon, bromine, and ethanol with diethylamine.
+			<li>Synthesis route involves mixing oil, carbon, and ethanol with diethylamine.
 		</div>
 		<h3>Spaceacillin</h3>
 		<div class = "spaceacillin">

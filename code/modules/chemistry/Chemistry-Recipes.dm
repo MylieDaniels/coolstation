@@ -71,6 +71,7 @@ datum
 			result_amount = 3
 			result = "lumen"
 
+		/* // the propellant recipe is disabled anyway
 		no_lumen_new_smoke
 			name = "no lumen new smoke"
 			id = "no_lumen_new_smoke"
@@ -100,6 +101,7 @@ datum
 
 					M.apply_flash(30, max(2 * (3 - checkdist), 0), max(2 * (5 - checkdist), 0))
 				return
+		*/
 
 		no_lumen_new_smoke2
 			name = "no lumen new smoke2"
@@ -1715,6 +1717,7 @@ datum
 						fireflash(location, 0)
 				return
 
+		/*
 		explosion_barium // get in
 			name = "Barium Explosion"
 			id = "explosion_barium"
@@ -1740,6 +1743,7 @@ datum
 						explosion_new(my_atom, location, 2.25/amt)
 						fireflash(location, 0)
 				return
+		*/
 
 		explosion_magnesium // get in
 			name = "Magnesium Explosion"
@@ -1825,15 +1829,15 @@ datum
 			name = "Stable mutagen"
 			id = "dna_mutagen"
 			result = "dna_mutagen"
-			required_reagents = list("mutagen" = 1, "lithium" = 1, "acetone" = 1, "bromine" = 1)
+			required_reagents = list("mutagen" = 1, "lithium" = 1, "acetone" = 1)
 			result_amount = 3
 			mix_phrase = "The substance turns a drab green and begins to bubble."
 		//  required_temperature = 170
 
 		dna_mutagen/dna_mutagen2
 			id = "dna_mutagen2"
-			required_reagents = list("mutadone" = 3, "lithium" = 1)
-			result_amount = 4
+			required_reagents = list("mutadone" = 2, "lithium" = 1)
+			result_amount = 3
 
 		cold_medicine
 			name = "Robustissin"
@@ -2120,7 +2124,7 @@ datum
 			id = "cyclopentanol"
 			result = "cyclopentanol"
 			required_temperature = T0C + 275
-			required_reagents = list("acetic_acid" = 1, "ether" = 1, "barium" = 1, "hydrogen" = 1, "oxygen" = 1)
+			required_reagents = list("acetic_acid" = 1, "ether" = 1, "hydrogen" = 1, "oxygen" = 1)
 			result_amount = 3
 			mix_phrase = "The mixture fizzles into a colorless liquid."
 
@@ -2129,8 +2133,8 @@ datum
 			id = "kerosene"
 			result = "kerosene"
 			required_temperature = T0C + 600
-			required_reagents = list("cyclopentanol" = 1, "oxygen" = 3, "acetone" = 1, "hydrogen" = 1, "aluminium" = 1, "nickel" = 1)
-			result_amount = 3
+			required_reagents = list("cyclopentanol" = 1, "oxygen" = 3, "acetone" = 1, "hydrogen" = 1, "aluminium" = 1)
+			result_amount = 4
 			mix_phrase = "This pungent odor could probably melt steel."
 
 		formaldehyde
@@ -2234,8 +2238,8 @@ datum
 			name = "Salbutamol"
 			id = "salbutamol"
 			result = "salbutamol"
-			required_reagents = list("oil" = 1, "lithium" = 1, "ammonia" = 1, "aluminium" = 1, "bromine" = 1)
-			result_amount = 5
+			required_reagents = list("oil" = 1, "lithium" = 1, "ammonia" = 1, "aluminium" = 1)
+			result_amount = 4
 			mix_phrase = "The solution bubbles freely, creating a head of bluish foam."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -2316,8 +2320,8 @@ datum
 			name = "Mutadone"
 			id = "mutadone"
 			result = "mutadone"
-			required_reagents = list("mutagen" = 1, "acetone" = 1, "bromine" = 1)
-			result_amount = 3
+			required_reagents = list("mutagen" = 1, "acetone" = 1)
+			result_amount = 2
 			mix_phrase = "A foul astringent liquid emerges from the reaction."
 
 		cryoxadone
@@ -2844,51 +2848,6 @@ datum
 					C.reagents.add_reagent("jenkem",(1 * created_volume) / length(mobs_affected)) // this is going to make people so, so angry
 				return
 
-		/*plant_nutrients_mutagenic
-			name = "Mutriant Plant Formula"
-			id = "plant_nutrients_muta"
-			result = "plant_nutrients_muta"
-			required_reagents = list("saltpetre" = 1, "anti_rad" = 1, "radium" = 1)
-			result_amount = 3
-			mix_phrase = "A strange odor comes from the resultant greenish goo."
-			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
-
-		plant_nutrients_quickgrow
-			name = "Gro-Boost Plant Formula"
-			id = "plant_nutrients_grow"
-			result = "plant_nutrients_grow"
-			required_reagents = list("saltpetre" = 1, "styptic_powder" = 1, "salbutamol" = 1)
-			result_amount = 3
-			mix_phrase = "The mixture smells earthy and yet strange."
-			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
-
-		plant_nutrients_cropyield
-			name = "Top Crop Plant Formula"
-			id = "plant_nutrients_crop"
-			result = "plant_nutrients_crop"
-			required_reagents = list("saltpetre" = 1, "charcoal" = 1, "antihol" = 1)
-			result_amount = 3
-			mix_phrase = "The substance dissolves into a thick silty soup."
-			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
-
-		plant_nutrients_potency
-			name = "Powerplant Plant Formula"
-			id = "plant_nutrients_potency"
-			result = "plant_nutrients_potency"
-			required_reagents = list("saltpetre" = 1, "silver_sulfadiazine" = 1, "methamphetamine" = 1)
-			result_amount = 3
-			mix_phrase = "A pungent and powerful earthy odor comes from the mixture."
-			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
-
-		plant_nutrients_balance
-			name = "Fruitful Farming Plant Formula"
-			id = "plant_nutrients_balance"
-			result = "plant_nutrients_balance"
-			required_reagents = list("saltpetre" = 1, "epinephrine" = 1, "teporone" = 1)
-			result_amount = 3
-			mix_phrase = "A calming, coffee-like scent comes from the dirt-like mixture."
-			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg' */
-
 		weedkiller
 			name = "Atrazine"
 			id = "weedkiller"
@@ -3158,7 +3117,7 @@ datum
 			result = "antihistamine"
 			//required_temperature = 320
 			result_amount = 4
-			required_reagents = list("oil" = 1, "carbon" = 1, "bromine" = 1, "diethylamine" = 1, "ethanol" = 1)
+			required_reagents = list("oil" = 1, "carbon" = 1, "diethylamine" = 1, "ethanol" = 1)
 			// benzhydryl(benzene+carbon) bromide + 2-dimethylaminoethanol
 			mix_phrase = "The mixture fizzes gently."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -3648,8 +3607,8 @@ datum
 			name = "colorful reagent"
 			id = "colors"
 			result = "colors"
-			required_reagents = list("plasma" = 1, "radium" = 1, "stabiliser" = 1, "space_drugs" = 1, "cryoxadone" = 1, "cocktail_citrus" = 1)
-			result_amount = 6
+			required_reagents = list("stabiliser" = 1, "space_drugs" = 1, "cryostylane" = 1, "cocktail_citrus" = 1)
+			result_amount = 4
 			mix_phrase = "The substance flashes multiple colors and emits the smell of a pocket protector."
 
 		fliptonium
@@ -3803,7 +3762,7 @@ datum
 			name = "Strychnine"
 			id = "strychnine"
 			result = "strychnine"
-			required_reagents = list("cyanide" = 1, "phenol" = 1, "pacid" = 1, "acetic_acid" = 1, "aluminium" = 1, "iodine" = 1, "nickel" = 1)
+			required_reagents = list("cyanide" = 1, "phenol" = 1, "pacid" = 1, "acetic_acid" = 1, "aluminium" = 1, "iodine" = 1)
 			result_amount = 6
 			mix_phrase = "The mixture congeals into an off-white crystalline powder."
 			mix_sound = 'sound/misc/drinkfizz.ogg'

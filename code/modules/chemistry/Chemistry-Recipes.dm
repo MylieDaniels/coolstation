@@ -1829,14 +1829,14 @@ datum
 			name = "Stable mutagen"
 			id = "dna_mutagen"
 			result = "dna_mutagen"
-			required_reagents = list("mutagen" = 1, "lithium" = 1, "acetone" = 1)
+			required_reagents = list("mutagen" = 1, "silver" = 1, "acetone" = 1)
 			result_amount = 3
 			mix_phrase = "The substance turns a drab green and begins to bubble."
 		//  required_temperature = 170
 
 		dna_mutagen/dna_mutagen2
 			id = "dna_mutagen2"
-			required_reagents = list("mutadone" = 2, "lithium" = 1)
+			required_reagents = list("mutadone" = 2, "silver" = 1)
 			result_amount = 3
 
 		cold_medicine
@@ -1971,8 +1971,17 @@ datum
 			name = "Space Drugs"
 			id = "space_drugs"
 			result = "space_drugs"
-			required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
+			required_reagents = list("mercury" = 1, "sugar" = 1, "ethanol" = 1)
 			result_amount = 3
+			mix_phrase = "Slightly dizzying fumes drift from the solution."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+
+		space_drugs2
+			name = "Space Drugs"
+			id = "space_drugs2"
+			result = "space_drugs"
+			required_reagents = list("mercury" = 2, "sugar" = 2, "lithium" = 1)
+			result_amount = 5
 			mix_phrase = "Slightly dizzying fumes drift from the solution."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -2238,7 +2247,7 @@ datum
 			name = "Salbutamol"
 			id = "salbutamol"
 			result = "salbutamol"
-			required_reagents = list("oil" = 1, "lithium" = 1, "ammonia" = 1, "aluminium" = 1)
+			required_reagents = list("oil" = 1, "silver" = 1, "ammonia" = 1, "aluminium" = 1)
 			result_amount = 4
 			mix_phrase = "The solution bubbles freely, creating a head of bluish foam."
 			mix_sound = 'sound/misc/drinkfizz.ogg'

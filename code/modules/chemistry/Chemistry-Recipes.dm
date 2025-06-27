@@ -338,8 +338,8 @@ datum
 			name = "Beff"
 			id = "beff"
 			result = "beff"
-			required_reagents = list("meat_slurry" = 1, "badgrease" = 2, "plasma" = 1)
-			result_amount = 4
+			required_reagents = list("meat_slurry" = 1, "badgrease" = 2)
+			result_amount = 3
 			mix_phrase = "The mixture solidifies, taking a crystalline appearance."
 			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
 
@@ -403,7 +403,7 @@ datum
 			name = "Pyrosium"
 			id = "thalmerite"
 			result = "thalmerite"
-			required_reagents = list("plasma" = 1, "radium" = 1, "phosphorus" = 1)
+			required_reagents = list("silicon" = 1, "radium" = 1, "phosphorus" = 1)
 			result_amount = 3
 			mix_phrase = "The resultant gel begins to emit significant heat."
 
@@ -419,7 +419,7 @@ datum
 			name = "Stable Sorium"
 			id = "soriumstable"
 			result = "sorium"
-			required_reagents = list("mercury" = 1, "carbon" = 1, "nitrogen" = 1,"oxygen" = 1, "stabiliser" = 1)
+			required_reagents = list("mercury" = 1, "carbon" = 1, "nitrogen" = 1, "plasma" = 1, "stabiliser" = 1)
 			result_amount = 4
 			mix_phrase = "The mixture pops and crackles before settling down."
 
@@ -427,14 +427,14 @@ datum
 			name = "Stable Liquid Dark Matter"
 			id = "ldmatterstable"
 			result = "ldmatter"
-			required_reagents = list("plasma" = 1, "radium" = 1, "carbon" = 1, "stabiliser" = 1)
+			required_reagents = list("radium" = 1, "carbon" = 1, "plasma" = 1, "stabiliser" = 1)
 			result_amount = 4
 			mix_phrase = "The mix begins to glow a dim purple."
 
 		sorium
 			name = "Sorium"
 			id = "sorium"
-			required_reagents = list("mercury" = 1, "carbon" = 1, "nitrogen" = 1,"oxygen" = 1)
+			required_reagents = list("mercury" = 1, "carbon" = 1, "nitrogen" = 1, "plasma" = 1)
 			inhibitors = list("stabiliser")
 			instant = 1
 			mix_phrase = "The mixture explodes with a big bang."
@@ -1821,8 +1821,8 @@ datum
 			name = "Unstable mutagen"
 			id = "mutagen"
 			result = "mutagen"
-			required_reagents = list("radium" = 1, "plasma" = 1, "chlorine" = 1)
-			result_amount = 3
+			required_reagents = list("radium" = 1, "carbon" = 1, "chlorine" = 1)
+			result_amount = 2
 			mix_phrase = "The substance turns neon green and bubbles unnervingly."
 
 		dna_mutagen
@@ -2186,7 +2186,7 @@ datum
 			name = "Teporone"
 			id = "teporone"
 			result = "teporone"
-			required_reagents = list("silicon" = 1, "acetone" = 1, "plasma" = 1)
+			required_reagents = list("silicon" = 1, "acetone" = 1, "ethanol" = 1)
 			result_amount = 2
 			mix_phrase = "The mixture turns an odd lavender color."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -2328,7 +2328,7 @@ datum
 			name = "Cryoxadone" // leaving this name alone
 			id = "cryoxadone"
 			result = "cryoxadone"
-			required_reagents = list("cryostylane" = 1, "mutagen" = 1, "plasma" = 1, "acetone" = 1)
+			required_reagents = list("cryostylane" = 1, "mutagen" = 1, "plasma" = 1)
 			result_amount = 3
 			mix_phrase = "The solution bubbles softly."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -2337,7 +2337,7 @@ datum
 			name = "Cryostylane"
 			id = "cryostylane"
 			result = "cryostylane"
-			required_reagents = list("nitrogen" = 1, "plasma" = 1, "water" = 1) // had a conflict with ammonia recipe
+			required_reagents = list("nitrogen" = 1, "ethanol" = 1, "water" = 1) // had a conflict with ammonia recipe
 			result_amount = 3
 			mix_phrase = "A light layer of frost forms on top of the mixture."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -2683,7 +2683,7 @@ datum
 			name = "Phlogiston"
 			id = "phlogiston"
 			result = "phlogiston"
-			required_reagents = list("phosphorus" = 1, "plasma" = 1, "acid" = 1, "stabiliser" = 1 )
+			required_reagents = list("phosphorus" = 1, "fuel" = 1, "acid" = 1, "stabiliser" = 1 )
 			result_amount = 4
 			mix_phrase = "The substance becomes sticky and extremely warm."
 
@@ -2699,7 +2699,7 @@ datum
 			name = "Phlogiston Fire"
 			id = "phlogiston"
 			result = "phlogiston"
-			required_reagents = list("phosphorus" = 1, "plasma" = 1, "acid" = 1 )
+			required_reagents = list("phosphorus" = 1, "fuel" = 1, "acid" = 1 )
 			inhibitors = list("stabiliser")
 			instant = 1
 			mix_phrase = "The substance erupts into wild flames."
@@ -3607,8 +3607,8 @@ datum
 			name = "colorful reagent"
 			id = "colors"
 			result = "colors"
-			required_reagents = list("stabiliser" = 1, "space_drugs" = 1, "cryostylane" = 1, "cocktail_citrus" = 1)
-			result_amount = 4
+			required_reagents = list("stabiliser" = 1, "space_drugs" = 1, "cryostylane" = 1, "cocktail_citrus" = 3)
+			result_amount = 6
 			mix_phrase = "The substance flashes multiple colors and emits the smell of a pocket protector."
 
 		fliptonium

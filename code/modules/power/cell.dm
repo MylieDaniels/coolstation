@@ -210,18 +210,18 @@
 		var/obj/item/reagent_containers/syringe/S = W
 		boutput(user, "You inject the solution into the power cell.")
 
-		if (S.reagents.has_reagent("plasma", 1))
+		if (S.reagents.composite_volatility > 4 && S.reagents.total_volume >= 5)
 			if (istype(src,/obj/item/cell/erebite))
-				message_admins("[key_name(user)] injected [src] with plasma, causing an explosion at [log_loc(user)].")
-				logTheThing("combat", user, null, "injected [src] with plasma, causing an explosion at [log_loc(user)].")
-				boutput(user, "<span class='alert'>The plasma reacts with the erebite and explodes violently!</span>")
+				message_admins("[key_name(user)] injected [src] with combustibles, causing an explosion at [log_loc(user)].")
+				logTheThing("combat", user, null, "injected [src] with combustibles, causing an explosion at [log_loc(user)].")
+				boutput(user, "<span class='alert'>The erebite sparks and explodes violently!</span>")
 				src.explode()
 			else
 				message_admins("[key_name(user)] rigged [src] to explode at [log_loc(user)].")
 				logTheThing("combat", user, null, "rigged [src] to explode at [log_loc(user)].")
 				rigged = 1
 				rigger = user
-		S.reagents.clear_reagents()
+		S.reagents.remove_any(5)
 
 	else if (istype(W, /obj/item/cable_coil))
 		var/obj/item/cable_coil/C = W

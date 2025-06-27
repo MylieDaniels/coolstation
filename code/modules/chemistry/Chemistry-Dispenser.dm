@@ -15,8 +15,7 @@
 		"chromium","copper","ethanol","fluorine","hydrogen", \
 		"iodine","iron","lithium","magnesium","mercury", \
 		"nitrogen","oxygen","phosphorus","potassium","silicon", \
-		"silver","sodium","sugar","sulfur","water", \
-		"radium", "plasma"
+		"silver","sodium","sugar","sulfur","water" \
 	)
 	var/glass_path = /obj/item/reagent_containers/glass
 	var/glass_name = "beaker"

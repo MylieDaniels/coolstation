@@ -146,7 +146,7 @@ ABSTRACT_TYPE(/datum/plant/artifact)
 	harvests = 6
 	endurance = 0
 	mutations = list(/datum/plantmutation/dripper/leaker)
-	assoc_reagents = list("plasma")
+	assoc_reagents = list("radium")
 
 /datum/plant/artifact/rocks
 	name = "Rock"

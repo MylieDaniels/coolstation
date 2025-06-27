@@ -244,10 +244,7 @@
 			R.add_reagent("styptic_powder", 5)
 
 		if(!src.batbomb)
-			if (prob(50))
-				R.add_reagent("barium", 5)
-			else
-				R.add_reagent("potassium",5)
+			R.add_reagent("potassium",5)
 			R.add_reagent("salt",10)
 			R.add_reagent("nicotine",10)
 

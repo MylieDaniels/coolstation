@@ -11,6 +11,7 @@ datum
 			fluid_b = 220
 			transparency = 255
 
+		/*
 		barium
 			name = "barium"
 			id = "barium"
@@ -20,7 +21,9 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+		*/
 
+		/*
 		bromine
 			name = "bromine"
 			id = "bromine"
@@ -30,6 +33,7 @@ datum
 			fluid_g = 50
 			fluid_b = 50
 			transparency = 50
+		*/
 
 		calcium
 			name = "calcium"
@@ -373,6 +377,7 @@ datum
 			on_plant_life(var/obj/machinery/plantpot/P)
 				P.HYPdamageplant("poison",1)
 
+		/*
 		nickel
 			name = "nickel"
 			id = "nickel"
@@ -382,6 +387,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+		*/
 
 		nitrogen
 			name = "nitrogen"
@@ -470,7 +476,7 @@ datum
 				if (growing.growthmode != "plasmavore")
 					P.HYPdamageplant("poison",2)
 
-		platinum
+		/*platinum
 			name = "platinum"
 			id = "platinum"
 			description = "Shiny."
@@ -478,7 +484,7 @@ datum
 			fluid_r = 220
 			fluid_g = 220
 			fluid_b = 220
-			transparency = 255
+			transparency = 255*/
 
 		potassium
 			name = "potassium"

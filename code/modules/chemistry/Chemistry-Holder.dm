@@ -1346,7 +1346,7 @@ datum
 				if ("sprint")
 					shock = rand(8, 16)
 				if ("run")
-					shock = rand(5, 12)
+					shock = rand(5, 14)
 				if ("walk", "swap")
 					if (prob(5))
 						shock = 1

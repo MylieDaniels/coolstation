@@ -1509,13 +1509,13 @@
 
 		boutput(user, "You inject the solution into the [src].")
 
-		if(S.reagents.has_reagent("plasma", 1))
+		if (S.reagents.composite_volatility > 4 && S.reagents.total_volume >= 5)
 			message_admins("[key_name(user)] rigged [src] to explode in [user.loc.loc], [showCoords(user.x, user.y, user.z)].")
 			logTheThing("combat", user, null, "rigged [src] to explode in [user.loc.loc] ([showCoords(user.x, user.y, user.z)])")
 			rigged = 1
 			rigger = user
 
-		S.reagents.clear_reagents()
+		S.reagents.remove_any(5)
 	else
 		..()
 	return

@@ -164,7 +164,7 @@
 				src.label = "rainbow"
 			if (15)
 				src.name += "Hearty Hellburn Brew flavor" //by Eagletanker
-				src.initial_reagents += (list("oxygen"=18, "plasma"=8, "ghostchilijuice"=1, "carbon"=3))
+				src.initial_reagents += (list("oxygen"=18, "fuel"=8, "ghostchilijuice"=1, "carbon"=3))
 				src.desc = "9/10 Engineers prefered Grones Hearty Hellburn, find out why yourself!"
 				src.label = "engine"
 			if (16)

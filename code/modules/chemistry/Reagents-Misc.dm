@@ -839,6 +839,7 @@ datum
 			transparency = 75
 			value = 2 // 1c + 1c
 			hygiene_value = 0.25
+			evaporates_cleanly = TRUE
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				P.growth += 4
@@ -3863,6 +3864,7 @@ datum
 			blocks_sight_gas = 1
 			hygiene_value = -1
 			smoke_spread_mod = 15
+			evaporates_cleanly = TRUE
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -3891,7 +3893,7 @@ datum
 			transparency = 95
 			hygiene_value = -0.5
 			smoke_spread_mod = 3
-
+			evaporates_cleanly = TRUE
 
 			on_add()
 				if (holder && ismob(holder.my_atom))
@@ -3982,6 +3984,7 @@ datum
 			fluid_g = 181
 			transparency = 255
 			blocks_sight_gas = 1
+			evaporates_cleanly = TRUE
 
 		iron_oxide
 			name = "Iron Oxide"

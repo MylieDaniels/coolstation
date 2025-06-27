@@ -73,6 +73,7 @@ datum
 			fluid_b = 160
 			transparency = 60
 			penetrates_skin = 1
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -117,6 +118,7 @@ datum
 			fluid_b = 160
 			transparency = 60
 			penetrates_skin = 1
+			evaporates_cleanly = TRUE
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -151,6 +153,7 @@ datum
 			bladder_value = -0.2
 			hygiene_value = 1
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
+			evaporates_cleanly = TRUE
 
 			on_add()
 				if (holder && ismob(holder.my_atom))
@@ -271,6 +274,7 @@ datum
 			fluid_g = 254
 			fluid_b = 252
 			transparency = 20
+			evaporates_cleanly = TRUE
 
 		iodine
 			name = "iodine"
@@ -281,6 +285,7 @@ datum
 			fluid_g = 0
 			fluid_b = 255
 			transparency = 50
+			evaporates_cleanly = TRUE
 
 		iron
 			name = "iron"
@@ -396,6 +401,7 @@ datum
 			fluid_b = 252
 			transparency = 20
 			pathogen_nutrition = list("nitrogen")
+			evaporates_cleanly = TRUE
 
 		oxygen
 			name = "oxygen"
@@ -406,6 +412,7 @@ datum
 			fluid_g = 254
 			fluid_b = 252
 			transparency = 20
+			evaporates_cleanly = TRUE
 
 		phosphorus
 			name = "phosphorus"
@@ -672,6 +679,7 @@ datum
 			fluid_b = 160
 			transparency = 155
 			data = null
+			evaporates_cleanly = TRUE
 			var/granted_updraft = FALSE
 
 			on_add()
@@ -806,6 +814,7 @@ datum
 			reagent_state = LIQUID
 			flammable_influence = TRUE
 			burn_volatility = -5
+			evaporates_cleanly = TRUE
 #ifdef UNDERWATER_MAP
 			block_slippy = 1
 			description = "A little strange. Not like any water you've seen. But definitely OSHA approved."
@@ -1016,6 +1025,7 @@ datum
 			bladder_value = -0.2
 			minimum_reaction_temperature = T0C+1 // if it adds 1'C water, 1'C is good enough.
 			taste = "cold"
+			evaporates_cleanly = TRUE
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/prev_vol = volume

@@ -326,7 +326,7 @@ datum
 				if(!reacting)
 					reacting = 1
 					var/list/covered = holder.covered_turf()
-					var/location = covered.len ? covered[1] : 0
+					var/location = length(covered) ? covered[1] : 0
 					var/hootmode = prob(5)
 
 					if (src.no_fluff == 0)
@@ -399,7 +399,7 @@ datum
 				if(!reacting)
 					reacting = 1
 					var/list/covered = holder.covered_turf()
-					var/location = covered.len ? covered[1] : 0
+					var/location = length(covered) ? covered[1] : 0
 					flashpowder_reaction(location, holder.get_reagent_amount(id))
 				holder?.del_reagent(id)
 
@@ -460,7 +460,7 @@ datum
 							I.combust()
 
 					var/list/covered = old_holder.covered_turf()
-					if (covered.len>4)
+					if (length(covered)>4)
 						old_holder.remove_reagent(id, I.health * 0.25)
 				return
 
@@ -772,51 +772,54 @@ datum
 				for(var/turf/location in covered)
 					var/our_amt = holder.get_reagent_amount(src.id) / length(covered)
 
-					if (our_amt < 10 && covered.len > 5)
-						if (prob(min(covered.len/3,85)))
+					if (our_amt < 10 && length(covered) > 5)
+						if (prob(min(length(covered)/3,85)))
 							continue
 
 					elecflash(location)
 					SPAWN_DBG(rand(5,15))
 						if(!holder || !holder.my_atom) return // runtime error fix
+						var/turf/detonation_turf = location
+						if(length(covered) == 1)
+							detonation_turf = get_turf(holder.my_atom)
 						switch(our_amt)
 							if(0 to 20)
 								holder.my_atom.visible_message("<b>The black powder ignites!</b>")
-								if (covered.len < 5 || prob(5))
+								if (length(covered) < 5 || prob(5))
 									var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
-									smoke.set_up(1, 0, location)
+									smoke.set_up(1, 0, detonation_turf)
 									smoke.start()
-								explosion(holder.my_atom, location, -1, -1, pick(0,1), 1)
-								if (covered.len > 1)
+								explosion(holder.my_atom, detonation_turf, -1, -1, pick(0,1), 1)
+								if (length(covered) > 1)
 									holder.remove_reagent(id, our_amt)
 								else
 									holder.del_reagent(id)
 							if(21 to 80)
 								holder.my_atom.visible_message("<b>[holder.my_atom] flares up!</b>")
-								fireflash(location,0)
-								explosion(holder.my_atom, location, -1, -1, 1, 2)
-								if (covered.len > 1)
+								fireflash(detonation_turf,0)
+								explosion(holder.my_atom, detonation_turf, -1, -1, 1, 2)
+								if (length(covered) > 1)
 									holder.remove_reagent(id, our_amt)
 								else
 									holder.del_reagent(id)
 							if(81 to 160)
 								holder.my_atom.visible_message("<span class='alert'><b>[holder.my_atom] explodes!</b></span>")
-								explosion(holder.my_atom, location, -1, 1, 2, 3)
-								if (covered.len > 1)
+								explosion(holder.my_atom, detonation_turf, -1, 1, 2, 3)
+								if (length(covered) > 1)
 									holder.remove_reagent(id, our_amt)
 								else
 									holder.del_reagent(id)
 							if(161 to 300)
 								holder.my_atom.visible_message("<span class='alert'><b>[holder.my_atom] violently explodes!</b></span>")
-								explosion(holder.my_atom, location, 1, 3, 6, 8)
-								if (covered.len > 1)
+								explosion(holder.my_atom, detonation_turf, 1, 3, 6, 8)
+								if (length(covered) > 1)
 									holder.remove_reagent(id, our_amt)
 								else
 									holder.del_reagent(id)
 							if(301 to INFINITY)
 								holder.my_atom.visible_message("<span class='alert'><b>[holder.my_atom] detonates in a huge blast!</b></span>")
-								explosion(holder.my_atom, location, 3, 6, 12, 15)
-								if (covered.len > 1)
+								explosion(holder.my_atom, detonation_turf, 3, 6, 12, 15)
+								if (length(covered) > 1)
 									holder.remove_reagent(id, our_amt)
 								else
 									holder.del_reagent(id)

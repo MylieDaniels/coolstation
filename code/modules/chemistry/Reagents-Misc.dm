@@ -164,7 +164,7 @@ datum
 				var/datum/reagents/silver_fulminate_holder = holder
 				var/silver_fulminate_volume = volume
 				silver_fulminate_holder.del_reagent("silver_fulminate")
-				silver_fulminate_holder.temperature_reagents(silver_fulminate_holder.total_temperature + silver_fulminate_volume * 50, 400, 3500, 800, 10)
+				silver_fulminate_holder.temperature_reagents(silver_fulminate_holder.total_temperature + silver_fulminate_volume * 150, 400, 3500, 800, 10)
 				open_flame_reaction(silver_fulminate_holder)
 
 			reaction_temperature(var/exposed_temperature, var/exposed_volume)
@@ -172,14 +172,8 @@ datum
 					explode()
 				else
 					var/delta = exposed_temperature - holder.last_temp
-					if (delta > 5 && prob(delta*5))
+					if (delta > 10 && prob(delta*2.5))
 						explode()
-
-			reaction_turf(var/turf/T, var/amount)
-				// adding a slight delay solely to make silver fulminate foam way more fun
-				spawn(rand(0, 5))
-					if (src && T)
-						pop(T, amount)
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/amount_passed)
 				. = ..()
@@ -190,22 +184,18 @@ datum
 				pop(get_turf(O), amount)
 
 			physical_shock(var/force)
-				if (volume <= holder.total_volume/4) //be somewhat stable to shock if prepared like bang snaps
-					if (prob(max(0,force-12)*12)) //safe to run with, but not sprint. 24% chance to pop on your face when thrown
-						explode()
-				else
-					if (prob(force*5))
-						explode()
+				if (force >= 20 || prob(max(0,force-11)*6)) //safe to walk with, but not run. 18% chance to pop when thrown, guaranteed to pop on landing
+					explode()
 
 			on_transfer(var/datum/reagents/source, var/datum/reagents/target, var/transferred_volume)
 				var/datum/reagent/silver_fulminate/target_silver_fulminate = target.get_reagent("silver_fulminate")
 				if (target_silver_fulminate)
-					// 10 or more units in one place explode
-					if (target_silver_fulminate.volume >= 10)
+					// 15 or more units in one place explode
+					if (target_silver_fulminate.volume >= 15)
 						target_silver_fulminate.explode()
 					else
-						// transferring single units is safe, anything more has a decent chance of reacting
-						target_silver_fulminate.physical_shock(round(0.45 * transferred_volume))
+						// transferring 3u is safe, anything more has a decent chance of reacting
+						target_silver_fulminate.physical_shock(floor(3.66 * transferred_volume))
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)

@@ -631,6 +631,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				for(var/atom/movable/AM in src.contents)
 					AM.set_loc(T)
 				src.reagents.reaction(T)
+				src.reagents.clear_reagents()
 				return
 
 

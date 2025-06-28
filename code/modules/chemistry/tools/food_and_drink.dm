@@ -875,7 +875,7 @@
 			qdel(src)
 
 		else if(!iscrushingtool(W))
-			if (W.cant_drop && !(W.flags & OPENCONTAINER)) // don't warn about a bucket or whatever
+			if (W.cant_drop)
 				boutput(user, SPAN_ALERT("You can't put that in \the [src] when it's attached to you!"))
 				return
 			if (length(src.contents))

@@ -681,6 +681,7 @@ MATERIAL
 	icon_state = "rods_5"
 	item_state = "rods"
 	flags = FPRINT | TABLEPASS| CONDUCT
+	tool_flags = TOOL_CRUSHING
 	w_class = W_CLASS_NORMAL
 	force = 9.0
 	throwforce = 15.0

@@ -62,6 +62,9 @@
 	/// The 'quality' of the material
 	var/quality = 0
 
+	/// The reagent that this material might be crushed into
+	var/associated_reagent = null
+
 	/// The actual value of edibility. Changes internally and sets [/datum/material/var/edible].
 	var/edible_exact = 0
 	/// The functional value of edibility. Edible or not? This is what you check from the outside to see if material is edible. See [/datum/material/var/edible_exact].
@@ -256,6 +259,7 @@
 	desc = "Near useless asteroid rock with some traces of random metals."
 	color = "#ACACAC"
 	texture = "rock"
+	associated_reagent = "carbon"
 
 	New()
 		setProperty("density", 20)
@@ -267,6 +271,7 @@
 	mat_id = "rock_gehenna"
 	name = "desert rock"
 	color = "#DCB040"
+	associated_reagent = "sulfur"
 
 /datum/material/metal/electrum
 	mat_id = "electrum"
@@ -305,6 +310,8 @@
 	name = "copper"
 	desc = "Copper is a terrestrial conductive metal from proto-Dan mines. It is inferior to pharosium."
 	color = "#B87333" //the hex value known as copper in RGB colorspace
+	associated_reagent = "copper"
+
 	New()
 		setProperty("stability", 30)
 		setProperty("electrical", 51)
@@ -329,6 +336,7 @@
 	name = "cobryl"
 	desc = "Cobryl is a somewhat valuable metal."
 	color = "#84D5F0"
+
 	New()
 		value = 175
 		return ..()
@@ -350,6 +358,7 @@
 	desc = "Cerenkite is a highly radioactive metal."
 	color = "#CDBDFF"
 	material_flags = MATERIAL_ENERGY | MATERIAL_METAL
+	associated_reagent = "radium"
 
 	New()
 		value = 200
@@ -401,6 +410,7 @@
 	desc = "A slightly valuable and conductive metal."
 	color = "#C1D1D2"
 	quality = 5
+	associated_reagent = "silver"
 
 	New()
 		value = 250
@@ -430,6 +440,7 @@
 	color = "#043e9b"
 	material_flags = MATERIAL_ENERGY | MATERIAL_METAL
 	alpha = 255
+	associated_reagent = "ldmatter"
 
 	New()
 		setProperty("density", 100) //👀
@@ -448,6 +459,7 @@
 	desc = "A by-product left over after material has been processed."
 	color = "#26170F"
 	quality = -50
+	associated_reagent = "iron"
 
 	New()
 		value = 10
@@ -508,6 +520,7 @@
 	desc = "Terrestrial glass. Inferior to Molitz."
 	color = "#A3DCFF"
 	alpha = 180
+	associated_reagent = "silicon"
 
 /datum/material/crystal/molitz
 	mat_id = "molitz"
@@ -515,6 +528,7 @@
 	desc = "Molitz is a common crystalline substance."
 	color = "#FFFFFF"
 	alpha = 180
+	associated_reagent = "oxygen"
 
 	New()
 		setProperty("density", 40)
@@ -554,6 +568,7 @@
 	desc = "Erebite is an extremely volatile high-energy mineral."
 	color = "#FF3700"
 	material_flags = MATERIAL_CRYSTAL | MATERIAL_ENERGY
+	associated_reagent = "phlogiston"
 
 	New()
 		setProperty("density", 20)
@@ -577,6 +592,7 @@
 	desc = "Plasma in its solid state."
 	color = "#A114FF"
 	material_flags = MATERIAL_CRYSTAL | MATERIAL_ENERGY
+	associated_reagent = "plasma"
 
 	New()
 		setProperty("density", 10)
@@ -596,6 +612,7 @@
 	desc = "Crystallized plasma that has been rendered inert. Very hard and prone to making extremely sharp edges."
 	color = "#A114FF"
 	alpha = 180
+	associated_reagent = "plasma"
 
 	New()
 		setProperty("density", 30)
@@ -610,6 +627,7 @@
 	quality = 50
 	alpha = 100
 	var/gem_tier = 3
+	associated_reagent = "silicon"
 
 	New()
 		switch(gem_tier)
@@ -637,6 +655,7 @@
 		color = "#FFFFFF"
 		quality = 100
 		gem_tier = 1
+		associated_reagent = "carbon"
 
 	onyx
 		mat_id = "onyx"
@@ -847,6 +866,7 @@
 	desc = "The frozen state of water."
 	color = "#E8F2FF"
 	alpha = 100
+	associated_reagent = "ice"
 
 	edible_exact = 1
 	edible = 1
@@ -920,6 +940,7 @@
 	quality = 2
 	texture = "bubbles"
 	texture_blend = ICON_MULTIPLY
+	associated_reagent = "meat_slurry"
 
 	edible_exact = 0.6 //Just barely edible
 	edible = 1
@@ -939,6 +960,7 @@
 	desc = "Meat from a carbon-based lifeform."
 	color = "#574846"
 	material_flags = MATERIAL_ORGANIC | MATERIAL_CLOTH
+	associated_reagent = "blood"
 
 	edible_exact = 0.6 //Just barely edible.
 	edible = 1
@@ -953,12 +975,14 @@
 		mat_id = "butt"
 		name = "butt"
 		desc = "...it's butt flesh. Why is this here. Why do you somehow know it's butt flesh. Fuck."
+		associated_reagent = "toxic_fart"
 
 /datum/material/organic/char
 	mat_id = "char"
 	name = "char"
 	desc = "Char is a fossil energy source similar to coal."
 	color = "#555555"
+	associated_reagent = "carbon"
 
 	New()
 		setProperty("flammable", 60)
@@ -972,6 +996,7 @@
 	desc = "An unusual dense pulsating stone. You feel uneasy just looking at it."
 	color = "#600066"
 	material_flags = MATERIAL_ORGANIC | MATERIAL_CRYSTAL
+	associated_reagent = "radium"
 
 	New()
 		setProperty("hard", 55)
@@ -986,6 +1011,7 @@
 	desc = "A disgusting flesh-like material. Ugh. What the hell is this?"
 	color = "#D04FFF"
 	material_flags = MATERIAL_ORGANIC | MATERIAL_CLOTH
+	associated_reagent = "martian_flesh"
 
 	edible_exact = 0.6 //Just barely edible.
 	edible = 1
@@ -1004,6 +1030,7 @@
 	desc = "Bone is pretty spooky stuff."
 	color = "#DDDDDD"
 	material_flags = MATERIAL_ORGANIC
+	associated_reagent = "calcium"
 
 	New()
 		setProperty("density", 20)
@@ -1018,6 +1045,7 @@
 	material_flags = MATERIAL_ORGANIC
 	texture = "wood"
 	texture_blend = ICON_MULTIPLY
+	associated_reagent = "sawdust"
 
 	New()
 		setProperty("density", 55)
@@ -1033,6 +1061,7 @@
 	material_flags = MATERIAL_ORGANIC
 	texture = "bamboo"
 	texture_blend = ICON_MULTIPLY
+	associated_reagent = "sawdust"
 
 	New()
 		setProperty("density", 45)
@@ -1046,6 +1075,7 @@
 	desc = "Perfect for making boxes."
 	color = "#d3b173"
 	material_flags = MATERIAL_ORGANIC
+	associated_reagent = "sawdust"
 
 	New()
 		setProperty("density", 25)
@@ -1061,6 +1091,7 @@
 	desc = "Chitin is an organic material found in the exoskeletons of insects."
 	color = "#118800"
 	material_flags = MATERIAL_ORGANIC | MATERIAL_METAL
+	associated_reagent = "dead_bugs"
 
 	New()
 		setProperty("density", 25)
@@ -1073,6 +1104,7 @@
 	desc = "An organic material consisting of pollen and space-bee secretions.  Mind your own."
 	color = "#C8BB62"
 	material_flags = MATERIAL_ORGANIC
+	associated_reagent = "wax"
 
 	New()
 		setProperty("density", 15)
@@ -1087,6 +1119,7 @@
 	material_flags = MATERIAL_ORGANIC
 	edible_exact = TRUE
 	edible = TRUE
+	associated_reagent = "honey"
 
 	New()
 		setProperty("density", 20)
@@ -1117,6 +1150,7 @@
 	desc = "Ancient medium ground chuck, petrified by the ages into a sturdy composite. Or worse."
 	color = "#816962"
 	material_flags = MATERIAL_ORGANIC
+	associated_reagent = "cholesterol"
 
 	New()
 		setProperty("density", 65)
@@ -1139,6 +1173,7 @@
 	texture_blend = ICON_OVERLAY
 	edible_exact = 1
 	edible = 1
+	associated_reagent = "pizza"
 
 	New()
 		setProperty("hard", 2)
@@ -1412,6 +1447,7 @@
 	name = "ectoplasm"
 	desc = "Ghostly residue. Not terribly useful on it's own."
 	color = "#ccffcc"
+	associated_reagent = "ectoplasm"
 
 	New()
 		setProperty("density", 1)

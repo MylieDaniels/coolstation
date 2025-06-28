@@ -1787,7 +1787,7 @@ datum
 			required_reagents = list("magnesium_chloride" = 1, "ammonia" = 6)
 			result = "mg_nh3_cl"
 			result_amount = 1
-			required_temperature = T20C + 10
+			max_temperature = T20C + 10
 			mix_phrase = "The mixture seems to combine."
 
 		mg_nh3_cl_decomposition
@@ -1796,7 +1796,7 @@ datum
 			result = "magnesium_chloride"
 			required_reagents = list("mg_nh3_cl" = 1)
 			result_amount = 1
-			required_temperature = T0C + 150
+			min_temperature = T0C + 150
 			on_reaction(var/datum/reagents/holder, var/created_volume)
 				holder.add_reagent("ammonia", created_volume * 6)
 			mix_phrase = "The mixture bubbles aggressively."
@@ -2106,10 +2106,13 @@ datum
 			name = "Acetaldehyde"
 			id = "acetaldehyde"
 			result = "acetaldehyde"
-			required_reagents = list("oxygen" = 1, "copper" = 1, "ethanol" = 1)
-			result_amount = 3
+			required_reagents = list("oxygen" = 1, "ethanol" = 1, "silver" = 0)
+			result_amount = 1
 			required_temperature = T0C + 275
 			mix_phrase = "It smells like a bad hangover in here."
+
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				holder.add_reagent("water", created_volume,, holder.total_temperature)
 
 		acetic_acid
 			name = "Acetic Acid"
@@ -2133,7 +2136,7 @@ datum
 			id = "cyclopentanol"
 			result = "cyclopentanol"
 			required_temperature = T0C + 275
-			required_reagents = list("acetic_acid" = 1, "ether" = 1, "hydrogen" = 1, "oxygen" = 1)
+			required_reagents = list("acetic_acid" = 1, "ether" = 1, "hydrogen" = 1, "oxygen" = 1, "copper" = 0)
 			result_amount = 3
 			mix_phrase = "The mixture fizzles into a colorless liquid."
 

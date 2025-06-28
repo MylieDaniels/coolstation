@@ -570,3 +570,67 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	name = "reagent glass (surfactant)"
 	icon_state = "liquid"
 	initial_reagents = list("fluorosurfactant"=20)
+
+/// HOBOCHEM GAMING
+
+/obj/item/tool/pestle
+	name = "pestle"
+	desc = "A fancy rod for grinding things up in a mortar."
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
+	icon_state = "hammer"
+	tool_flags = TOOL_CRUSHING
+
+/obj/item/reagent_containers/mortar
+	name = "mortar"
+	desc = "A fancy bowl for grinding things up with a pestle."
+	initial_volume = 100
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "bowl"
+
+	get_desc(dist)
+		. = ..()
+		if(dist <= 2 && length(src.contents))
+			. += "<br>It contains \a [src.contents[1]]"
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(!iscrushingtool(W))
+			if (W.cant_drop && !(W.flags & OPENCONTAINER)) // don't warn about a bucket or whatever
+				boutput(user, SPAN_ALERT("You can't put that in \the [src] when it's attached to you!"))
+				return
+			if (length(src.contents))
+				boutput(user, SPAN_ALERT("\The [src] is full!"))
+				return ..() // in case they meant to hit it?
+			if(W.w_class > W_CLASS_SMALL)
+				boutput(user, SPAN_ALERT("You can't fit something so big in \the [src]!"))
+				return
+
+			W.set_loc(src)
+			user.u_equip(W)
+			user.visible_message("[user] puts [W] in [src].", "You put [W] in [src].")
+		else
+			if(!length(src.contents) && !src.reagents.total_volume)
+				boutput(user, SPAN_ALERT("\The [src] is empty!"))
+				return
+			var/crushed = FALSE
+			for(var/obj/item/I in src.contents)
+				var/item_name = I.name
+				if(I.material && I.material.associated_reagent)
+					src.reagents.add_reagent(I.material.associated_reagent, I.w_class * rand(3,6))
+					I.material.triggerOnAttacked(I, user, user, W)
+					crushed = TRUE
+				if(!QDELETED(I) && I?.reagents?.total_volume)
+					I.reagents.trans_to_direct(src.reagents, floor(I.reagents.total_volume * rand(50, 80) * 0.01))
+					crushed = TRUE
+				if(crushed)
+					boutput(user, SPAN_NOTICE("You crush up \the [item_name] in \the [src]!"))
+					qdel(I)
+					return
+			var/turf/T = get_turf(src)
+			if(T)
+				boutput(user, SPAN_ALERT("You can't crush anything easily, and make a huge mess!"))
+				for(var/atom/movable/AM in src.contents)
+					AM.set_loc(T)
+				src.reagents.reaction(T)
+				return
+
+

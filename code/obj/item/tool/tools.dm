@@ -357,7 +357,7 @@ Handsaw
 	icon_state = "hammer"
 
 	//Idea: move a good deal of those carpenter/engineering trait checks into checks for holding a hammer.
-	tool_flags = TOOL_HAMMERING
+	tool_flags = TOOL_HAMMERING | TOOL_CRUSHING
 	force = 10 //It's a hammer
 	throwforce = 10
 

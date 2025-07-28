@@ -1489,7 +1489,7 @@ datum
 
 		cocktail_mojito/mojito2
 			id = "mojito2"
-			required_reagents = list("mint" = 1, "lime" = 1, "rum" = 1, "sugar" = 1)
+			required_reagents = list("mint" = 1, "juice_lime" = 1, "rum" = 1, "sugar" = 1)
 			result_amount = 4
 
 		cocktail_cremedementhe
@@ -3418,7 +3418,7 @@ datum
 			name = "Voltagen"
 			id = "voltagen"
 			result = "voltagen"
-			required_reagents = list("ldmatter" = 1, "plasma" = 5, "uranium" = 1, "oil" = 1, "stabiliser" = 1)
+			required_reagents = list("ldmatter" = 1, "plasma" = 1, "uranium" = 1, "oil" = 1, "stabiliser" = 1)
 			result_amount = 5
 			mix_phrase = "The solution settles into a liquid form of electricity."
 			mix_sound = 'sound/effects/elec_bigzap.ogg'
@@ -3434,7 +3434,7 @@ datum
 		voltagen_arc
 			name = "Voltagen Arc"
 			id = "voltagen_arc"
-			required_reagents = list("ldmatter" = 1, "plasma" = 5, "uranium" = 1, "oil" = 1)
+			required_reagents = list("ldmatter" = 1, "plasma" = 1, "uranium" = 1, "oil" = 1)
 			instant = 1
 			inhibitors = list("stabiliser")
 			mix_phrase = "The solution settles into a liquid form of electricity but violently destabilizes!"

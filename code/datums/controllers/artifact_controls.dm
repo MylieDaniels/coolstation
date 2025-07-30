@@ -13,6 +13,9 @@ var/datum/artifact_controller/artifact_controls
 	var/spawner_type = null
 	var/spawner_cine = 0
 
+	var/list/artifact_staff_toll_types = list()
+	var/list/artifact_staff_effect_types = list()
+
 	New()
 		..()
 		artifact_rarities["all"] = list()
@@ -49,6 +52,10 @@ var/datum/artifact_controller/artifact_controls
 			var/datum/artifact_trigger/AT = new X
 			if(AT.used)
 				artifact_trigger_names += AT.type_name
+
+		// staves lists
+		src.artifact_staff_toll_types = concrete_typesof(/datum/artifact_staff_toll)
+		src.artifact_staff_effect_types = concrete_typesof(/datum/artifact_staff_effect)
 
 	proc/get_origin_from_string(var/string)
 		if (!istext(string))

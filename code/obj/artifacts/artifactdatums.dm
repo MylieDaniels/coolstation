@@ -208,6 +208,7 @@ ABSTRACT_TYPE(/datum/artifact/art)
 	ks_ratio = 1.0
 	sname = "energy bolt"
 	shot_sound = 'sound/weapons/Taser.ogg'
+	shot_volume = 70
 	shot_number = 1
 	damage_type = D_PIERCING
 	hit_ground_chance = 90

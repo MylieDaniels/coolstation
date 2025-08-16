@@ -1087,7 +1087,6 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = ELASTIC_EASING)
 	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = ELASTIC_EASING)
 	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
-	playsound()
 	return
 
 /proc/animate_stairs(var/atom/A)

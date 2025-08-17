@@ -9986,6 +9986,12 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/space/magindara,
 /area/magindara)
+"AB" = (
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/southwest)
 "AD" = (
 /obj/cable{
 	d1 = 4;
@@ -49180,7 +49186,7 @@ Me
 og
 og
 og
-og
+AB
 Me
 Me
 Me

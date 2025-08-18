@@ -357,6 +357,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 /datum/supply_packs/nanotrasen/emergency
 	category = "Emergency"
 
+	plunger
+		name = "Emergency Plunger"
+		desc = "An emergency plunger for when you can't find the one NT provided."
+		contents = "x1 Plunger"
+		contains = list(/obj/item/clothing/head/plunger)
+		cost = 750
+		containertype = /obj/storage/crate/biohazard
+		containername = "Emergency Plunger"
+
 	meteor
 		name = "Meteor Shield System"
 		desc = "It'll do in a pinch but your ship should really have it's own shields."
@@ -1001,6 +1010,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 						/obj/item/reagent_containers/food/snacks/condiment/custard,
 						/obj/item/reagent_containers/food/snacks/condiment/hotsauce = 3,
 						/obj/item/reagent_containers/food/snacks/condiment/ketchup = 4,
+						/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce = 2,
 						/obj/item/reagent_containers/food/snacks/condiment/mayo = 4,
 						/obj/item/reagent_containers/food/snacks/condiment/syrup = 3,
 						/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter = 3,

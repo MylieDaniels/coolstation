@@ -103,11 +103,25 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	if(!gas_impermeable)
 		air = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			air.oxygen = MOLES_O2MAGINDARA
+			air.nitrogen = MOLES_N2MAGINDARA
+			air.carbon_dioxide = MOLES_CO2MAGINDARA
+			air.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			air.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 		#undef _TRANSFER_GAS_TO_AIR
 
 		air.temperature = temperature
+		#endif
 
 		if(air_master)
 			air_master.tiles_to_update |= src
@@ -233,11 +247,25 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		//  we can't pool the object returned by return_air. Bad news, man.
 		var/datum/gas_mixture/GM = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			GM.oxygen = MOLES_O2MAGINDARA
+			GM.nitrogen = MOLES_N2MAGINDARA
+			GM.carbon_dioxide = MOLES_CO2MAGINDARA
+			GM.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) GM.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			GM.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
 		#undef _TRANSFER_GAS_TO_GM
 
 		GM.temperature = temperature
+		#endif
 
 		return GM
 
@@ -623,7 +651,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater)
+	if (map_currently_underwater || (map_currently_abovewater && src.z == Z_LEVEL_DEBRIS))
 		if(istype(north, /turf/space/fluid))
 			north.tilenotify(src)
 		if(istype(south, /turf/space/fluid))

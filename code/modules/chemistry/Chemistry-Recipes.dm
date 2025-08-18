@@ -588,6 +588,16 @@ datum
 					boutput(M, "<span class='alert'>A horrible smell assaults your nose! What in space is it?</span>")
 				return
 
+		//tomato sauce + sugar at 4:1 and heat to 200F/94C/366K
+		ketchup
+			name = "Ketchup"
+			id = "ketchup"
+			result = "ketchup"
+			required_reagents = list("tomato_sauce" = 4, "sugar" = 1)
+			required_temperature = T0C + 94
+			result_amount = 5
+			mix_phrase = "The tomato sauce gets thicker and sweeter."
+
 		lemonade
 			name = "Lemonade"
 			id = "lemonade"
@@ -4049,3 +4059,12 @@ datum
 				themix = clamp(themix, 0, 1)
 				holder.add_reagent("bonerjuice", themix,,holder.total_temperature)
 				holder.add_reagent("bhjuice", 1 - themix,,holder.total_temperature)
+
+		cuprorivaite
+			name = "cuprorivaite"
+			id = "cuprorivaite"
+			result = "cuprorivaite"
+			mix_phrase = "A puff of smoke escapes the mixture as blue crystals form."
+			required_reagents = list("calcium_carbonate" = 2, "silicon_dioxide" = 8, "copper_nitrate" = 1)
+			required_temperature = T0C + 175
+			result_amount = 11

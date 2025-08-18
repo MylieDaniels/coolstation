@@ -108,7 +108,7 @@
 	var/list/bandaged = list()
 	var/being_staunched = 0 // is someone currently putting pressure on their wounds?
 
-	var/co2overloadtime = null
+	var/co2level = null
 	var/temperature_resistance = T0C+75
 
 	var/use_stamina = 0 // warc maybe put this
@@ -356,7 +356,7 @@
 
 /mob/living/projCanHit(datum/projectile/P)
 	if (!P) return 0
-	if (!src.lying || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (src:lying && prob(P.hit_ground_chance))) return 1
+	if (!src.lying || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (src.lying && prob(P.hit_ground_chance))) return 1
 	return 0
 
 /mob/living/proc/hand_attack(atom/target, params, location, control, origParams)
@@ -878,6 +878,11 @@
 
 		switch (message_mode)
 			if ("headset", "secure headset", "right hand", "left hand", "intercom")
+			/*
+				if ((istype(src:wear_suit, /obj/item/clothing/suit/space))&&(istype(src:head, /obj/item/clothing/head/helmet/space)))
+					VT = "spaceradio"
+				else
+			*/
 				VT = "radio"
 				ending = 0
 
@@ -899,6 +904,9 @@
 		else if (ending == "!")
 			playsound(src, sounds_speak["[VT]!"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "!"
+		else if (VT == "spaceradio")
+			playsound(src, sounds_speak["[VT]"], 55, 0, 8, pitch = 1, ignore_flag = SOUND_SPEECH)
+			speech_bubble.icon_state = "speech"
 		else
 			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
@@ -1791,17 +1799,17 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/proc/was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
 	SHOULD_CALL_PARENT(TRUE)
+	if(src.ai)
+		src.ai.was_harmed(weapon,M)
 	.= 0
 
 //left this here to standardize into living later
 /mob/living/critter/was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
-	if (src.ai)
-		src.ai.was_harmed(weapon,M)
-		if(src.is_hibernating)
-			if (src.registered_area)
-				src.registered_area.wake_critters()
-			else
-				src.wake_from_hibernation()
+	if (src.ai && src.is_hibernating)
+		if (src.registered_area)
+			src.registered_area.wake_critters()
+		else
+			src.wake_from_hibernation()
 	..()
 
 /mob/living/bullet_act(var/obj/projectile/P)
@@ -2056,7 +2064,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			if (T)
 				T.hotspot_expose(5000,125)
 				explosion(origin, T, -1,-1,1,2)
-			if (prob(20))
+			if (shock_damage >= 300 && prob(30))
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)
@@ -2253,10 +2261,12 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			// Added log_reagents() call for drinking glasses. Also the location (Convair880).
 			logTheThing("combat", src, null, "throws [I] [I.is_open_container() ? "[log_reagents(I)]" : ""] at [log_loc(src)].")
-		if (istype_exact(src.loc, /turf/space) || src.no_gravity) //they're in space, move em one space in the opposite direction
+		var/turf/T = get_turf(src)
+		if (T.throw_unlimited || src.no_gravity) //they're in space, move em one space in the opposite direction
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
-		if ((istype_exact(I.loc, /turf/space) || I.no_gravity)  && ismob(I))
+		T = get_turf(I)
+		if ((T.throw_unlimited || I.no_gravity) && ismob(I))
 			var/mob/M = I
 			M.inertia_dir = get_dir(src,target)
 

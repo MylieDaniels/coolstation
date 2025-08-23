@@ -23,6 +23,11 @@ var/HasturPresent = 0
 	bound_width = 32
 	speech_void = 1
 	layer = 40
+	health_brute = 6500
+	health_brute_vuln = 0.5
+	health_burn = 6500
+	health_burn_vuln = 0.5
+	takes_brain = FALSE
 	var/icon/northsouth = null
 	var/icon/eastwest = null
 	var/lastdir = null
@@ -75,8 +80,8 @@ var/HasturPresent = 0
 		HH.name = "right tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacler"				// the icon state of the hand UI background
-		HH.limb_name = "right tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "right tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -84,8 +89,8 @@ var/HasturPresent = 0
 		HH.name = "left tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclel"				// the icon state of the hand UI background
-		HH.limb_name = "left tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "left tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/abomination/hastur(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 1
 		HH.can_attack = 1
 
@@ -93,8 +98,8 @@ var/HasturPresent = 0
 		HH.name = "long range tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclek"				// the icon state of the hand UI background
-		HH.limb_name = "long range tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentacle	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentacle(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
@@ -103,16 +108,11 @@ var/HasturPresent = 0
 		HH.name = "long range stun tentacles"					// designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacles"				// the icon state of the hand UI background
-		HH.limb_name = "long range stun tentacles"					// name for the dummy holder
-		HH.limb = new /datum/limb/longtentaclestun	// if not null, the special limb to use when attack_handing
+		HH.limb.name = "long range stun tentacles"					// name for the dummy holder
+		HH.limb = new /datum/limb/longtentaclestun(src)	// if not null, the special limb to use when attack_handing
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_flesh(6500, 0.5)
-		add_hh_flesh_burn(6500, 0.5)
-		add_health_holder(/datum/healthHolder/toxin)
 
 	death(var/gibbed)
 		HasturPresent = 0

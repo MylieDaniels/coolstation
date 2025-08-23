@@ -10,6 +10,10 @@
 	can_bleed = FALSE
 	blood_id = "plasma"
 	blood_volume = 10
+	health_brute = 10
+	health_brute_vuln = 5
+	health_burn = 10
+	health_burn_vuln = 25
 
 	death(var/gibbed)
 		src.visible_message("<b>[src]</b> ruptures and explodes!")
@@ -19,7 +23,3 @@
 			explosion(src, T, -1, -1, 2, 3)
 		ghostize()
 		qdel(src)
-
-	setup_healths()
-		add_hh_flesh(1, 1)
-		add_hh_flesh_burn(1, 1)
